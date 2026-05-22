@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilih Jurusanmu — SMK Cokroaminoto 2 Banjarnegara</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Fredoka+One&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   TOKENS & RESET — COLORFUL CERIA
+══════════════════════════════════════════ */
+:root {
+  --bg:         #fff8f0;
+  --bg2:        #ffffff;
+  --bg3:        #fff1e6;
+  --border:     rgba(0,0,0,.08);
+  --border2:    rgba(0,0,0,.15);
+  --coral:      #ff6b6b;
+  --coral2:     #ff8e8e;
+  --coral-dim:  #fff0f0;
+  --sun:        #ffd93d;
+  --sun2:       #ffe570;
+  --sun-dim:    #fff9e0;
+  --mint:       #6bcb77;
+  --mint2:      #8de09a;
+  --mint-dim:   #edfaf0;
+  --sky:        #4d96ff;
+  --sky2:       #7ab4ff;
+  --sky-dim:    #e8f1ff;
+  --purple:     #c77dff;
+  --purple2:    #dba0ff;
+  --purple-dim: #f5e8ff;
+  --pink:       #ff6eb4;
+  --pink-dim:   #fff0f8;
+  --orange:     #ff9f43;
+  --text:       #2d2d2d;
+  --text2:      #5a5a5a;
+  --muted:      #9a9a9a;
+  --c-listrik:    #ffd93d;
+  --c-mesin:      #8ecae6;
+  --c-las:        #ff6b6b;
+  --c-otomotif:   #6bcb77;
+  --c-audio:      #c77dff;
+  --c-multimedia: #ff6eb4;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 520px 420px at 10% 20%,rgba(255,107,107,.10) 0%,transparent 70%),
+    radial-gradient(ellipse 400px 380px at 85% 10%,rgba(77,150,255,.10) 0%,transparent 70%),
+    radial-gradient(ellipse 500px 400px at 70% 80%,rgba(107,203,119,.10) 0%,transparent 70%),
+    radial-gradient(ellipse 380px 340px at 20% 85%,rgba(255,217,61,.12) 0%,transparent 70%),
+    radial-gradient(ellipse 300px 300px at 50% 50%,rgba(199,125,255,.06) 0%,transparent 70%);
+}
+.app{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 20px 80px;}
+
+/* HEADER */
+.header{padding:48px 0 36px;border-bottom:3px dashed rgba(255,107,107,.25);margin-bottom:36px;position:relative;}
+.header-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--coral);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.header-eyebrow::before{content:'✦';font-size:14px;animation:spin 8s linear infinite;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.header-title{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(30px,5.5vw,52px);color:var(--text);line-height:1.05;
+  margin-bottom:10px;letter-spacing:-.01em;
+}
+.header-title em{
+  background:linear-gradient(135deg,var(--coral) 0%,var(--purple) 50%,var(--sky) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;
+}
+.header-sub{font-size:13.5px;color:var(--text2);line-height:1.75;max-width:560px;font-weight:600;}
+.header-badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 18px;
+  background:linear-gradient(135deg,var(--sun-dim),var(--coral-dim));
+  border:2px solid var(--sun);border-radius:50px;
+  font-size:11px;font-weight:800;color:var(--coral);
+  box-shadow:0 4px 12px rgba(255,107,107,.15);
+}
+.hdr-deco{
+  position:absolute;top:10px;right:-10px;font-family:'Fredoka One',cursive;font-size:100px;
+  background:linear-gradient(135deg,rgba(255,107,107,.07),rgba(77,150,255,.07));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  pointer-events:none;line-height:1;
+}
+.hdr-stars{position:absolute;top:0;right:0;width:200px;height:120px;pointer-events:none;}
+.star{position:absolute;font-size:18px;animation:float 4s ease-in-out infinite;}
+.star:nth-child(1){top:10px;right:60px;animation-delay:0s;}
+.star:nth-child(2){top:50px;right:20px;animation-delay:.8s;font-size:14px;}
+.star:nth-child(3){top:30px;right:110px;animation-delay:1.5s;font-size:12px;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-8px) rotate(15deg);}}
+
+/* STEPS */
+.steps{display:flex;align-items:stretch;gap:6px;margin-bottom:32px;}
+.step{
+  flex:1;padding:11px 12px;text-align:center;font-family:'Nunito',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  border-radius:14px;border:2.5px solid rgba(0,0,0,.08);background:white;
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.step.active{
+  background:linear-gradient(135deg,var(--coral),var(--pink));border-color:transparent;color:white;
+  transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,107,107,.35);
+}
+.step.done{
+  background:linear-gradient(135deg,var(--mint),#4ecb59);border-color:transparent;color:white;
+  box-shadow:0 4px 12px rgba(107,203,119,.3);
+}
+.step.done::before{content:'✓ ';}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;animation:slideIn .45s cubic-bezier(.22,1,.36,1);}
+@keyframes slideIn{from{opacity:0;transform:translateY(20px) scale(.98);}to{opacity:1;transform:translateY(0) scale(1);}}
+
+/* SECTION LABEL */
+.section-label{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text2);margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(0,0,0,.1),transparent);border-radius:2px;}
+
+/* SLIDERS */
+.slider-groups{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;}
+.slider-group{
+  background:white;border:2.5px solid rgba(0,0,0,.06);border-radius:20px;
+  padding:20px 22px;box-shadow:0 4px 20px rgba(0,0,0,.05);
+  transition:transform .2s,box-shadow .2s;
+}
+.slider-group:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.08);}
+.sg-title{font-size:12.5px;font-weight:800;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.slider-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.slider-item{position:relative;}
+.slider-item label{
+  font-size:11px;font-weight:700;color:var(--text2);
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+}
+.slider-val{
+  font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--coral);
+  min-width:32px;text-align:right;background:var(--coral-dim);padding:2px 8px;border-radius:8px;
+}
+input[type=range]{
+  width:100%;height:6px;border-radius:3px;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(to right,var(--coral) 0%,var(--coral) var(--pct,37.5%),rgba(0,0,0,.1) var(--pct,37.5%),rgba(0,0,0,.1) 100%);
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:white;border:3px solid var(--coral);
+  box-shadow:0 2px 10px rgba(255,107,107,.45);cursor:pointer;transition:transform .15s;
+}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2);}
+input[type=range]::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;background:white;
+  border:3px solid var(--coral);cursor:pointer;
+}
+
+/* CARDS */
+.card-grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;}
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.sel-card{
+  border-radius:16px;padding:13px 8px;border:2.5px solid rgba(0,0,0,.06);background:white;
+  cursor:pointer;text-align:center;transition:all .2s cubic-bezier(.34,1.56,.64,1);
+  user-select:none;box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+.sel-card:hover{
+  border-color:var(--sky);background:var(--sky-dim);
+  transform:translateY(-3px) scale(1.03);box-shadow:0 6px 20px rgba(77,150,255,.2);
+}
+.sel-card.selected{
+  border-color:var(--coral);background:var(--coral-dim);
+  transform:translateY(-2px) scale(1.04);box-shadow:0 6px 20px rgba(255,107,107,.25);
+}
+.sel-card.selected .sc-name{color:var(--coral);}
+.sel-card.selected .sc-icon{animation:bounce .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes bounce{0%{transform:scale(1);}50%{transform:scale(1.4);}100%{transform:scale(1);}}
+.sc-icon{font-size:22px;display:block;margin-bottom:6px;}
+.sc-name{font-size:9.5px;font-weight:800;color:var(--text2);line-height:1.3;display:block;}
+
+.minat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.minat-card{
+  border-radius:18px;padding:16px;border:2.5px solid rgba(0,0,0,.06);background:white;
+  cursor:pointer;transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  user-select:none;box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+.minat-card:hover{
+  border-color:var(--sky);background:var(--sky-dim);
+  transform:translateY(-4px);box-shadow:0 10px 30px rgba(77,150,255,.2);
+}
+.minat-card.selected{
+  border-color:var(--coral);background:var(--coral-dim);
+  transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,107,.22);
+}
+.minat-card.selected .mc-name{color:var(--coral);}
+.minat-card.selected .mc-desc{color:var(--text2);}
+.mc-icon{font-size:26px;margin-bottom:8px;display:block;}
+.mc-name{font-size:12px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.mc-desc{font-size:10px;color:var(--muted);line-height:1.45;font-weight:600;}
+
+/* GOAL & GAYA */
+.goal-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.goal-btn{
+  padding:10px 20px;border-radius:50px;border:2.5px solid rgba(0,0,0,.08);background:white;
+  cursor:pointer;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--text2);
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.goal-btn:hover{border-color:var(--sky);color:var(--sky);background:var(--sky-dim);transform:translateY(-2px);}
+.goal-btn.active{
+  border-color:transparent;background:linear-gradient(135deg,var(--coral),var(--orange));
+  color:white;transform:translateY(-2px);box-shadow:0 6px 18px rgba(255,107,107,.35);
+}
+.gaya-row{display:flex;gap:10px;margin-bottom:24px;}
+.gaya-btn{
+  flex:1;padding:14px 10px;border-radius:18px;border:2.5px solid rgba(0,0,0,.08);background:white;
+  cursor:pointer;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:var(--text2);
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);text-align:center;line-height:1.4;
+  box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+.gaya-btn:hover{border-color:var(--mint);color:var(--mint);background:var(--mint-dim);transform:translateY(-3px);}
+.gaya-btn.active{
+  border-color:transparent;background:linear-gradient(135deg,var(--mint),#3dbf4e);
+  color:white;transform:translateY(-3px);box-shadow:0 8px 24px rgba(107,203,119,.4);
+}
+.gaya-sub{font-size:9px;font-weight:600;opacity:.75;display:block;margin-top:3px;}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:10px;margin-top:8px;}
+.btn-primary{
+  flex:2;padding:15px 24px;border-radius:50px;
+  background:linear-gradient(135deg,var(--coral) 0%,var(--pink) 50%,var(--purple) 100%);
+  color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;transition:all .25s;
+  box-shadow:0 6px 24px rgba(255,107,107,.35);
+}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 32px rgba(255,107,107,.45);filter:brightness(1.05);}
+.btn-secondary{
+  flex:1;padding:15px;border-radius:50px;border:2.5px solid rgba(0,0,0,.1);background:white;
+  cursor:pointer;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--text2);
+  transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.btn-secondary:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-2px);}
+
+/* RESULTS */
+.winner-card{
+  border-radius:24px;padding:28px 30px;margin-bottom:20px;
+  border:3px solid;position:relative;overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,.1);
+}
+.winner-card::before{content:'🎉';position:absolute;top:-10px;right:20px;font-size:60px;opacity:.12;transform:rotate(-15deg);}
+.winner-card::after{content:'⭐';position:absolute;bottom:-10px;right:80px;font-size:50px;opacity:.1;transform:rotate(20deg);}
+.wc-eyebrow{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;opacity:.8;}
+.wc-jurusan{font-family:'Fredoka One',cursive;font-size:clamp(22px,4.5vw,36px);line-height:1.1;margin-bottom:6px;}
+.wc-sekolah{font-size:12px;opacity:.65;margin-bottom:16px;font-weight:700;}
+.wc-bar-wrap{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.wc-bar-bg{flex:1;height:12px;background:rgba(0,0,0,.08);border-radius:6px;overflow:hidden;}
+.wc-bar-fill{height:100%;border-radius:6px;transition:width 1.6s cubic-bezier(.22,1,.36,1);}
+.wc-pct{font-family:'Fredoka One',cursive;font-size:40px;min-width:72px;text-align:right;line-height:1;}
+.wc-match-label{font-size:9.5px;opacity:.5;text-align:right;font-weight:700;}
+.wc-match-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;
+  font-size:10.5px;font-weight:800;background:rgba(255,255,255,.35);
+  border:1.5px solid rgba(255,255,255,.4);backdrop-filter:blur(4px);
+}
+
+.profile-bars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px;}
+.pb-item{background:white;border:2px solid rgba(0,0,0,.06);border-radius:16px;padding:14px 16px;box-shadow:0 3px 12px rgba(0,0,0,.05);}
+.pb-label{font-size:10px;font-weight:800;color:var(--text2);display:flex;justify-content:space-between;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;}
+.pb-bar-bg{height:8px;background:rgba(0,0,0,.07);border-radius:4px;overflow:hidden;}
+.pb-bar-fg{height:100%;border-radius:4px;transition:width 1.1s cubic-bezier(.22,1,.36,1);}
+
+.rank-section{margin-bottom:22px;}
+.rank-label{
+  font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:10px;display:flex;align-items:center;gap:10px;
+}
+.rank-label::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(0,0,0,.1),transparent);border-radius:2px;}
+.rank-items{display:flex;flex-direction:column;gap:8px;}
+.rank-item{
+  display:grid;grid-template-columns:36px 1fr 160px 50px;gap:10px;align-items:center;
+  padding:12px 16px;border-radius:16px;border:2.5px solid rgba(0,0,0,.06);background:white;
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+.rank-item:hover{transform:translateX(6px) translateY(-2px);border-color:var(--sky);box-shadow:0 8px 24px rgba(77,150,255,.18);}
+.rank-item.rank-1{border-color:var(--sun);background:var(--sun-dim);box-shadow:0 6px 20px rgba(255,217,61,.25);}
+.rank-item.rank-2{border-color:rgba(141,209,230,.5);background:#f0f9ff;}
+.rank-item.rank-3{border-color:rgba(255,107,107,.3);background:var(--coral-dim);}
+.ri-num{font-family:'Fredoka One',cursive;font-size:18px;text-align:center;color:var(--muted);}
+.ri-num.g{color:var(--sun);}
+.ri-num.s{color:#8ecae6;}
+.ri-num.b{color:var(--coral);}
+.ri-jurusan{font-size:11.5px;font-weight:800;color:var(--text);line-height:1.3;}
+.ri-sekolah{font-size:9.5px;color:var(--muted);font-weight:600;}
+.ri-bar-wrap{display:flex;align-items:center;gap:6px;}
+.ri-bar-bg{flex:1;height:6px;background:rgba(0,0,0,.07);border-radius:3px;overflow:hidden;}
+.ri-bar-fg{height:100%;border-radius:3px;transition:width 1s ease;}
+.ri-pct{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--text2);text-align:right;}
+
+.kbadge{display:inline-flex;padding:3px 9px;border-radius:50px;font-size:8.5px;font-weight:800;margin-left:5px;}
+.kb-sangat{background:#dcfce7;color:#15803d;border:1.5px solid #86efac;}
+.kb-cukup{background:#dbeafe;color:#1d4ed8;border:1.5px solid #93c5fd;}
+.kb-pertimbang{background:#fff7ed;color:#c2410c;border:1.5px solid #fed7aa;}
+.kb-kurang{background:#fee2e2;color:#b91c1c;border:1.5px solid #fca5a5;}
+
+.reasons-box{
+  background:white;border:2.5px solid rgba(107,203,119,.3);
+  border-radius:20px;padding:18px 20px;margin-bottom:20px;
+  box-shadow:0 4px 16px rgba(107,203,119,.12);
+}
+.reasons-title{font-size:11px;font-weight:800;color:var(--mint);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.reason-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.reason-list li{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.6;font-weight:600;}
+.reason-list li::before{content:'✦';color:var(--mint);font-weight:900;flex-shrink:0;margin-top:2px;font-size:10px;}
+
+/* POPUP */
+.career-popup-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(12px);z-index:1000;
+  display:none;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto;
+}
+.career-popup-overlay.open{display:flex;animation:cpFade .3s ease;}
+@keyframes cpFade{from{opacity:0;}to{opacity:1;}}
+.career-popup{
+  background:var(--bg);border:3px solid rgba(0,0,0,.08);border-radius:28px;width:100%;max-width:760px;
+  position:relative;animation:cpSlide .4s cubic-bezier(.22,1,.36,1);margin:auto;
+  box-shadow:0 24px 80px rgba(0,0,0,.2);
+}
+@keyframes cpSlide{from{opacity:0;transform:translateY(28px) scale(.96);}to{opacity:1;transform:none;}}
+.cp-close{
+  position:absolute;top:18px;right:20px;width:36px;height:36px;border-radius:50%;
+  border:2px solid rgba(0,0,0,.1);background:white;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text2);
+  transition:all .2s;z-index:10;box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+.cp-close:hover{background:var(--coral-dim);border-color:var(--coral);color:var(--coral);transform:scale(1.1) rotate(90deg);}
+.cp-hero{border-radius:24px 24px 0 0;padding:30px 30px 24px;position:relative;overflow:hidden;}
+.cp-hero::before{content:'';position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:currentColor;opacity:.1;}
+.cp-hero::after{content:'';position:absolute;top:-20px;left:-20px;width:120px;height:120px;border-radius:50%;background:currentColor;opacity:.06;}
+.cp-hero-eyebrow{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin-bottom:8px;}
+.cp-hero-title{font-family:'Fredoka One',cursive;font-size:clamp(24px,4vw,38px);line-height:1.08;margin-bottom:8px;}
+.cp-hero-sub{font-size:12.5px;opacity:.7;line-height:1.6;max-width:480px;font-weight:600;}
+.cp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.cp-tag{padding:5px 14px;border-radius:50px;font-size:10px;font-weight:800;background:rgba(255,255,255,.35);border:1.5px solid rgba(255,255,255,.5);backdrop-filter:blur(4px);}
+.cp-body{padding:24px 30px 32px;display:flex;flex-direction:column;gap:22px;}
+.cp-section-title{
+  font-family:'Nunito',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text2);margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.cp-section-title::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(0,0,0,.1),transparent);border-radius:2px;}
+
+.skill-matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.skill-item{background:white;border:2px solid rgba(0,0,0,.07);border-radius:16px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;}
+.skill-item:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08);}
+.skill-item-name{font-size:12px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.skill-item-desc{font-size:10px;color:var(--muted);line-height:1.5;font-weight:600;}
+.skill-level{display:flex;gap:4px;margin-top:8px;}
+.sl-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.1);}
+.sl-dot.filled{background:linear-gradient(135deg,var(--coral),var(--orange));}
+
+.career-paths{display:flex;flex-direction:column;gap:10px;}
+.career-path{
+  display:flex;align-items:flex-start;gap:14px;background:white;
+  border:2px solid rgba(0,0,0,.07);border-radius:16px;padding:14px 16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s;
+}
+.career-path:hover{border-color:var(--sky);transform:translateX(4px);box-shadow:0 6px 18px rgba(77,150,255,.12);}
+.cp-path-icon{font-size:24px;flex-shrink:0;margin-top:1px;}
+.cp-path-name{font-size:12.5px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.cp-path-desc{font-size:10.5px;color:var(--text2);line-height:1.55;font-weight:600;}
+.cp-path-salary{margin-top:6px;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;}
+
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:14px;position:relative;}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:14px;top:30px;width:2px;height:100%;background:linear-gradient(to bottom,rgba(0,0,0,.12),transparent);}
+.tl-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;border:2.5px solid;margin-top:2px;}
+.tl-content{padding-bottom:18px;flex:1;}
+.tl-year{font-size:9.5px;font-weight:800;font-family:'DM Mono',monospace;letter-spacing:.08em;opacity:.5;margin-bottom:3px;}
+.tl-title{font-size:12px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.tl-desc{font-size:10.5px;color:var(--muted);line-height:1.55;font-weight:600;}
+
+.cert-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.cert-chip{
+  padding:7px 14px;border-radius:50px;font-size:10.5px;font-weight:800;
+  background:white;border:2px solid rgba(0,0,0,.08);color:var(--text2);
+  display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:all .18s;
+}
+.cert-chip:hover{border-color:var(--mint);color:var(--mint);transform:translateY(-1px);}
+
+.footer-note{
+  background:linear-gradient(135deg,var(--sky-dim),var(--purple-dim));
+  border:2px solid rgba(77,150,255,.2);border-radius:18px;padding:16px 18px;margin-bottom:16px;
+  font-size:11px;color:var(--text2);line-height:1.7;font-weight:600;
+}
+.footer-note strong{color:var(--sky);}
+
+.rank-detail-btn{
+  font-size:9.5px;font-weight:800;color:var(--sky);background:none;border:none;cursor:pointer;
+  padding:0;font-family:'Nunito',sans-serif;text-decoration:underline;text-underline-offset:2px;
+}
+.rank-detail-btn:hover{color:var(--coral);}
+
+/* STUDENT INFO FIELDS */
+.student-info-box{
+  background:white;border:2.5px solid rgba(77,150,255,.18);border-radius:20px;
+  padding:20px 22px;margin-bottom:22px;box-shadow:0 4px 20px rgba(77,150,255,.08);
+}
+.student-info-box .sg-title{margin-bottom:14px;}
+.student-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.student-field{display:flex;flex-direction:column;gap:6px;}
+.student-field label{font-size:11px;font-weight:800;color:var(--text2);display:flex;align-items:center;gap:6px;}
+.student-field input{
+  padding:10px 14px;border-radius:12px;border:2.5px solid rgba(0,0,0,.09);
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--text);
+  background:var(--bg);outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.student-field input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(77,150,255,.15);}
+.student-field input::placeholder{color:var(--muted);font-weight:600;}
+
+/* CONGRATULATION OVERLAY */
+.congrat-overlay{
+  position:fixed;inset:0;z-index:2000;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(16px);
+}
+.congrat-overlay.show{display:flex;}
+.congrat-box{
+  background:white;border-radius:32px;padding:48px 52px;text-align:center;
+  box-shadow:0 32px 100px rgba(0,0,0,.25);position:relative;overflow:hidden;
+  animation:congratPop .5s cubic-bezier(.34,1.56,.64,1);max-width:420px;width:90%;
+}
+@keyframes congratPop{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
+.congrat-icon{font-size:72px;display:block;animation:iconSpin .6s cubic-bezier(.34,1.56,.64,1) .1s both;}
+@keyframes iconSpin{from{transform:scale(0) rotate(-180deg);}to{transform:scale(1) rotate(0deg);}}
+.congrat-title{
+  font-family:'Fredoka One',cursive;font-size:32px;line-height:1.1;margin:16px 0 8px;
+  background:linear-gradient(135deg,var(--coral),var(--purple),var(--sky));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.congrat-sub{font-size:13px;color:var(--text2);font-weight:700;line-height:1.6;margin-bottom:24px;}
+.congrat-name{
+  display:inline-block;padding:8px 22px;border-radius:50px;
+  background:linear-gradient(135deg,var(--sun-dim),var(--coral-dim));
+  border:2px solid var(--sun);font-size:15px;font-weight:800;color:var(--coral);
+  margin-bottom:22px;
+}
+.congrat-btn{
+  padding:14px 36px;border-radius:50px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--coral),var(--pink),var(--purple));
+  color:white;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
+  box-shadow:0 8px 28px rgba(255,107,107,.4);transition:all .2s;
+}
+.congrat-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 36px rgba(255,107,107,.5);}
+.congrat-bg-deco{
+  position:absolute;font-size:120px;opacity:.05;pointer-events:none;
+  font-family:'Fredoka One',cursive;
+}
+.congrat-bg-deco-1{top:-20px;left:-20px;}
+.congrat-bg-deco-2{bottom:-20px;right:-20px;}
+
+/* CONFETTI */
+.confetti-piece{
+  position:fixed;width:10px;height:14px;top:-20px;border-radius:3px;
+  animation:confettiFall linear forwards;pointer-events:none;z-index:2001;
+}
+@keyframes confettiFall{
+  0%{transform:translateY(0) rotate(0deg);opacity:1;}
+  80%{opacity:1;}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
+}
+
+/* WHATSAPP BUTTON */
+.wa-btn{
+  display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:50px;
+  background:#25d366;color:white;font-size:10px;font-weight:800;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;text-decoration:none;transition:all .2s;
+  box-shadow:0 3px 10px rgba(37,211,102,.35);white-space:nowrap;
+}
+.wa-btn:hover{background:#1db954;transform:translateY(-1px) scale(1.05);box-shadow:0 6px 16px rgba(37,211,102,.45);}
+.wa-btn svg{width:13px;height:13px;fill:white;flex-shrink:0;}
+.ri-actions{display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+
+/* CUSTOM MESSAGE INPUT on result */
+.wa-custom-msg-box{
+  background:white;border:2.5px solid rgba(37,211,102,.25);border-radius:18px;
+  padding:16px 18px;margin-bottom:18px;box-shadow:0 4px 14px rgba(37,211,102,.08);
+}
+.wa-custom-msg-box .reasons-title{color:#25d366;}
+.wa-custom-msg-box textarea{
+  width:100%;padding:10px 14px;border-radius:12px;border:2px solid rgba(0,0,0,.09);
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;color:var(--text);
+  background:var(--bg);resize:vertical;min-height:70px;outline:none;margin-top:8px;
+  transition:border-color .2s;line-height:1.6;
+}
+.wa-custom-msg-box textarea:focus{border-color:#25d366;}
+.wa-custom-msg-hint{font-size:10px;color:var(--muted);font-weight:600;margin-top:6px;}
+
+@media(max-width:600px){
+  .card-grid-5{grid-template-columns:repeat(3,1fr);}
+  .minat-grid{grid-template-columns:repeat(2,1fr);}
+  .skill-matrix{grid-template-columns:1fr;}
+  .rank-item{grid-template-columns:28px 1fr auto;}
+  .ri-bar-wrap{display:none;}
+  .profile-bars{grid-template-columns:1fr;}
+  .steps{gap:4px;}
+  .step{font-size:8.5px;padding:9px 8px;}
+  .student-fields{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-eyebrow">Yayasan Pendidikan Islam Cokroaminoto · Banjarnegara</div>
+    <div class="header-title">Temukan <em>Jurusan Terbaikmu</em><br>di SMK Cokroaminoto 2</div>
+    <div class="header-sub">Aplikasi rekomendasi berbasis 13 parameter — nilai mapel TKA, Ribath at-Tauhid, bakat, minat, tujuan & gaya belajar — untuk memastikan pilihanmu tepat dan berdampak.</div>
+    <div class="header-badge">🏭 SMK Cokroaminoto 2 Banjarnegara · 6 Kompetensi Keahlian</div>
+    <div class="hdr-deco">SMK2</div>
+    <div class="hdr-stars">
+      <span class="star">🌟</span>
+      <span class="star">✨</span>
+      <span class="star">⭐</span>
+    </div>
+  </div>
+
+  <!-- ── STEP INDICATOR ── -->
+  <div class="steps">
+    <div class="step active" id="st-1">01 · Nilai Mapel</div>
+    <div class="step" id="st-2">02 · Ribath & Bakat</div>
+    <div class="step" id="st-3">03 · Minat & Tujuan</div>
+    <div class="step" id="st-4">04 · Hasil</div>
+  </div>
+
+  <!-- ════════════════════════════════
+       PAGE 1 — Nilai Mapel TKA
+  ════════════════════════════════ -->
+  <div id="pg-1" class="page active">
+    <!-- Profil Siswa -->
+    <div class="student-info-box">
+      <div class="sg-title">👤 Profil Singkat Kamu</div>
+      <div class="student-fields">
+        <div class="student-field">
+          <label>📝 Nama Lengkap</label>
+          <input type="text" id="siswa-nama" placeholder="Tulis nama lengkapmu…" autocomplete="name">
+        </div>
+        <div class="student-field">
+          <label>🏫 Asal Sekolah</label>
+          <input type="text" id="siswa-sekolah" placeholder="Nama SMP / MTs asalmu…">
+        </div>
+      </div>
+    </div>
+    <div class="slider-groups">
+      <div class="slider-group">
+        <div class="sg-title">🔬 Kelompok Sains & Matematika</div>
+        <div class="slider-grid">
+          <div class="slider-item">
+            <label>📐 Matematika <span class="slider-val" id="sv-mat">75</span></label>
+            <input type="range" id="sc-mat" min="60" max="100" value="75" oninput="updateSlider(this,'sv-mat')">
+          </div>
+          <div class="slider-item">
+            <label>⚗️ IPA / Fisika-Kimia <span class="slider-val" id="sv-ipa">75</span></label>
+            <input type="range" id="sc-ipa" min="60" max="100" value="75" oninput="updateSlider(this,'sv-ipa')">
+          </div>
+        </div>
+      </div>
+      <div class="slider-group">
+        <div class="sg-title">📖 Kelompok Bahasa</div>
+        <div class="slider-grid">
+          <div class="slider-item">
+            <label>🇮🇩 Bahasa Indonesia <span class="slider-val" id="sv-bindo">75</span></label>
+            <input type="range" id="sc-bindo" min="60" max="100" value="75" oninput="updateSlider(this,'sv-bindo')">
+          </div>
+          <div class="slider-item">
+            <label>🇬🇧 Bahasa Inggris <span class="slider-val" id="sv-bing">75</span></label>
+            <input type="range" id="sc-bing" min="60" max="100" value="75" oninput="updateSlider(this,'sv-bing')">
+          </div>
+        </div>
+      </div>
+      <div class="slider-group">
+        <div class="sg-title">🌐 Teknologi, Sosial & Seni</div>
+        <div class="slider-grid">
+          <div class="slider-item">
+            <label>📊 IPS / Ekonomi <span class="slider-val" id="sv-ips">75</span></label>
+            <input type="range" id="sc-ips" min="60" max="100" value="75" oninput="updateSlider(this,'sv-ips')">
+          </div>
+          <div class="slider-item">
+            <label>🖥️ TIK / Informatika <span class="slider-val" id="sv-tik">75</span></label>
+            <input type="range" id="sc-tik" min="60" max="100" value="75" oninput="updateSlider(this,'sv-tik')">
+          </div>
+          <div class="slider-item">
+            <label>🎨 Seni & Prakarya <span class="slider-val" id="sv-seni">75</span></label>
+            <input type="range" id="sc-seni" min="60" max="100" value="75" oninput="updateSlider(this,'sv-seni')">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="gotoPage(2)">Lanjut — Nilai Ribath & Bakat →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       PAGE 2 — Ribath + Bakat
+  ════════════════════════════════ -->
+  <div id="pg-2" class="page">
+    <div class="slider-groups">
+      <div class="slider-group">
+        <div class="sg-title">🏰 Nilai Ribath at-Tauhid (Skala 60–100)</div>
+        <div class="slider-grid">
+          <div class="slider-item">
+            <label>🗣️ Public Speaking <span class="slider-val" id="sv-ps">75</span></label>
+            <input type="range" id="sc-ps" min="60" max="100" value="75" oninput="updateSlider(this,'sv-ps')">
+          </div>
+          <div class="slider-item">
+            <label>💻 Literasi Digital <span class="slider-val" id="sv-ld">75</span></label>
+            <input type="range" id="sc-ld" min="60" max="100" value="75" oninput="updateSlider(this,'sv-ld')">
+          </div>
+          <div class="slider-item">
+            <label>🤝 Adab & Karakter <span class="slider-val" id="sv-ss">75</span></label>
+            <input type="range" id="sc-ss" min="60" max="100" value="75" oninput="updateSlider(this,'sv-ss')">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:10px;">✨ Identifikasi Bakat dari Program Ribath <span style="font-weight:300;text-transform:none;letter-spacing:0;margin-left:4px;">(pilih semua kekuatanmu)</span></div>
+    <div class="card-grid-5">
+      <div class="sel-card" data-bakat="analitis" onclick="toggleCard(this)"><span class="sc-icon">🧠</span><span class="sc-name">Analitis & Logika</span></div>
+      <div class="sel-card" data-bakat="rekayasa" onclick="toggleCard(this)"><span class="sc-icon">🔧</span><span class="sc-name">Rekayasa & Teknik</span></div>
+      <div class="sel-card" data-bakat="tinkering" onclick="toggleCard(this)"><span class="sc-icon">⚙️</span><span class="sc-name">Tinkering & Bongkar</span></div>
+      <div class="sel-card" data-bakat="desain" onclick="toggleCard(this)"><span class="sc-icon">🎨</span><span class="sc-name">Desain Visual</span></div>
+      <div class="sel-card" data-bakat="konten" onclick="toggleCard(this)"><span class="sc-icon">📲</span><span class="sc-name">Kreasi Konten</span></div>
+      <div class="sel-card" data-bakat="pimpin" onclick="toggleCard(this)"><span class="sc-icon">👑</span><span class="sc-name">Kepemimpinan</span></div>
+      <div class="sel-card" data-bakat="empati" onclick="toggleCard(this)"><span class="sc-icon">❤️</span><span class="sc-name">Empati & Sosial</span></div>
+      <div class="sel-card" data-bakat="nulis" onclick="toggleCard(this)"><span class="sc-icon">✍️</span><span class="sc-name">Menulis & Cerita</span></div>
+      <div class="sel-card" data-bakat="bisnis" onclick="toggleCard(this)"><span class="sc-icon">💰</span><span class="sc-name">Bisnis & Negosiasi</span></div>
+      <div class="sel-card" data-bakat="presisi" onclick="toggleCard(this)"><span class="sc-icon">🎯</span><span class="sc-name">Presisi & Detail</span></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="gotoPage(1)">← Kembali</button>
+      <button class="btn-primary" onclick="gotoPage(3)">Lanjut — Minat & Tujuan →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       PAGE 3 — Minat, Tujuan, Gaya
+  ════════════════════════════════ -->
+  <div id="pg-3" class="page">
+    <div class="section-label" style="margin-bottom:10px;">🔥 Minat Terdalam <span style="font-weight:300;text-transform:none;letter-spacing:0;margin-left:4px;">(boleh lebih dari satu)</span></div>
+    <div class="minat-grid">
+      <div class="minat-card" data-minat="teknik-elektro" onclick="toggleCard(this)"><div class="mc-icon">⚡</div><div class="mc-name">Teknik Elektro & Listrik</div><div class="mc-desc">Suka listrik, rangkaian, instalasi, panel, dan sistem ketenagaan</div></div>
+      <div class="minat-card" data-minat="teknik-mesin" onclick="toggleCard(this)"><div class="mc-icon">⚙️</div><div class="mc-name">Teknik Mesin & Manufaktur</div><div class="mc-desc">Suka mesin, bubut, milling, fabrikasi logam, dan presisi</div></div>
+      <div class="minat-card" data-minat="las-fabrikasi" onclick="toggleCard(this)"><div class="mc-icon">🔥</div><div class="mc-name">Las & Fabrikasi Logam</div><div class="mc-desc">Suka mengolah logam, konstruksi baja, dan pengerjaan panas</div></div>
+      <div class="minat-card" data-minat="otomotif" onclick="toggleCard(this)"><div class="mc-icon">🚗</div><div class="mc-name">Otomotif & Kendaraan</div><div class="mc-desc">Suka mesin kendaraan, servis motor/mobil, dan teknologi transportasi</div></div>
+      <div class="minat-card" data-minat="elektronika" onclick="toggleCard(this)"><div class="mc-icon">📻</div><div class="mc-name">Elektronika & Audio-Video</div><div class="mc-desc">Suka komponen elektronik, sinyal, suara, gambar, dan perakitan</div></div>
+      <div class="minat-card" data-minat="multimedia" onclick="toggleCard(this)"><div class="mc-icon">🎬</div><div class="mc-name">Multimedia & Konten Digital</div><div class="mc-desc">Suka video, animasi, desain grafis, editing, dan media kreatif</div></div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px;">🎯 Tujuan Setelah Lulus SMK</div>
+    <div class="goal-row" id="goal-row">
+      <button class="goal-btn active" id="goal-kerja" onclick="setGoal('kerja',this)">🏭 Langsung Kerja di Industri</button>
+      <button class="goal-btn" id="goal-usaha" onclick="setGoal('usaha',this)">💼 Buka Usaha / Wirausaha</button>
+      <button class="goal-btn" id="goal-kuliah" onclick="setGoal('kuliah',this)">🎓 Kuliah Teknik</button>
+      <button class="goal-btn" id="goal-belum" onclick="setGoal('belum',this)">🤔 Belum Pasti</button>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px;">📖 Gaya Belajar yang Cocok Untukmu</div>
+    <div class="gaya-row">
+      <button class="gaya-btn" id="gb-teori" onclick="setGaya('teori',this)">📖 Teori<span class="gaya-sub">Konsep & hafalan</span></button>
+      <button class="gaya-btn active" id="gb-campuran" onclick="setGaya('campuran',this)">⚖️ Campuran<span class="gaya-sub">Teori + Praktik</span></button>
+      <button class="gaya-btn" id="gb-praktik" onclick="setGaya('praktik',this)">🛠️ Praktik Langsung<span class="gaya-sub">Belajar sambil kerja</span></button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="gotoPage(2)">← Kembali</button>
+      <button class="btn-primary" onclick="calcAndShow()">🧭 Lihat Rekomendasi Saya →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       PAGE 4 — HASIL
+  ════════════════════════════════ -->
+  <div id="pg-4" class="page">
+    <div id="result-container"></div>
+    <div class="footer-note">
+      💡 <strong>Catatan:</strong> Skor dihitung dari 7 mapel TKA, 3 pilar Ribath at-Tauhid, 10 bakat, 6 minat, tujuan & gaya belajar. Klik kartu jurusan untuk melihat detail karir, skill, dan prospek kerja lengkap. Untuk keputusan final, konsultasikan dengan BK & koordinator Ribath yang memiliki data 3 tahun perkembanganmu.
+    </div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="gotoPage(3)">← Ubah Jawaban</button>
+      <button class="btn-primary" onclick="resetAll()">🔄 Mulai Ulang</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════
+     CAREER DETAIL POPUP
+════════════════════════════════ -->
+<div id="career-overlay" class="career-popup-overlay" onclick="closeCareer(event)">
+  <div class="career-popup" onclick="event.stopPropagation()">
+    <button class="cp-close" onclick="closeCareerBtn()">✕</button>
+    <div id="career-content"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     CONGRATULATION OVERLAY
+════════════════════════════════ -->
+<div id="congrat-overlay" class="congrat-overlay">
+  <div id="congrat-box" class="congrat-box">
+    <div class="congrat-bg-deco congrat-bg-deco-1">🎉</div>
+    <div class="congrat-bg-deco congrat-bg-deco-2">⭐</div>
+    <span class="congrat-icon" id="congrat-icon">🎊</span>
+    <div class="congrat-title">Selamat!</div>
+    <div id="congrat-name-badge" class="congrat-name"></div>
+    <div class="congrat-sub">Data kamu berhasil direkam.<br>Rekomendasi jurusan terbaik sudah siap! 🚀</div>
+    <button class="congrat-btn" onclick="dismissCongrat()">Lihat Rekomendasi Saya →</button>
+  </div>
+</div>
+
+<div id="confetti-container"></div>
+
+<script>
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let recGoal = 'kerja';
+let recGaya = 'campuran';
+
+/* ══════════════════════════════════════════
+   WHATSAPP CONFIG — NOMOR KEPALA JURUSAN
+   (Ganti nomor sesuai data aktual, format: 628xxxx tanpa + atau spasi)
+══════════════════════════════════════════ */
+const WA_NUMBERS = {
+  listrik:    '6281234560001',  // Kepala Jurusan TITL
+  mesin:      '6281234560002',  // Kepala Jurusan Teknik Pemesinan
+  las:        '6281234560003',  // Kepala Jurusan Teknik Pengelasan
+  otomotif:   '6281234560004',  // Kepala Jurusan TKRO
+  audio:      '6281234560005',  // Kepala Jurusan Teknik Audio Video
+  multimedia: '6281234560006'   // Kepala Jurusan Multimedia
+};
+
+const WA_KAPRODI = {
+  listrik:    'Kaprodi TITL',
+  mesin:      'Kaprodi Teknik Pemesinan',
+  las:        'Kaprodi Teknik Pengelasan',
+  otomotif:   'Kaprodi TKRO',
+  audio:      'Kaprodi Teknik Audio Video',
+  multimedia: 'Kaprodi Multimedia'
+};
+
+
+/* ══════════════════════════════════════════
+   JURUSAN MASTER DATA
+   (only SMK Cokroaminoto 2 Banjarnegara)
+══════════════════════════════════════════ */
+const JURUSAN = {
+  listrik: {
+    key:'listrik', color:'var(--c-listrik)',
+    emoji:'⚡', nama:'Teknik Instalasi Tenaga Listrik',
+    sekolah:'SMK Cokroaminoto 2 Banjarnegara',
+    tagline:'Menguasai energi yang menggerakkan dunia',
+    tags:['Kelistrikan','Panel Listrik','PLN','Kontraktor','Industri'],
+    subjectKeys:{mat:0.45, ipa:0.55},
+    charKeys:{r_ss:0.65, r_ld:0.35},
+    bakatKeys:['rekayasa','analitis','presisi'],
+    minatKeys:['teknik-elektro'],
+    goalScore:{kerja:1.0, usaha:0.75, kuliah:0.40, belum:0.55},
+    gayaScore:{praktik:1.0, campuran:0.65, teori:0.20},
+    skills:[
+      {name:'Instalasi Panel Listrik', desc:'Merancang & memasang panel distribusi tegangan rendah & menengah', level:5},
+      {name:'Wiring Diagram & AutoCAD', desc:'Membaca & menggambar skema kelistrikan industri', level:4},
+      {name:'K3 Listrik (Safety)', desc:'Prosedur keselamatan kerja listrik sesuai standar IEC & SNI', level:5},
+      {name:'PLC Dasar', desc:'Pemrograman Programmable Logic Controller untuk otomasi industri', level:3},
+      {name:'Instalasi Bangunan', desc:'Wiring rumah, gedung, dan fasilitas komersial sesuai PUIL', level:5},
+      {name:'Perawatan Trafo & Motor', desc:'Inspeksi, pengujian, dan perawatan peralatan listrik industri', level:4}
+    ],
+    careerPaths:[
+      {icon:'🏭', name:'Teknisi Listrik Industri', desc:'Bekerja di pabrik, SPBU, dan fasilitas industri mengoperasikan & merawat sistem kelistrikan. Gaji awal Rp 3–5 juta, berpengalaman Rp 6–12 juta/bulan.', salary:'Rp 3–12 juta/bulan'},
+      {icon:'🏗️', name:'Kontraktor Listrik & EPC', desc:'Melaksanakan proyek instalasi listrik gedung, perumahan, & infrastruktur. Peluang wirausaha sangat besar dengan modal awal relatif kecil.', salary:'Rp 5–20 juta/proyek'},
+      {icon:'⚡', name:'Teknisi PLN / BUMN Energi', desc:'Bekerja di PLN, PJB, IP, atau anak perusahaan energi nasional. Stabilitas kerja tinggi dengan jaminan pensiun dan tunjangan lengkap.', salary:'Rp 4–8 juta + tunjangan'},
+      {icon:'🔌', name:'Wirausaha Servis & Instalasi', desc:'Membuka jasa instalasi listrik rumah tangga & komersial. Di daerah, permintaan sangat tinggi dan persaingan masih terbatas.', salary:'Rp 5–15 juta/bulan'},
+      {icon:'🎓', name:'Lanjut D3/S1 Teknik Elektro', desc:'Dengan sertifikat kompetensi BNSP, bisa mendaftar ke Politeknik Negeri atau PTN jalur vokasi dengan kredit SKS yang diakui.', salary:'Peluang karir senior +300%'}
+    ],
+    certs:['Sertifikat BNSP Teknisi Listrik','Sertifikat K3 Listrik','Sertifikat Kompetensi PUIL 2020','SLO (Sertifikat Laik Operasi)'],
+    timeline:[
+      {year:'Lulus SMK', title:'Teknisi Junior / Magang Industri', desc:'Mulai karir sebagai helper atau teknisi junior di perusahaan kontraktor atau industri manufaktur.', color:'var(--c-listrik)'},
+      {year:'1–3 Tahun', title:'Teknisi Mandiri + Sertifikasi BNSP', desc:'Naik ke posisi teknisi mandiri. Ambil uji kompetensi BNSP untuk memperkuat posisi tawar gaji.', color:'var(--c-listrik)'},
+      {year:'3–5 Tahun', title:'Supervisor Listrik / Buka Usaha', desc:'Memimpin tim teknisi atau membuka CV kontraktor listrik sendiri dengan jaringan klien yang sudah dibangun.', color:'var(--c-listrik)'},
+      {year:'5–10 Tahun', title:'Manajer Engineering / Pengusaha', desc:'Jalur senior sebagai Engineering Manager atau Owner perusahaan kontraktor yang mengerjakan proyek skala besar.', color:'var(--c-listrik)'}
+    ]
+  },
+  mesin: {
+    key:'mesin', color:'var(--c-mesin)',
+    emoji:'⚙️', nama:'Teknik Pemesinan',
+    sekolah:'SMK Cokroaminoto 2 Banjarnegara',
+    tagline:'Membentuk logam menjadi karya presisi tinggi',
+    tags:['Manufaktur','CNC','Bubut','Milling','Otomasi'],
+    subjectKeys:{mat:0.50, ipa:0.50},
+    charKeys:{r_ss:0.70, r_ld:0.30},
+    bakatKeys:['rekayasa','tinkering','presisi','analitis'],
+    minatKeys:['teknik-mesin'],
+    goalScore:{kerja:1.0, usaha:0.65, kuliah:0.35, belum:0.50},
+    gayaScore:{praktik:1.0, campuran:0.55, teori:0.15},
+    skills:[
+      {name:'Mesin Bubut Manual & CNC', desc:'Mengoperasikan lathe machine untuk komponen silindris dengan toleransi ±0.01mm', level:5},
+      {name:'Mesin Frais (Milling)', desc:'Proses pengefraisan permukaan, slot, dan profil kompleks pada logam', level:5},
+      {name:'CAD/CAM & G-Code', desc:'Desain komponen di SolidWorks/AutoCAD dan generate program CNC otomatis', level:4},
+      {name:'Gambar Teknik & Toleransi', desc:'Membaca dan membuat gambar teknik berstandar ISO/DIN dengan notasi toleransi', level:4},
+      {name:'Pengukuran Presisi', desc:'Menggunakan vernier caliper, mikrometer, CMM untuk quality control', level:5},
+      {name:'Material & Perlakuan Panas', desc:'Memilih material dan proses heat treatment yang tepat untuk tiap aplikasi', level:3}
+    ],
+    careerPaths:[
+      {icon:'🏭', name:'Operator/Setter CNC Machining', desc:'Sangat dicari industri otomotif, aerospace, & manufaktur. Operator CNC berpengalaman adalah aset langka yang dibayar premium.', salary:'Rp 4–10 juta/bulan'},
+      {icon:'🔩', name:'Teknisi Maintenance Mesin', desc:'Merawat & memperbaiki mesin produksi di pabrik. Posisi kritis yang selalu dibutuhkan di semua industri manufaktur.', salary:'Rp 3.5–8 juta/bulan'},
+      {icon:'🎯', name:'QC / Quality Inspector', desc:'Mengontrol kualitas produk hasil pemesinan. Gaji kompetitif karena tanggung jawab tinggi — produk cacat = kerugian besar.', salary:'Rp 4–9 juta/bulan'},
+      {icon:'🛠️', name:'Wirausaha Bengkel Permesinan', desc:'Membuka bengkel bubut/las/mesin. Di Banjarnegara & sekitarnya, demand dari industri pertanian & manufaktur sangat tinggi.', salary:'Rp 5–20 juta/bulan'},
+      {icon:'🎓', name:'D3 Teknik Mesin / Manufaktur', desc:'Jalur ke Politeknik Manufaktur (Polman), lalu karir engineer di perusahaan multinasional otomotif atau aerospace.', salary:'Karir engineer Rp 8–25 juta'}
+    ],
+    certs:['Sertifikat BNSP Operator CNC','Sertifikat Operator Mesin Bubut','Sertifikat Gambar Teknik Mesin','Kompetensi Pengukuran Presisi'],
+    timeline:[
+      {year:'Lulus SMK', title:'Operator Mesin / Magang Pabrik', desc:'Masuk sebagai operator mesin di pabrik manufaktur. Fokus kuasai 1 mesin dengan sangat baik.', color:'var(--c-mesin)'},
+      {year:'1–3 Tahun', title:'Setter CNC + Sertifikasi', desc:'Naik menjadi setter yang bisa memprogram dan menyetel mesin. Gaji melonjak signifikan vs operator biasa.', color:'var(--c-mesin)'},
+      {year:'3–5 Tahun', title:'Supervisor Produksi / Wirausaha', desc:'Pimpin shift produksi atau mulai bengkel bubut mandiri melayani order industri lokal.', color:'var(--c-mesin)'},
+      {year:'5–10 Tahun', title:'Process Engineer / Pengusaha', desc:'Engineer yang merancang proses produksi, atau pengusaha dengan mesin CNC sendiri yang mengerjakan subkontrak pabrik.', color:'var(--c-mesin)'}
+    ]
+  },
+  las: {
+    key:'las', color:'var(--c-las)',
+    emoji:'🔥', nama:'Teknik Pengelasan',
+    sekolah:'SMK Cokroaminoto 2 Banjarnegara',
+    tagline:'Menyatukan logam, membangun infrastruktur bangsa',
+    tags:['Welding','Konstruksi Baja','Shipbuilding','Migas','Infrastruktur'],
+    subjectKeys:{mat:0.40, ipa:0.60},
+    charKeys:{r_ss:0.80, r_ld:0.20},
+    bakatKeys:['rekayasa','tinkering','presisi'],
+    minatKeys:['las-fabrikasi','teknik-mesin'],
+    goalScore:{kerja:1.0, usaha:0.70, kuliah:0.30, belum:0.50},
+    gayaScore:{praktik:1.0, campuran:0.50, teori:0.15},
+    skills:[
+      {name:'SMAW (Las Elektroda)', desc:'Pengelasan busur manual untuk berbagai posisi — paling banyak digunakan di industri konstruksi & fabrikasi', level:5},
+      {name:'GMAW / MIG-MAG Welding', desc:'Las kawat otomatis untuk baja lunak dan stainless, ideal untuk produksi volume tinggi', level:5},
+      {name:'GTAW / TIG Welding', desc:'Las presisi tinggi untuk stainless, aluminium, dan material tipis — keahlian premium yang dibayar jauh lebih tinggi', level:4},
+      {name:'Gambar Konstruksi Baja', desc:'Membaca shop drawing bangunan baja, jembatan, dan struktur industri', level:4},
+      {name:'NDT (Non-Destructive Test)', desc:'Uji kualitas las tanpa merusak material: UT, PT, RT, MT — wajib di proyek EPC', level:3},
+      {name:'K3 Las & APD', desc:'Standar keselamatan pengelasan sesuai AWS, ASME, dan ISO 3834', level:5}
+    ],
+    careerPaths:[
+      {icon:'🚢', name:'Welder Kapal / Offshore (Migas)', desc:'Juru las kapal di galangan atau platform migas offshore. Gaji jauh di atas rata-rata karena kondisi kerja ekstrem dan keahlian khusus.', salary:'Rp 6–20 juta/bulan'},
+      {icon:'🏗️', name:'Welder Proyek EPC & Infrastruktur', desc:'Proyek jembatan, gedung, pipa minyak, pabrik — kebutuhan juru las bersertifikat sangat besar di era pembangunan infrastruktur nasional.', salary:'Rp 5–15 juta/bulan'},
+      {icon:'🔧', name:'Fabrikator Logam & Bengkel Las', desc:'Membuat pintu baja, kanopi, pagar, tangki, dan konstruksi logam custom. Usaha mandiri yang modalnya tidak besar.', salary:'Rp 4–12 juta/bulan'},
+      {icon:'🛢️', name:'Inspector Las / WPS Specialist', desc:'Mengawasi kualitas pengelasan di proyek besar. Posisi sangat langka dan dibayar premium karena tanggung jawab kritis.', salary:'Rp 8–25 juta/bulan'},
+      {icon:'🌏', name:'Juru Las TKA / Luar Negeri', desc:'Kesempatan bekerja di Korea, Jepang, Timur Tengah dengan gaji 5–10× lipat. Banyak merekrut dari SMK Teknik Pengelasan bersertifikasi.', salary:'Rp 15–40 juta/bulan'}
+    ],
+    certs:['Sertifikat Welder BNSP Level 1–3','Sertifikat AWS/ASME','Sertifikat K3 Pengelasan','WPS & PQR Certificate'],
+    timeline:[
+      {year:'Lulus SMK', title:'Juru Las Junior / Trainee', desc:'Masuk ke bengkel fabrikasi atau kontraktor konstruksi. Fokus naik level dan kecepatan kerja.', color:'var(--c-las)'},
+      {year:'1–3 Tahun', title:'Juru Las Terampil + Sertifikasi AWS', desc:'Dengan sertifikat BNSP + AWS, gaji bisa 2× lipat. Mulai ambil posisi welder proyek infrastruktur.', color:'var(--c-las)'},
+      {year:'3–5 Tahun', title:'Welder Proyek / Inspector', desc:'Terbang ke proyek-proyek besar nasional, atau mulai karir sebagai Welding Inspector yang bergaji premium.', color:'var(--c-las)'},
+      {year:'5–10 Tahun', title:'Welding Engineer / TKA Luar Negeri', desc:'Puncak karir sebagai Welding Engineer, atau ambil jalur luar negeri (Jepang/Korea) untuk pendapatan 5–10× lipat.', color:'var(--c-las)'}
+    ]
+  },
+  otomotif: {
+    key:'otomotif', color:'var(--c-otomotif)',
+    emoji:'🚗', nama:'Teknik Kendaraan Ringan Otomotif',
+    sekolah:'SMK Cokroaminoto 2 Banjarnegara',
+    tagline:'Ahli kendaraan era motor bakar hingga EV',
+    tags:['Otomotif','EV','Bengkel','Dealer','Transportasi'],
+    subjectKeys:{mat:0.35, ipa:0.45, ips:0.20},
+    charKeys:{r_ss:0.60, r_ld:0.40},
+    bakatKeys:['tinkering','rekayasa','bisnis','analitis'],
+    minatKeys:['otomotif','teknik-mesin'],
+    goalScore:{kerja:0.90, usaha:1.0, kuliah:0.35, belum:0.60},
+    gayaScore:{praktik:1.0, campuran:0.60, teori:0.18},
+    skills:[
+      {name:'Servis Mesin & Overhaul', desc:'Pembongkaran, pemeriksaan, dan perakitan engine kendaraan ringan (bensin & diesel)', level:5},
+      {name:'Sistem Kelistrikan Kendaraan', desc:'Diagnosa & perbaikan sistem EFI, ABS, airbag, dan sistem elektronik kendaraan modern', level:5},
+      {name:'Diagnosis Komputer (OBD/DLC)', desc:'Menggunakan scanner diagnostic untuk membaca trouble code dan analisis performa', level:4},
+      {name:'Sistem Rem, Suspensi & Kemudi', desc:'Pemeriksaan & perbaikan chassis, rem cakram/tromol, power steering, dan suspensi', level:5},
+      {name:'Transmisi & Drivetrain', desc:'Servis transmisi manual/otomatis, differential, dan sistem penggerak roda', level:4},
+      {name:'Teknologi EV & Hybrid', desc:'Pengenalan kendaraan listrik, baterai HV, sistem pendingin, dan prosedur keselamatan EV', level:3}
+    ],
+    careerPaths:[
+      {icon:'🔑', name:'Mekanik Resmi Dealer (Authorized)', desc:'Bergabung dengan dealer Toyota, Honda, Daihatsu, dll. Gaji stabil + bonus, training rutin dari prinsipal, karir terstruktur dari mekanik ke kepala bengkel.', salary:'Rp 3.5–8 juta/bulan'},
+      {icon:'🏎️', name:'Mekanik Spesialis / Balap', desc:'Spesialisasi di modifikasi, tuning, atau kendaraan sport. Komunitas besar, demand tinggi, dan bisa menjadi mekanik tim balap nasional.', salary:'Rp 5–15 juta/bulan'},
+      {icon:'🔧', name:'Wirausaha Bengkel Otomotif', desc:'Membuka bengkel mandiri. Di Banjarnegara & sekitarnya, potensi besar — kendaraan terus bertambah tapi mekanik terampil masih terbatas.', salary:'Rp 6–20 juta/bulan'},
+      {icon:'🔋', name:'Teknisi Kendaraan Listrik (EV)', desc:'Masa depan industri otomotif. Teknisi yang menguasai EV adalah profesi paling dicari dekade ini di Indonesia.', salary:'Rp 6–15 juta/bulan'},
+      {icon:'🚐', name:'Teknisi Fleet / Perusahaan Transportasi', desc:'Angkutan umum, rental, logistik — semua butuh teknisi tetap untuk armada kendaraan mereka.', salary:'Rp 4–9 juta/bulan'}
+    ],
+    certs:['Sertifikat BNSP Mekanik Otomotif Level 1–3','Sertifikat Toyota/Honda Technical Academy','Sertifikat K3 Bengkel','Sertifikat EV/Hybrid Dasar'],
+    timeline:[
+      {year:'Lulus SMK', title:'Magang / Mekanik Junior Dealer', desc:'Masuk program magang dealer resmi atau langsung ke bengkel. Kuasai dasar overhoul engine dan sistem rem.', color:'var(--c-otomotif)'},
+      {year:'1–3 Tahun', title:'Mekanik Terampil + Spesialisasi', desc:'Pilih spesialisasi: kelistrikan/EFI, mesin, atau transmisi. Ikuti training prinsipal dan raih sertifikat.', color:'var(--c-otomotif)'},
+      {year:'3–5 Tahun', title:'Kepala Mekanik / Buka Bengkel', desc:'Pimpin tim mekanik di dealer atau buka bengkel mandiri dengan investasi alat yang sudah disiapkan sejak dini.', color:'var(--c-otomotif)'},
+      {year:'5–10 Tahun', title:'Service Advisor / Owner Bengkel', desc:'Karir senior sebagai Service Advisor di dealer besar, atau pengusaha bengkel dengan 3–5 mekanik karyawan.', color:'var(--c-otomotif)'}
+    ]
+  },
+  audio: {
+    key:'audio', color:'var(--c-audio)',
+    emoji:'📻', nama:'Teknik Audio Video',
+    sekolah:'SMK Cokroaminoto 2 Banjarnegara',
+    tagline:'Menguasai sinyal suara, gambar & elektronika terapan',
+    tags:['Elektronika','Broadcasting','Sound System','CCTV','IoT'],
+    subjectKeys:{mat:0.30, ipa:0.35, tik:0.20, seni:0.15},
+    charKeys:{r_ld:0.55, r_ss:0.45},
+    bakatKeys:['rekayasa','analitis','desain','tinkering','presisi'],
+    minatKeys:['elektronika','multimedia','teknik-elektro'],
+    goalScore:{kerja:0.90, usaha:0.85, kuliah:0.45, belum:0.60},
+    gayaScore:{praktik:0.90, campuran:1.0, teori:0.25},
+    skills:[
+      {name:'Sistem Audio Profesional', desc:'Perakitan, setting, dan troubleshooting sound system: PA, studio, broadcast, dan live event', level:5},
+      {name:'Sistem Video & Kamera', desc:'Kamera broadcast, CCTV, sistem proyeksi, dan video recording profesional', level:5},
+      {name:'Elektronika & Komponen', desc:'Membaca skema, merakit, dan memperbaiki perangkat elektronik konsumen dan profesional', level:5},
+      {name:'Sistem CCTV & Keamanan', desc:'Instalasi dan konfigurasi kamera keamanan, NVR, DVR, dan sistem monitoring jarak jauh', level:4},
+      {name:'IoT & Smart Home Dasar', desc:'Integrasi sensor, mikrokontroler (Arduino/ESP32), dan platform IoT untuk rumah pintar', level:3},
+      {name:'Broadcasting & Streaming', desc:'Teknik siaran TV lokal, streaming online, dan produksi konten video profesional', level:4}
+    ],
+    careerPaths:[
+      {icon:'🎙️', name:'Teknisi Sound System & Event', desc:'Bekerja di EO, studio rekaman, atau perusahaan rental PA system. Industri hiburan yang terus tumbuh pesat di era konser & event.', salary:'Rp 4–12 juta/bulan'},
+      {icon:'📷', name:'Teknisi CCTV & Security System', desc:'Instalasi sistem keamanan di gedung, perumahan, dan instansi. Permintaan sangat tinggi seiring meningkatnya kesadaran keamanan.', salary:'Rp 4–10 juta/bulan'},
+      {icon:'📡', name:'Teknisi Broadcasting / TV Lokal', desc:'Bekerja di stasiun TV lokal, radio, atau perusahaan produksi sebagai teknisi transmisi dan perawatan peralatan broadcast.', salary:'Rp 3.5–8 juta/bulan'},
+      {icon:'🏠', name:'Wirausaha Servis Elektronik & Smart Home', desc:'Buka toko/bengkel elektronik yang melayani servis, instalasi CCTV, dan smart home. Margin keuntungan tinggi, modal tidak terlalu besar.', salary:'Rp 5–15 juta/bulan'},
+      {icon:'🤖', name:'Teknisi IoT & Otomasi Industri', desc:'Profesi masa depan. Perusahaan manufaktur beralih ke smart factory — teknisi yang menguasai elektronika + IoT sangat langka dan mahal.', salary:'Rp 6–18 juta/bulan'}
+    ],
+    certs:['Sertifikat BNSP Teknisi Audio Video','Sertifikat CCTV Installer','Sertifikat K3 Elektronika','Sertifikat Arduino/IoT Dasar'],
+    timeline:[
+      {year:'Lulus SMK', title:'Teknisi Magang / Helper Event', desc:'Mulai dari proyek event dan sound system. Pelajari semua jenis PA system dan kamera broadcasting.', color:'var(--c-audio)'},
+      {year:'1–3 Tahun', title:'Teknisi Mandiri + Ambil Sertifikasi', desc:'Bisa kerja mandiri untuk instalasi CCTV dan sound system. Mulai membangun portofolio proyek.', color:'var(--c-audio)'},
+      {year:'3–5 Tahun', title:'Senior Teknisi / Buka Usaha', desc:'Pimpin tim instalasi atau buka CV yang melayani proyek CCTV, sound system, dan smart home di wilayah Banjarnegara.', color:'var(--c-audio)'},
+      {year:'5–10 Tahun', title:'IoT Engineer / Owner', desc:'Upgrade ke IoT dan otomasi industri, atau kembangkan usaha ke skala kabupaten/provinsi dengan sistem subkontraktor.', color:'var(--c-audio)'}
+    ]
+  },
+  multimedia: {
+    key:'multimedia', color:'var(--c-multimedia)',
+    emoji:'🎬', nama:'Multimedia',
+    sekolah:'SMK Cokroaminoto 2 Banjarnegara',
+    tagline:'Bercerita lewat visual, audio, dan interaksi digital',
+    tags:['Desain','Video','Animasi','Konten Digital','Brand'],
+    subjectKeys:{seni:0.50, tik:0.35, bindo:0.15},
+    charKeys:{r_ld:0.70, r_ps:0.30},
+    bakatKeys:['desain','konten','nulis','analitis'],
+    minatKeys:['multimedia','elektronika'],
+    goalScore:{kerja:0.80, usaha:1.0, kuliah:0.50, belum:0.65},
+    gayaScore:{praktik:0.85, campuran:1.0, teori:0.25},
+    skills:[
+      {name:'Desain Grafis & Branding', desc:'Adobe Photoshop, Illustrator, Canva Pro — membuat logo, identitas visual, dan materi pemasaran profesional', level:5},
+      {name:'Video Production & Editing', desc:'Adobe Premiere, DaVinci Resolve — produksi konten dari syuting hingga final output siap tayang', level:5},
+      {name:'Motion Graphics & Animasi', desc:'After Effects, Blender — membuat animasi 2D/3D, title sequence, dan visual effect untuk konten digital', level:4},
+      {name:'Fotografi Profesional', desc:'Teknik pengambilan gambar, pencahayaan, komposisi, dan retouching untuk kebutuhan komersial', level:4},
+      {name:'Desain Web & UI/UX Dasar', desc:'Figma, WordPress, HTML/CSS dasar — membuat website sederhana dan antarmuka yang user-friendly', level:3},
+      {name:'Content Strategy & Social Media', desc:'Perencanaan konten, copywriting, dan pengelolaan platform media sosial untuk brand dan bisnis', level:4}
+    ],
+    careerPaths:[
+      {icon:'📱', name:'Content Creator / YouTuber', desc:'Platform digital membuka peluang tak terbatas. Dengan skill produksi video & desain, bisa membangun channel/brand sendiri yang menghasilkan income pasif.', salary:'Rp 3–50 juta/bulan'},
+      {icon:'🎨', name:'Graphic Designer / Motion Designer', desc:'Bekerja di agensi kreatif, studio desain, atau freelance. Demand sangat tinggi dari UMKM, startup, dan perusahaan yang butuh identitas visual.', salary:'Rp 4–15 juta/bulan'},
+      {icon:'📷', name:'Fotografer & Videografer Komersial', desc:'Melayani wedding, produk, event perusahaan, dan konten brand. Salah satu usaha kreatif dengan ROI tertinggi di kota kecil.', salary:'Rp 5–20 juta/bulan'},
+      {icon:'🏢', name:'Digital Marketing Specialist', desc:'Mengelola media sosial, iklan digital, dan konten brand. Hampir semua bisnis butuh ini — demand meledak sejak era e-commerce.', salary:'Rp 4–12 juta/bulan'},
+      {icon:'🚀', name:'Buka Studio Kreatif / Agency', desc:'Membuka studio desain atau creative agency yang melayani UMKM lokal hingga perusahaan nasional. Bisnis dengan overhead rendah dan margin tinggi.', salary:'Rp 8–30 juta/bulan'}
+    ],
+    certs:['Sertifikat Adobe Certified Associate','Sertifikat BNSP Desainer Grafis','Portofolio Behance / Dribbble','Sertifikat Google Digital Marketing'],
+    timeline:[
+      {year:'Lulus SMK', title:'Freelancer / Intern Agensi Kreatif', desc:'Mulai bangun portofolio di Behance. Ambil proyek freelance kecil dari lingkungan sekitar untuk asah skill dan jaringan.', color:'var(--c-multimedia)'},
+      {year:'1–3 Tahun', title:'Designer / Videografer Profesional', desc:'Masuk agensi desain atau studio video. Spesialisasi di 1–2 bidang: video, branding, atau motion graphics.', color:'var(--c-multimedia)'},
+      {year:'3–5 Tahun', title:'Senior Creative / Art Director', desc:'Pimpin proyek kreatif besar atau mulai studio sendiri melayani klien bisnis lokal yang butuh identitas visual.', color:'var(--c-multimedia)'},
+      {year:'5–10 Tahun', title:'Creative Director / Owner Agency', desc:'Puncak karir sebagai Creative Director perusahaan besar, atau Owner creative agency dengan portofolio klien nasional.', color:'var(--c-multimedia)'}
+    ]
+  }
+};
+
+/* ══════════════════════════════════════════
+   SCORING ENGINE
+══════════════════════════════════════════ */
+const W = { subject:0.30, character:0.18, bakat:0.28, minat:0.20, goal:0.02, gaya:0.02 };
+
+function norm(v){ return Math.max(0, Math.min(1, (+v - 60) / 40)); }
+
+function computeScore(jKey, inp) {
+  const j = JURUSAN[jKey];
+  // Subject
+  let subj = Object.entries(j.subjectKeys).reduce((s,[k,w]) => s + w * norm(inp[k]||75), 0);
+  // Character
+  let ch = Object.entries(j.charKeys).reduce((s,[k,w]) => s + w * norm(inp[k]||75), 0);
+  // Bakat — tanh-scaled so partial matches still score well
+  const bk = inp.bakat||[];
+  const bHit = j.bakatKeys.filter(b=>bk.includes(b)).length;
+  const bTotal = j.bakatKeys.length;
+  const bakatScore = bTotal > 0 ? Math.tanh(1.5 * bHit / bTotal) : 0;
+  // Minat — bonus grows nonlinearly
+  const mn = inp.minat||[];
+  const mHit = j.minatKeys.filter(m=>mn.includes(m)).length;
+  const mTotal = j.minatKeys.length;
+  const minatScore = mTotal > 0 ? Math.tanh(2.0 * mHit / mTotal) : 0;
+  // Goal & gaya
+  const gScore = j.goalScore[inp.goal||'belum'] ?? 0.4;
+  const gyScore = j.gayaScore[inp.gaya||'campuran'] ?? 0.5;
+
+  const raw = W.subject*subj + W.character*ch + W.bakat*bakatScore + W.minat*minatScore + W.goal*gScore + W.gaya*gyScore;
+  return Math.round(raw * 100);
+}
+
+function kBadge(pct){
+  if(pct>=70) return `<span class="kbadge kb-sangat">Sangat Sesuai</span>`;
+  if(pct>=50) return `<span class="kbadge kb-cukup">Cukup Sesuai</span>`;
+  if(pct>=35) return `<span class="kbadge kb-pertimbang">Perlu Pertimbangan</span>`;
+  return `<span class="kbadge kb-kurang">Kurang Sesuai</span>`;
+}
+
+/* ══════════════════════════════════════════
+   UI HELPERS
+══════════════════════════════════════════ */
+function updateSlider(el, svId) {
+  const pct = (el.value - 60) / 40 * 100;
+  el.style.setProperty('--pct', pct + '%');
+  document.getElementById(svId).textContent = el.value;
+}
+// init all sliders
+window.addEventListener('load', () => {
+  document.querySelectorAll('input[type=range]').forEach(el => {
+    const pct = (el.value - 60) / 40 * 100;
+    el.style.setProperty('--pct', pct + '%');
+  });
+});
+
+function gotoPage(n) {
+  [1,2,3,4].forEach(i => {
+    const pg = document.getElementById('pg-'+i);
+    const st = document.getElementById('st-'+i);
+    if(pg) pg.classList.remove('active');
+    if(st){ st.className='step'; if(i<n) st.className='step done'; }
+  });
+  document.getElementById('pg-'+n).classList.add('active');
+  document.getElementById('st-'+n).className='step active';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleCard(card){ card.classList.toggle('selected'); }
+function setGoal(val, btn){
+  recGoal = val;
+  document.querySelectorAll('[id^=goal-]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setGaya(val, btn){
+  recGaya = val;
+  document.querySelectorAll('.gaya-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ══════════════════════════════════════════
+   CALC & RENDER RESULTS
+══════════════════════════════════════════ */
+function calcAndShow() {
+  const inp = {
+    mat:  +document.getElementById('sc-mat').value,
+    ipa:  +document.getElementById('sc-ipa').value,
+    bindo:+document.getElementById('sc-bindo').value,
+    bing: +document.getElementById('sc-bing').value,
+    ips:  +document.getElementById('sc-ips').value,
+    tik:  +document.getElementById('sc-tik').value,
+    seni: +document.getElementById('sc-seni').value,
+    r_ps: +document.getElementById('sc-ps').value,
+    r_ld: +document.getElementById('sc-ld').value,
+    r_ss: +document.getElementById('sc-ss').value,
+    bakat:[...document.querySelectorAll('.sel-card.selected')].map(c=>c.dataset.bakat),
+    minat:[...document.querySelectorAll('.minat-card.selected')].map(c=>c.dataset.minat),
+    goal: recGoal,
+    gaya: recGaya
+  };
+
+  const results = Object.keys(JURUSAN).map(k => ({key:k, score:computeScore(k,inp), ...JURUSAN[k]}))
+                         .sort((a,b) => b.score - a.score);
+  const top = results[0];
+
+  /* Build reasons */
+  const j = JURUSAN[top.key];
+  const reasons = [];
+  const subjMap = {mat:'Matematika', ipa:'IPA/Fisika', bindo:'Bahasa Indonesia', bing:'Bahasa Inggris', ips:'IPS/Ekonomi', tik:'TIK/Informatika', seni:'Seni & Prakarya'};
+  const [topSubj] = Object.entries(j.subjectKeys).sort((a,b)=>b[1]-a[1]);
+  const tsv = inp[topSubj[0]] || 75;
+  if(tsv >= 80) reasons.push(`Nilai ${subjMap[topSubj[0]]} (${tsv}) tinggi — modal akademik utama untuk ${top.nama}`);
+  else reasons.push(`Komposisi nilaimu paling selaras dengan kebutuhan akademis ${top.nama}`);
+
+  const ribathMap = {r_ps:'Public Speaking', r_ld:'Literasi Digital', r_ss:'Adab & Karakter'};
+  const [topRibath] = Object.entries(j.charKeys).sort((a,b)=>b[1]-a[1]);
+  reasons.push(`Nilai Ribath ${ribathMap[topRibath[0]]} (${inp[topRibath[0]]}) mendukung profil karakter jurusan ini`);
+
+  const bakatMatch = j.bakatKeys.filter(b=>inp.bakat.includes(b));
+  const bakatNames = {analitis:'Analitis',rekayasa:'Rekayasa',tinkering:'Tinkering',desain:'Desain Visual',konten:'Kreasi Konten',pimpin:'Kepemimpinan',empati:'Empati',nulis:'Menulis',bisnis:'Bisnis',presisi:'Presisi & Detail'};
+  if(bakatMatch.length) reasons.push(`Bakat ${bakatMatch.map(b=>bakatNames[b]).join(' & ')} sangat relevan dengan kompetensi ${top.nama}`);
+
+  const minatNames = {'teknik-elektro':'Teknik Elektro','teknik-mesin':'Teknik Mesin','las-fabrikasi':'Las & Fabrikasi','otomotif':'Otomotif','elektronika':'Elektronika','multimedia':'Multimedia'};
+  const minatMatch = j.minatKeys.filter(m=>inp.minat.includes(m));
+  if(minatMatch.length) reasons.push(`Minat ${minatMatch.map(m=>minatNames[m]).join(' & ')} selaras dengan bidang studi ${top.nama}`);
+
+  const goalTxt = {kerja:'langsung kerja di industri', usaha:'buka usaha / wirausaha', kuliah:'kuliah teknik', belum:'yang masih terbuka'};
+  if(j.goalScore[recGoal] >= 0.8) reasons.push(`Tujuan ${goalTxt[recGoal]||recGoal} sangat cocok dengan jalur karir ${top.nama}`);
+
+  const gayaTxt = {praktik:'praktik langsung', campuran:'kombinasi teori+praktik', teori:'teori & konsep'};
+  if(j.gayaScore[recGaya] >= 0.8) reasons.push(`Gaya belajar ${gayaTxt[recGaya]||recGaya} sesuai dengan metode pembelajaran di jurusan ini`);
+
+  /* Profile bar values */
+  const radarSubj  = Math.round(Object.entries(j.subjectKeys).reduce((s,[k,w])=>s+w*norm(inp[k]||75),0)*100);
+  const radarChar  = Math.round(Object.entries(j.charKeys).reduce((s,[k,w])=>s+w*norm(inp[k]||75),0)*100);
+  const radarBakat = bakatMatch.length && j.bakatKeys.length ? Math.round(Math.tanh(1.5*bakatMatch.length/j.bakatKeys.length)*100) : 0;
+  const radarMinat = minatMatch.length && j.minatKeys.length ? Math.round(Math.tanh(2.0*minatMatch.length/j.minatKeys.length)*100) : 0;
+
+  /* Student info */
+  const siswaNama    = (document.getElementById('siswa-nama').value.trim()) || 'Calon Siswa';
+  const siswaSekolah = (document.getElementById('siswa-sekolah').value.trim()) || 'SMP/MTs';
+
+  /* Build WA link helper */
+  function buildWaLink(jKey, customMsg) {
+    const nomor = WA_NUMBERS[jKey] || '';
+    const namaJurusan = JURUSAN[jKey].nama;
+    const tambahan = customMsg ? customMsg.trim() : '...';
+    const pesan =
+      `Salamun'alaikum, perkenalkan nama saya *${siswaNama}*, ` +
+      `asal sekolah *${siswaSekolah}*. ` +
+      `Ingin bertanya soal pembiayaan dan informasi lebih lanjut mengenai jurusan *${namaJurusan}* ` +
+      `di SMK Cokroaminoto 2 Banjarnegara. ${tambahan} Terimakasih 🙏`;
+    return `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+  }
+
+  /* Render */
+  document.getElementById('result-container').innerHTML = `
+    <div class="winner-card" style="border-color:${top.color};color:${top.color};">
+      <div class="wc-eyebrow">🏆 Rekomendasi Terbaik Untukmu</div>
+      <div class="wc-jurusan" style="color:${top.color};">${top.emoji} ${top.nama}</div>
+      <div class="wc-sekolah">SMK Cokroaminoto 2 Banjarnegara ${kBadge(top.score)}</div>
+      <div class="wc-bar-wrap">
+        <div class="wc-bar-bg"><div class="wc-bar-fill" id="wFill" style="background:${top.color};width:0%"></div></div>
+        <div><div class="wc-pct" style="color:${top.color};">${top.score}%</div><div class="wc-match-label">Kesesuaian Profil</div></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        ${top.tags.map(t=>`<div class="wc-match-badge">${t}</div>`).join('')}
+      </div>
+    </div>
+
+    <div class="profile-bars">
+      <div class="pb-item"><div class="pb-label"><span>📐 Kesesuaian Mapel</span><span style="color:var(--gold);font-weight:700;">${radarSubj}%</span></div><div class="pb-bar-bg"><div class="pb-bar-fg" id="pb0" style="background:#e8c84a;width:0%"></div></div></div>
+      <div class="pb-item"><div class="pb-label"><span>🏰 Kesesuaian Ribath</span><span style="color:var(--teal);font-weight:700;">${radarChar}%</span></div><div class="pb-bar-bg"><div class="pb-bar-fg" id="pb1" style="background:var(--teal);width:0%"></div></div></div>
+      <div class="pb-item"><div class="pb-label"><span>✨ Kesesuaian Bakat</span><span style="color:var(--purple);font-weight:700;">${radarBakat}%</span></div><div class="pb-bar-bg"><div class="pb-bar-fg" id="pb2" style="background:var(--purple);width:0%"></div></div></div>
+      <div class="pb-item"><div class="pb-label"><span>🔥 Kesesuaian Minat</span><span style="color:var(--green);font-weight:700;">${radarMinat}%</span></div><div class="pb-bar-bg"><div class="pb-bar-fg" id="pb3" style="background:var(--green);width:0%"></div></div></div>
+    </div>
+
+    <div class="reasons-box">
+      <div class="reasons-title">✅ Mengapa ini rekomendasi terbaikmu?</div>
+      <ul class="reason-list">${reasons.map(r=>`<li>${r}</li>`).join('')}</ul>
+    </div>
+
+    <div class="wa-custom-msg-box">
+      <div class="reasons-title">💬 Pesan Tambahan ke Kepala Jurusan (opsional)</div>
+      <textarea id="wa-extra-msg" placeholder="Mis: Ingin tahu soal beasiswa, biaya, atau kegiatan praktik di jurusan ini…"></textarea>
+      <div class="wa-custom-msg-hint">💡 Pesan ini akan ditambahkan otomatis ke WhatsApp kepala jurusan yang kamu pilih.</div>
+    </div>
+
+    <div class="rank-section">
+      <div class="rank-label">📊 Peringkat Semua 6 Jurusan — Profil Kamu</div>
+      <div class="rank-items">
+        ${results.map((r,i) => {
+          const medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`;
+          const numCls = i===0?'g':i===1?'s':i===2?'b':'';
+          const rowCls = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'';
+          return `<div class="rank-item ${rowCls}" onclick="openCareer('${r.key}')">
+            <div class="ri-num ${numCls}">${medal}</div>
+            <div class="ri-info">
+              <div class="ri-jurusan">${r.emoji} ${r.nama} ${kBadge(r.score)}</div>
+              <div class="ri-sekolah">SMK Cokroaminoto 2 · <button class="rank-detail-btn">Lihat Detail Karir →</button></div>
+            </div>
+            <div class="ri-bar-wrap">
+              <div class="ri-bar-bg"><div class="ri-bar-fg" id="rb${i}" style="background:${r.color};width:0%"></div></div>
+            </div>
+            <div class="ri-actions" onclick="event.stopPropagation()">
+              <div class="ri-pct" id="rpct${i}">${r.score}%</div>
+              <a id="wa-btn-${r.key}" class="wa-btn" href="#" target="_blank" rel="noopener"
+                onclick="updateWaLink('${r.key}', this, event)">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.497-5.24-1.367l-.376-.22-3.762.883.933-3.665-.244-.388A9.935 9.935 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+                Chat Kaprodi
+              </a>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  /* Show congratulation animation */
+  showCongrat(siswaNama, () => {
+    gotoPage(4);
+    setTimeout(() => {
+      document.getElementById('wFill').style.width = top.score + '%';
+      [radarSubj, radarChar, radarBakat, radarMinat].forEach((v,i) => {
+        const el = document.getElementById('pb'+i);
+        if(el) el.style.width = v + '%';
+      });
+      results.forEach((r,i) => {
+        const bar = document.getElementById('rb'+i);
+        if(bar) bar.style.width = r.score + '%';
+      });
+    }, 80);
+  });
+}
+
+function updateWaLink(jKey, aEl, event) {
+  event.stopPropagation();
+  const customMsg = (document.getElementById('wa-extra-msg') || {}).value || '';
+  const siswaNama    = (document.getElementById('siswa-nama').value.trim()) || 'Calon Siswa';
+  const siswaSekolah = (document.getElementById('siswa-sekolah').value.trim()) || 'SMP/MTs';
+  const nomor = WA_NUMBERS[jKey] || '';
+  const namaJurusan = JURUSAN[jKey].nama;
+  const tambahan = customMsg.trim() ? customMsg.trim() : '';
+  const pesan =
+    `Salamun'alaikum, perkenalkan nama saya *${siswaNama}*, ` +
+    `asal sekolah *${siswaSekolah}*. ` +
+    `Ingin bertanya soal pembiayaan dan informasi lebih lanjut mengenai jurusan *${namaJurusan}* ` +
+    `di SMK Cokroaminoto 2 Banjarnegara.` +
+    (tambahan ? ` ${tambahan}` : '') +
+    ` Terimakasih 🙏`;
+  aEl.href = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+}
+
+/* ══════════════════════════════════════════
+   CONGRATULATION & CONFETTI
+══════════════════════════════════════════ */
+let _congratCallback = null;
+
+function showCongrat(nama, callback) {
+  _congratCallback = callback;
+  const badge = document.getElementById('congrat-name-badge');
+  const namaTampil = nama && nama !== 'Calon Siswa' ? nama : null;
+  if(namaTampil) {
+    badge.textContent = '👋 Halo, ' + namaTampil + '!';
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+
+  const icons = ['🎊','🎉','🏆','🌟','⭐','🎯'];
+  document.getElementById('congrat-icon').textContent = icons[Math.floor(Math.random()*icons.length)];
+  document.getElementById('congrat-overlay').classList.add('show');
+  launchConfetti();
+}
+
+function dismissCongrat() {
+  document.getElementById('congrat-overlay').classList.remove('show');
+  clearConfetti();
+  if(typeof _congratCallback === 'function') {
+    _congratCallback();
+    _congratCallback = null;
+  }
+}
+
+function launchConfetti() {
+  const container = document.getElementById('confetti-container');
+  container.innerHTML = '';
+  const colors = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#c77dff','#ff6eb4','#ff9f43','#8ecae6'];
+  const shapes = ['square','circle'];
+  for(let i = 0; i < 80; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const color = colors[Math.floor(Math.random()*colors.length)];
+    const size = 8 + Math.random()*10;
+    const isCircle = Math.random() > 0.5;
+    piece.style.cssText = `
+      left:${Math.random()*100}vw;
+      width:${size}px;height:${size * (isCircle ? 1 : 1.4)}px;
+      background:${color};
+      border-radius:${isCircle ? '50%' : '3px'};
+      animation-duration:${2.5 + Math.random()*2}s;
+      animation-delay:${Math.random()*1.2}s;
+      opacity:0.9;
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    container.appendChild(piece);
+  }
+}
+
+function clearConfetti() {
+  setTimeout(() => {
+    const c = document.getElementById('confetti-container');
+    if(c) c.innerHTML = '';
+  }, 600);
+}
+
+/* ══════════════════════════════════════════
+   CAREER DETAIL POPUP
+══════════════════════════════════════════ */
+function openCareer(key) {
+  const j = JURUSAN[key];
+  const levelDots = (n) => Array.from({length:5}, (_,i) => `<div class="sl-dot${i<n?' filled':''}"></div>`).join('');
+
+  document.getElementById('career-content').innerHTML = `
+    <div class="cp-hero" style="background:linear-gradient(135deg,${j.color}22,${j.color}08);border-bottom:1px solid ${j.color}33;">
+      <div class="cp-hero-eyebrow" style="color:${j.color};">SMK Cokroaminoto 2 Banjarnegara · Kompetensi Keahlian</div>
+      <div class="cp-hero-title" style="color:${j.color};">${j.emoji} ${j.nama}</div>
+      <div class="cp-hero-sub">${j.tagline} — pelajari skill, karir, dan roadmap karirmu setelah lulus.</div>
+      <div class="cp-tags">${j.tags.map(t=>`<div class="cp-tag">${t}</div>`).join('')}</div>
+    </div>
+    <div class="cp-body">
+
+      <div>
+        <div class="cp-section-title">🛠️ Skill yang Kamu Kuasai Setelah Lulus</div>
+        <div class="skill-matrix">
+          ${j.skills.map(s=>`
+            <div class="skill-item">
+              <div class="skill-item-name">${s.name}</div>
+              <div class="skill-item-desc">${s.desc}</div>
+              <div class="skill-level">${levelDots(s.level)}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div>
+        <div class="cp-section-title">🚀 Jalur Karir & Prospek Kerja</div>
+        <div class="career-paths">
+          ${j.careerPaths.map(p=>`
+            <div class="career-path">
+              <div class="cp-path-icon">${p.icon}</div>
+              <div>
+                <div class="cp-path-name">${p.name}</div>
+                <div class="cp-path-desc">${p.desc}</div>
+                <div class="cp-path-salary" style="color:${j.color};">💰 ${p.salary}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div>
+        <div class="cp-section-title">📅 Roadmap Karir 10 Tahun</div>
+        <div class="timeline">
+          ${j.timeline.map(t=>`
+            <div class="tl-item">
+              <div class="tl-dot" style="border-color:${t.color};color:${t.color};background:${t.color}18;">⚡</div>
+              <div class="tl-content">
+                <div class="tl-year">${t.year}</div>
+                <div class="tl-title">${t.title}</div>
+                <div class="tl-desc">${t.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div>
+        <div class="cp-section-title">📜 Sertifikat & Kompetensi Resmi</div>
+        <div class="cert-chips">
+          ${j.certs.map(c=>`<div class="cert-chip">✓ ${c}</div>`).join('')}
+        </div>
+      </div>
+
+    </div>
+  `;
+  document.getElementById('career-overlay').classList.add('open');
+}
+
+function closeCareer(e) {
+  if(e.target === document.getElementById('career-overlay'))
+    document.getElementById('career-overlay').classList.remove('open');
+}
+function closeCareerBtn() {
+  document.getElementById('career-overlay').classList.remove('open');
+}
+
+/* ══════════════════════════════════════════
+   RESET
+══════════════════════════════════════════ */
+function resetAll() {
+  document.querySelectorAll('input[type=range]').forEach(el => {
+    el.value = 75;
+    el.style.setProperty('--pct', '37.5%');
+    const svId = 'sv-' + el.id.replace('sc-','');
+    const sv = document.getElementById(svId);
+    if(sv) sv.textContent = '75';
+  });
+  document.querySelectorAll('.sel-card.selected,.minat-card.selected').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('[id^=goal-]').forEach(b=>b.classList.remove('active'));
+  document.getElementById('goal-kerja').classList.add('active');
+  document.querySelectorAll('.gaya-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('gb-campuran').classList.add('active');
+  // Clear student info
+  const nm = document.getElementById('siswa-nama');
+  const sk = document.getElementById('siswa-sekolah');
+  if(nm) nm.value = '';
+  if(sk) sk.value = '';
+  recGoal = 'kerja'; recGaya = 'campuran';
+  gotoPage(1);
+}
+</script>
+</body>
+</html>
