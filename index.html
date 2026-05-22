@@ -40,7 +40,7 @@
   --c-mesin:      #8ecae6;
   --c-las:        #ff6b6b;
   --c-otomotif:   #6bcb77;
-  --c-audio:      #c77dff;
+  --c-Elektronika:      #c77dff;
   --c-multimedia: #ff6eb4;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -749,7 +749,7 @@ const WA_NUMBERS = {
   mesin:      '6281234560002',  // Kepala Jurusan Teknik Pemesinan
   las:        '6281234560003',  // Kepala Jurusan Teknik Pengelasan
   otomotif:   '6281234560004',  // Kepala Jurusan TKRO
-  audio:      '6281234560005',  // Kepala Jurusan Teknik Audio Video
+  Elektronika:      '6281234560005',  // Kepala Jurusan Teknik Elektronika
   multimedia: '6281234560006'   // Kepala Jurusan Multimedia
 };
 
@@ -758,7 +758,7 @@ const WA_KAPRODI = {
   mesin:      'Kaprodi Teknik Pemesinan',
   las:        'Kaprodi Teknik Pengelasan',
   otomotif:   'Kaprodi TKRO',
-  audio:      'Kaprodi Teknik Audio Video',
+  Elektronika:      'Kaprodi Teknik Elektronika Video',
   multimedia: 'Kaprodi Multimedia'
 };
 
@@ -908,9 +908,9 @@ const JURUSAN = {
       {year:'5–10 Tahun', title:'Service Advisor / Owner Bengkel', desc:'Karir senior sebagai Service Advisor di dealer besar, atau pengusaha bengkel dengan 3–5 mekanik karyawan.', color:'var(--c-otomotif)'}
     ]
   },
-  audio: {
-    key:'audio', color:'var(--c-audio)',
-    emoji:'📻', nama:'Teknik Audio Video',
+  Elektronika: {
+    key:'Elektronika', color:'var(--c-Elektronika)',
+    emoji:'📻', nama:'Teknik Elektronika',
     sekolah:'SMK Cokroaminoto 2 Banjarnegara',
     tagline:'Menguasai sinyal suara, gambar & elektronika terapan',
     tags:['Elektronika','Broadcasting','Sound System','CCTV','IoT'],
@@ -921,7 +921,7 @@ const JURUSAN = {
     goalScore:{kerja:0.90, usaha:0.85, kuliah:0.45, belum:0.60},
     gayaScore:{praktik:0.90, campuran:1.0, teori:0.25},
     skills:[
-      {name:'Sistem Audio Profesional', desc:'Perakitan, setting, dan troubleshooting sound system: PA, studio, broadcast, dan live event', level:5},
+      {name:'Sistem Elektronika', desc:'Perakitan, setting, dan troubleshooting sound system: PA, studio, broadcast, dan live event', level:5},
       {name:'Sistem Video & Kamera', desc:'Kamera broadcast, CCTV, sistem proyeksi, dan video recording profesional', level:5},
       {name:'Elektronika & Komponen', desc:'Membaca skema, merakit, dan memperbaiki perangkat elektronik konsumen dan profesional', level:5},
       {name:'Sistem CCTV & Keamanan', desc:'Instalasi dan konfigurasi kamera keamanan, NVR, DVR, dan sistem monitoring jarak jauh', level:4},
@@ -935,19 +935,19 @@ const JURUSAN = {
       {icon:'🏠', name:'Wirausaha Servis Elektronik & Smart Home', desc:'Buka toko/bengkel elektronik yang melayani servis, instalasi CCTV, dan smart home. Margin keuntungan tinggi, modal tidak terlalu besar.', salary:'Rp 5–15 juta/bulan'},
       {icon:'🤖', name:'Teknisi IoT & Otomasi Industri', desc:'Profesi masa depan. Perusahaan manufaktur beralih ke smart factory — teknisi yang menguasai elektronika + IoT sangat langka dan mahal.', salary:'Rp 6–18 juta/bulan'}
     ],
-    certs:['Sertifikat BNSP Teknisi Audio Video','Sertifikat CCTV Installer','Sertifikat K3 Elektronika','Sertifikat Arduino/IoT Dasar'],
+    certs:['Sertifikat BNSP Teknisi Elektronika Video','Sertifikat CCTV Installer','Sertifikat K3 Elektronika','Sertifikat Arduino/IoT Dasar'],
     timeline:[
-      {year:'Lulus SMK', title:'Teknisi Magang / Helper Event', desc:'Mulai dari proyek event dan sound system. Pelajari semua jenis PA system dan kamera broadcasting.', color:'var(--c-audio)'},
-      {year:'1–3 Tahun', title:'Teknisi Mandiri + Ambil Sertifikasi', desc:'Bisa kerja mandiri untuk instalasi CCTV dan sound system. Mulai membangun portofolio proyek.', color:'var(--c-audio)'},
-      {year:'3–5 Tahun', title:'Senior Teknisi / Buka Usaha', desc:'Pimpin tim instalasi atau buka CV yang melayani proyek CCTV, sound system, dan smart home di wilayah Banjarnegara.', color:'var(--c-audio)'},
-      {year:'5–10 Tahun', title:'IoT Engineer / Owner', desc:'Upgrade ke IoT dan otomasi industri, atau kembangkan usaha ke skala kabupaten/provinsi dengan sistem subkontraktor.', color:'var(--c-audio)'}
+      {year:'Lulus SMK', title:'Teknisi Magang / Helper Event', desc:'Mulai dari proyek event dan sound system. Pelajari semua jenis PA system dan kamera broadcasting.', color:'var(--c-Elektronika)'},
+      {year:'1–3 Tahun', title:'Teknisi Mandiri + Ambil Sertifikasi', desc:'Bisa kerja mandiri untuk instalasi CCTV dan sound system. Mulai membangun portofolio proyek.', color:'var(--c-Elektronika)'},
+      {year:'3–5 Tahun', title:'Senior Teknisi / Buka Usaha', desc:'Pimpin tim instalasi atau buka CV yang melayani proyek CCTV, sound system, dan smart home di wilayah Banjarnegara.', color:'var(--c-Elektronika)'},
+      {year:'5–10 Tahun', title:'IoT Engineer / Owner', desc:'Upgrade ke IoT dan otomasi industri, atau kembangkan usaha ke skala kabupaten/provinsi dengan sistem subkontraktor.', color:'var(--c-Elektronika)'}
     ]
   },
   multimedia: {
     key:'multimedia', color:'var(--c-multimedia)',
     emoji:'🎬', nama:'Multimedia',
     sekolah:'SMK Cokroaminoto 2 Banjarnegara',
-    tagline:'Bercerita lewat visual, audio, dan interaksi digital',
+    tagline:'Bercerita lewat visual, Elektronika, dan interaksi digital',
     tags:['Desain','Video','Animasi','Konten Digital','Brand'],
     subjectKeys:{seni:0.50, tik:0.35, bindo:0.15},
     charKeys:{r_ld:0.70, r_ps:0.30},
