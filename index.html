@@ -641,7 +641,7 @@ input[type=range]::-moz-range-thumb{
       <div class="sel-card" data-bakat="rekayasa" onclick="toggleCard(this)"><span class="sc-icon">🔧</span><span class="sc-name">Rekayasa & Teknik</span></div>
       <div class="sel-card" data-bakat="tinkering" onclick="toggleCard(this)"><span class="sc-icon">⚙️</span><span class="sc-name">Tinkering & Bongkar</span></div>
       <div class="sel-card" data-bakat="desain" onclick="toggleCard(this)"><span class="sc-icon">🎨</span><span class="sc-name">Desain Visual</span></div>
-      <div class="sel-card" data-bakat="konten" onclick="toggleCard(this)"><span class="sc-icon">📲</span><span class="sc-name">Kreasi Konten</span></div>
+      <div class="sel-card" data-bakat="konten" onclick="toggleCard(this)"><span class="sc-icon">📲</span><span class="sc-name">Kreasi Konten dan Robotika</span></div>
       <div class="sel-card" data-bakat="pimpin" onclick="toggleCard(this)"><span class="sc-icon">👑</span><span class="sc-name">Kepemimpinan</span></div>
       <div class="sel-card" data-bakat="empati" onclick="toggleCard(this)"><span class="sc-icon">❤️</span><span class="sc-name">Empati & Sosial</span></div>
       <div class="sel-card" data-bakat="nulis" onclick="toggleCard(this)"><span class="sc-icon">✍️</span><span class="sc-name">Menulis & Cerita</span></div>
@@ -661,12 +661,12 @@ input[type=range]::-moz-range-thumb{
   <div id="pg-3" class="page">
     <div class="section-label" style="margin-bottom:10px;">🔥 Minat Terdalam <span style="font-weight:300;text-transform:none;letter-spacing:0;margin-left:4px;">(boleh lebih dari satu)</span></div>
     <div class="minat-grid">
-      <div class="minat-card" data-minat="teknik-elektro" onclick="toggleCard(this)"><div class="mc-icon">⚡</div><div class="mc-name">Otak-atik alat listrik</div><div class="mc-desc">Suka listrik, rangkaian, instalasi, panel, dan sistem ketenagaan</div></div>
-      <div class="minat-card" data-minat="teknik-mesin" onclick="toggleCard(this)"><div class="mc-icon">⚙️</div><div class="mc-name">otak-atik mesin traktor</div><div class="mc-desc">Suka mesin, bubut, milling, fabrikasi logam, dan presisi</div></div>
+      <div class="minat-card" data-minat="teknik-elektro" onclick="toggleCard(this)"><div class="mc-icon">⚡</div><div class="mc-name">Otak-atik alat listrik dan robot</div><div class="mc-desc">Suka listrik, rangkaian, instalasi, panel, dan sistem ketenagaan</div></div>
+      <div class="minat-card" data-minat="teknik-mesin" onclick="toggleCard(this)"><div class="mc-icon">⚙️</div><div class="mc-name">otak-atik mesin</div><div class="mc-desc">Suka mesin, bubut, milling, fabrikasi logam, dan presisi</div></div>
       <div class="minat-card" data-minat="las-fabrikasi" onclick="toggleCard(this)"><div class="mc-icon">🔥</div><div class="mc-name">nyambungin besi</div><div class="mc-desc">Suka mengolah logam, konstruksi baja, dan pengerjaan panas</div></div>
       <div class="minat-card" data-minat="otomotif" onclick="toggleCard(this)"><div class="mc-icon">🚗</div><div class="mc-name">Ngoprek Motor</div><div class="mc-desc">Suka mesin kendaraan, servis motor/mobil, dan teknologi transportasi</div></div>
-      <div class="minat-card" data-minat="elektronika" onclick="toggleCard(this)"><div class="mc-icon">📻</div><div class="mc-name">Sound Horeg</div><div class="mc-desc">Suka komponen elektronik, sinyal, suara, gambar, dan perakitan</div></div>
-      <div class="minat-card" data-minat="multimedia" onclick="toggleCard(this)"><div class="mc-icon">🎬</div><div class="mc-name">Edit Konten</div><div class="mc-desc">Suka video, animasi, desain grafis, editing, dan media kreatif</div></div>
+      <div class="minat-card" data-minat="elektronika" onclick="toggleCard(this)"><div class="mc-icon">📻</div><div class="mc-name">Sound Horeg dan </div><div class="mc-desc">Suka komponen elektronik, sinyal, suara, gambar, dan perakitan</div></div>
+      <div class="minat-card" data-minat="multimedia" onclick="toggleCard(this)"><div class="mc-icon">🎬</div><div class="mc-name">Edit Konten dan Game</div><div class="mc-desc">Suka video, animasi, desain grafis, editing, dan media kreatif</div></div>
     </div>
 
     <div class="section-label" style="margin-bottom:8px;">🎯 Tujuan Setelah Lulus SMK</div>
@@ -926,7 +926,7 @@ const JURUSAN = {
       {name:'Elektronika & Komponen', desc:'Membaca skema, merakit, dan memperbaiki perangkat elektronik konsumen dan profesional', level:5},
       {name:'Sistem CCTV & Keamanan', desc:'Instalasi dan konfigurasi kamera keamanan, NVR, DVR, dan sistem monitoring jarak jauh', level:4},
       {name:'IoT & Smart Home Dasar', desc:'Integrasi sensor, mikrokontroler (Arduino/ESP32), dan platform IoT untuk rumah pintar', level:3},
-      {name:'Broadcasting & Streaming', desc:'Teknik siaran TV lokal, streaming online, dan produksi konten video profesional', level:4}
+      {name:'Gaming, Broadcasting, & Streaming', desc:'Game developer, streaming online, dan produksi konten video profesional', level:4}
     ],
     careerPaths:[
       {icon:'🎙️', name:'Teknisi Sound System & Event', desc:'Bekerja di EO, studio rekaman, atau perusahaan rental PA system. Industri hiburan yang terus tumbuh pesat di era konser & event.', salary:'Rp 4–12 juta/bulan'},
@@ -947,7 +947,7 @@ const JURUSAN = {
     key:'multimedia', color:'var(--c-multimedia)',
     emoji:'🎬', nama:'Multimedia',
     sekolah:'SMK Cokroaminoto 2 Banjarnegara',
-    tagline:'Bercerita lewat visual, Elektronika, dan interaksi digital',
+    tagline:'Bercerita lewat visual, Game Developer dan tester, Elektronika, dan interaksi digital',
     tags:['Desain','Video','Animasi','Konten Digital','Brand'],
     subjectKeys:{seni:0.50, tik:0.35, bindo:0.15},
     charKeys:{r_ld:0.70, r_ps:0.30},
@@ -960,12 +960,12 @@ const JURUSAN = {
       {name:'Video Production & Editing', desc:'Adobe Premiere, DaVinci Resolve — produksi konten dari syuting hingga final output siap tayang', level:5},
       {name:'Motion Graphics & Animasi', desc:'After Effects, Blender — membuat animasi 2D/3D, title sequence, dan visual effect untuk konten digital', level:4},
       {name:'Fotografi Profesional', desc:'Teknik pengambilan gambar, pencahayaan, komposisi, dan retouching untuk kebutuhan komersial', level:4},
-      {name:'Desain Web & UI/UX Dasar', desc:'Figma, WordPress, HTML/CSS dasar — membuat website sederhana dan antarmuka yang user-friendly', level:3},
+      {name:'Desain Game, Antarmuka UI/UX', desc:'Figma, WordPress, HTML/CSS dasar — membuat game dan website dengan antarmuka yang user-friendly', level:3},
       {name:'Content Strategy & Social Media', desc:'Perencanaan konten, copywriting, dan pengelolaan platform media sosial untuk brand dan bisnis', level:4}
     ],
     careerPaths:[
       {icon:'📱', name:'Content Creator / YouTuber', desc:'Platform digital membuka peluang tak terbatas. Dengan skill produksi video & desain, bisa membangun channel/brand sendiri yang menghasilkan income pasif.', salary:'Rp 3–50 juta/bulan'},
-      {icon:'🎨', name:'Graphic Designer / Motion Designer', desc:'Bekerja di agensi kreatif, studio desain, atau freelance. Demand sangat tinggi dari UMKM, startup, dan perusahaan yang butuh identitas visual.', salary:'Rp 4–15 juta/bulan'},
+      {icon:'🎨', name:'Graphic Designer / Game Designer', desc:'Bekerja di agensi kreatif, studio desain, atau freelance. Demand sangat tinggi dari UMKM, startup, dan perusahaan yang butuh identitas visual.', salary:'Rp 4–15 juta/bulan'},
       {icon:'📷', name:'Fotografer & Videografer Komersial', desc:'Melayani wedding, produk, event perusahaan, dan konten brand. Salah satu usaha kreatif dengan ROI tertinggi di kota kecil.', salary:'Rp 5–20 juta/bulan'},
       {icon:'🏢', name:'Digital Marketing Specialist', desc:'Mengelola media sosial, iklan digital, dan konten brand. Hampir semua bisnis butuh ini — demand meledak sejak era e-commerce.', salary:'Rp 4–12 juta/bulan'},
       {icon:'🚀', name:'Buka Studio Kreatif / Agency', desc:'Membuka studio desain atau creative agency yang melayani UMKM lokal hingga perusahaan nasional. Bisnis dengan overhead rendah dan margin tinggi.', salary:'Rp 8–30 juta/bulan'}
