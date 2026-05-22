@@ -293,6 +293,7 @@ input[type=range]::-moz-range-thumb{
   padding:12px 16px;border-radius:16px;border:2.5px solid rgba(0,0,0,.06);background:white;
   transition:all .2s cubic-bezier(.34,1.56,.64,1);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.05);
 }
+.rank-item-inner{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1.5px dashed rgba(0,0,0,.07);margin-top:2px;}
 .rank-item:hover{transform:translateX(6px) translateY(-2px);border-color:var(--sky);box-shadow:0 8px 24px rgba(77,150,255,.18);}
 .rank-item.rank-1{border-color:var(--sun);background:var(--sun-dim);box-shadow:0 6px 20px rgba(255,217,61,.25);}
 .rank-item.rank-2{border-color:rgba(141,209,230,.5);background:#f0f9ff;}
@@ -478,6 +479,68 @@ input[type=range]::-moz-range-thumb{
   80%{opacity:1;}
   100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
 }
+
+/* DAFTAR BUTTON */
+.daftar-btn{
+  display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:50px;
+  background:linear-gradient(135deg,var(--sky),var(--purple));color:white;
+  font-size:10px;font-weight:800;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;transition:all .2s;
+  box-shadow:0 3px 10px rgba(77,150,255,.35);white-space:nowrap;
+}
+.daftar-btn:hover{filter:brightness(1.1);transform:translateY(-1px) scale(1.05);box-shadow:0 6px 16px rgba(77,150,255,.45);}
+
+/* PPDB POPUP */
+.ppdb-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(14px);z-index:3000;
+  display:none;align-items:center;justify-content:center;padding:24px 16px;
+}
+.ppdb-overlay.open{display:flex;animation:cpFade .3s ease;}
+.ppdb-modal{
+  background:white;border-radius:28px;width:100%;max-width:520px;
+  box-shadow:0 24px 80px rgba(0,0,0,.25);overflow:hidden;
+  animation:cpSlide .4s cubic-bezier(.22,1,.36,1);position:relative;
+}
+.ppdb-header{
+  padding:28px 30px 20px;
+  background:linear-gradient(135deg,var(--sky),var(--purple));
+  color:white;position:relative;overflow:hidden;
+}
+.ppdb-header::before{content:'';position:absolute;bottom:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.1);}
+.ppdb-header::after{content:'';position:absolute;top:-20px;left:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.07);}
+.ppdb-close{
+  position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.15);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:white;
+  transition:all .2s;z-index:1;
+}
+.ppdb-close:hover{background:rgba(255,255,255,.3);transform:scale(1.1) rotate(90deg);}
+.ppdb-icon{font-size:40px;display:block;margin-bottom:10px;position:relative;z-index:1;}
+.ppdb-title{font-family:'Fredoka One',cursive;font-size:22px;margin-bottom:4px;position:relative;z-index:1;}
+.ppdb-jurusan-name{font-size:12px;font-weight:800;opacity:.85;margin-bottom:6px;position:relative;z-index:1;}
+.ppdb-sub{font-size:11px;opacity:.75;font-weight:600;line-height:1.5;position:relative;z-index:1;}
+.ppdb-body{padding:22px 28px 28px;display:flex;flex-direction:column;gap:14px;}
+.ppdb-info-row{display:flex;gap:10px;}
+.ppdb-info-chip{
+  flex:1;padding:12px 14px;border-radius:14px;background:var(--bg);
+  border:2px solid rgba(0,0,0,.07);text-align:center;
+}
+.ppdb-info-chip .chip-val{font-family:'Fredoka One',cursive;font-size:16px;color:var(--sky);display:block;}
+.ppdb-info-chip .chip-lbl{font-size:9.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.ppdb-steps{display:flex;flex-direction:column;gap:8px;}
+.ppdb-step{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:var(--bg);border:2px solid rgba(0,0,0,.06);}
+.ppdb-step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--sky),var(--purple));color:white;font-family:'Fredoka One',cursive;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ppdb-step-text{font-size:11.5px;font-weight:700;color:var(--text2);}
+.ppdb-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 24px;border-radius:50px;
+  background:linear-gradient(135deg,var(--sky),var(--purple));
+  color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;text-decoration:none;
+  box-shadow:0 8px 24px rgba(77,150,255,.4);transition:all .25s;
+}
+.ppdb-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 36px rgba(77,150,255,.5);filter:brightness(1.05);}
+.ppdb-note{font-size:10px;color:var(--muted);text-align:center;font-weight:600;line-height:1.6;}
 
 /* WHATSAPP BUTTON */
 .wa-btn{
@@ -731,7 +794,52 @@ input[type=range]::-moz-range-thumb{
   </div>
 </div>
 
+<!-- ════════════════════════════════
+     PPDB POPUP
+════════════════════════════════ -->
+<div id="ppdb-overlay" class="ppdb-overlay" onclick="closePPDB(event)">
+  <div class="ppdb-modal" onclick="event.stopPropagation()">
+    <button class="ppdb-close" onclick="closePPDBBtn()">✕</button>
+    <div class="ppdb-header" id="ppdb-header">
+      <span class="ppdb-icon" id="ppdb-icon">🎓</span>
+      <div class="ppdb-title">Daftar Sekarang!</div>
+      <div class="ppdb-jurusan-name" id="ppdb-jurusan-name"></div>
+      <div class="ppdb-sub">SMK Cokroaminoto 2 Banjarnegara · Yayasan Pendidikan Islam Cokroaminoto</div>
+    </div>
+    <div class="ppdb-body">
+      <div class="ppdb-info-row">
+        <div class="ppdb-info-chip">
+          <span class="chip-val">Gratis</span>
+          <span class="chip-lbl">Biaya Daftar</span>
+        </div>
+        <div class="ppdb-info-chip">
+          <span class="chip-val">Online</span>
+          <span class="chip-lbl">Sistem PPDB</span>
+        </div>
+        <div class="ppdb-info-chip">
+          <span class="chip-val">24 Jam</span>
+          <span class="chip-lbl">Akses Portal</span>
+        </div>
+      </div>
+      <div class="ppdb-steps">
+        <div class="ppdb-step"><div class="ppdb-step-num">1</div><div class="ppdb-step-text">Klik tombol di bawah untuk membuka portal PPDB resmi</div></div>
+        <div class="ppdb-step"><div class="ppdb-step-num">2</div><div class="ppdb-step-text">Isi formulir pendaftaran online dengan data diri yang lengkap</div></div>
+        <div class="ppdb-step"><div class="ppdb-step-num">3</div><div class="ppdb-step-text">Pilih jurusan pilihanmu dan unggah dokumen yang diminta</div></div>
+        <div class="ppdb-step"><div class="ppdb-step-num">4</div><div class="ppdb-step-text">Simpan nomor pendaftaran dan tunggu informasi seleksi</div></div>
+      </div>
+      <a id="ppdb-cta-btn" class="ppdb-cta" href="https://ppdb.smkc2.com/" target="_blank" rel="noopener">
+        🚀 Buka Portal PPDB Sekarang
+      </a>
+      <div class="ppdb-note">
+        Portal PPDB resmi SMK Cokroaminoto 2 Banjarnegara.<br>
+        Butuh bantuan? Hubungi kami via WhatsApp atau datang langsung ke sekolah.
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="confetti-container"></div>
+
 
 <script>
 /* ══════════════════════════════════════════
@@ -1179,6 +1287,10 @@ function calcAndShow() {
                 Chat Kaprodi
               </a>
             </div>
+            <div class="rank-item-inner" onclick="event.stopPropagation()">
+              <span style="font-size:10px;font-weight:700;color:var(--muted);">Tertarik dengan ${r.emoji} ${r.nama}?</span>
+              <button class="daftar-btn" onclick="openPPDB('${r.key}', event)">🎓 Lanjut ke Pendaftaran</button>
+            </div>
           </div>`;
         }).join('')}
       </div>
@@ -1371,6 +1483,35 @@ function closeCareer(e) {
 }
 function closeCareerBtn() {
   document.getElementById('career-overlay').classList.remove('open');
+}
+
+/* ══════════════════════════════════════════
+   PPDB POPUP
+══════════════════════════════════════════ */
+function openPPDB(jKey, event) {
+  if(event) event.stopPropagation();
+  const j = JURUSAN[jKey];
+  // Update header accent color
+  document.getElementById('ppdb-header').style.background =
+    `linear-gradient(135deg, ${j.color}cc, ${j.color}88)`;
+  document.getElementById('ppdb-icon').textContent = j.emoji;
+  document.getElementById('ppdb-jurusan-name').textContent = j.nama;
+  // Append jurusan param to URL
+  const url = `https://ppdb.smkc2.com/?jurusan=${encodeURIComponent(j.nama)}`;
+  document.getElementById('ppdb-cta-btn').href = url;
+  document.getElementById('ppdb-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePPDB(e) {
+  if(e.target === document.getElementById('ppdb-overlay')) {
+    document.getElementById('ppdb-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+function closePPDBBtn() {
+  document.getElementById('ppdb-overlay').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 /* ══════════════════════════════════════════
