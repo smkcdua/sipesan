@@ -612,7 +612,7 @@ input[type=range]::-moz-range-thumb{
   </div>
 
   <!-- ════════════════════════════════
-       PAGE 2 — Ribath + Bakat
+       PAGE 2 — Minat + Bakat
   ════════════════════════════════ -->
   <div id="pg-2" class="page">
     <div class="slider-groups">
@@ -635,7 +635,7 @@ input[type=range]::-moz-range-thumb{
       </div>
     </div>
 
-    <div class="section-label" style="margin-bottom:10px;">✨ Identifikasi Bakat dari Program Ribath <span style="font-weight:300;text-transform:none;letter-spacing:0;margin-left:4px;">(pilih semua kekuatanmu)</span></div>
+    <div class="section-label" style="margin-bottom:10px;">✨ Identifikasi Bakat dan Minat <span style="font-weight:300;text-transform:none;letter-spacing:0;margin-left:4px;">(pilih semua kekuatanmu)</span></div>
     <div class="card-grid-5">
       <div class="sel-card" data-bakat="analitis" onclick="toggleCard(this)"><span class="sc-icon">🧠</span><span class="sc-name">Analitis & Logika</span></div>
       <div class="sel-card" data-bakat="rekayasa" onclick="toggleCard(this)"><span class="sc-icon">🔧</span><span class="sc-name">Rekayasa & Teknik</span></div>
@@ -696,7 +696,7 @@ input[type=range]::-moz-range-thumb{
   <div id="pg-4" class="page">
     <div id="result-container"></div>
     <div class="footer-note">
-      💡 <strong>Catatan:</strong> Skor dihitung dari 7 mapel TKA, Karakter, 10 bakat, 6 minat, tujuan & gaya belajar. Klik kartu jurusan untuk melihat detail karir, skill, dan prospek kerja lengkap. Untuk keputusan final, konsultasikan dengan BK & koordinator Ribath yang memiliki data 3 tahun perkembanganmu.
+      💡 <strong>Catatan:</strong> Skor dihitung dari 7 mapel TKA, Karakter, 10 bakat, 6 minat, tujuan & gaya belajar. Klik kartu jurusan untuk melihat detail karir, skill, dan prospek kerja lengkap. Untuk keputusan final, konsultasikan dengan BK & Orangtua yang memiliki data 3 tahun perkembanganmu.
     </div>
     <div class="btn-row">
       <button class="btn-secondary" onclick="gotoPage(3)">← Ubah Jawaban</button>
@@ -1094,7 +1094,7 @@ function calcAndShow() {
 
   const ribathMap = {r_ps:'Public Speaking', r_ld:'Literasi Digital', r_ss:'Adab & Karakter'};
   const [topRibath] = Object.entries(j.charKeys).sort((a,b)=>b[1]-a[1]);
-  reasons.push(`Nilai Ribath ${ribathMap[topRibath[0]]} (${inp[topRibath[0]]}) mendukung profil karakter jurusan ini`);
+  reasons.push(`Nilai Minat ${ribathMap[topRibath[0]]} (${inp[topRibath[0]]}) mendukung profil karakter jurusan ini`);
 
   const bakatMatch = j.bakatKeys.filter(b=>inp.bakat.includes(b));
   const bakatNames = {analitis:'Analitis',rekayasa:'Rekayasa',tinkering:'Tinkering',desain:'Desain Visual',konten:'Kreasi Konten',pimpin:'Kepemimpinan',empati:'Empati',nulis:'Menulis',bisnis:'Bisnis',presisi:'Presisi & Detail'};
