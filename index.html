@@ -504,21 +504,21 @@ input[type=range]::-moz-range-thumb{
 .ppdb-header{
   padding:28px 30px 20px;
   background:linear-gradient(135deg,var(--sky),var(--purple));
-  color:white;position:relative;overflow:hidden;
+  color:#1a1a1a;position:relative;overflow:hidden;
 }
 .ppdb-header::before{content:'';position:absolute;bottom:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.1);}
 .ppdb-header::after{content:'';position:absolute;top:-20px;left:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.07);}
 .ppdb-close{
   position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;
-  border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.15);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:13px;color:white;
+  border:2px solid rgba(0,0,0,.25);background:rgba(255,255,255,.5);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:#1a1a1a;
   transition:all .2s;z-index:1;
 }
-.ppdb-close:hover{background:rgba(255,255,255,.3);transform:scale(1.1) rotate(90deg);}
+.ppdb-close:hover{background:rgba(255,255,255,.75);border-color:rgba(0,0,0,.4);transform:scale(1.1) rotate(90deg);}
 .ppdb-icon{font-size:40px;display:block;margin-bottom:10px;position:relative;z-index:1;}
-.ppdb-title{font-family:'Fredoka One',cursive;font-size:22px;margin-bottom:4px;position:relative;z-index:1;}
-.ppdb-jurusan-name{font-size:12px;font-weight:800;opacity:.85;margin-bottom:6px;position:relative;z-index:1;}
-.ppdb-sub{font-size:11px;opacity:.75;font-weight:600;line-height:1.5;position:relative;z-index:1;}
+.ppdb-title{font-family:'Fredoka One',cursive;font-size:22px;margin-bottom:4px;position:relative;z-index:1;color:#1a1a1a;}
+.ppdb-jurusan-name{font-size:12px;font-weight:800;color:#1a1a1a;opacity:.8;margin-bottom:6px;position:relative;z-index:1;}
+.ppdb-sub{font-size:11px;color:#1a1a1a;opacity:.6;font-weight:600;line-height:1.5;position:relative;z-index:1;}
 .ppdb-body{padding:22px 28px 28px;display:flex;flex-direction:column;gap:14px;}
 .ppdb-info-row{display:flex;gap:10px;}
 .ppdb-info-chip{
@@ -813,8 +813,8 @@ input[type=range]::-moz-range-thumb{
           <span class="chip-lbl">Biaya Daftar</span>
         </div>
         <div class="ppdb-info-chip">
-          <span class="chip-val">Simpel</span>
-          <span class="chip-lbl">Tanpa Upload</span>
+          <span class="chip-val">Online</span>
+          <span class="chip-lbl">Sistem PPDB</span>
         </div>
         <div class="ppdb-info-chip">
           <span class="chip-val">24 Jam</span>
@@ -822,13 +822,13 @@ input[type=range]::-moz-range-thumb{
         </div>
       </div>
       <div class="ppdb-steps">
-        <div class="ppdb-step"><div class="ppdb-step-num">1</div><div class="ppdb-step-text">Klik tombol di bawah untuk mendaftar PPDB online resmi</div></div>
+        <div class="ppdb-step"><div class="ppdb-step-num">1</div><div class="ppdb-step-text">Klik tombol di bawah untuk membuka portal PPDB resmi</div></div>
         <div class="ppdb-step"><div class="ppdb-step-num">2</div><div class="ppdb-step-text">Isi formulir pendaftaran online dengan data diri yang lengkap</div></div>
-        <div class="ppdb-step"><div class="ppdb-step-num">3</div><div class="ppdb-step-text">Pilih jurusan pilihanmu dan isi dokumen yang diminta</div></div>
+        <div class="ppdb-step"><div class="ppdb-step-num">3</div><div class="ppdb-step-text">Pilih jurusan pilihanmu dan unggah dokumen yang diminta</div></div>
         <div class="ppdb-step"><div class="ppdb-step-num">4</div><div class="ppdb-step-text">Simpan nomor pendaftaran dan tunggu informasi seleksi</div></div>
       </div>
       <a id="ppdb-cta-btn" class="ppdb-cta" href="https://ppdb.smkc2.com/" target="_blank" rel="noopener">
-        🚀 Isi Formurlir Online Cepat
+        🚀 Buka Portal PPDB Sekarang
       </a>
       <div class="ppdb-note">
         Portal PPDB resmi SMK Cokroaminoto 2 Banjarnegara.<br>
