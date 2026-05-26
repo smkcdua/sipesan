@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulasi Boarding — SMK Cokroaminoto 2 Banjarnegara</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════ */
+:root{
+  --navy:    #0f4c81;
+  --navy2:   #1a6ab1;
+  --teal:    #0d8a6e;
+  --teal2:   #12b08c;
+  --sun:     #ffd93d;
+  --sun2:    #ffb347;
+  --coral:   #ff6b6b;
+  --mint:    #6bcb77;
+  --sky:     #4d96ff;
+  --purple:  #c77dff;
+  --bg:      #f0f6ff;
+  --bg2:     #ffffff;
+  --text:    #1a2e4a;
+  --text2:   #4a6080;
+  --muted:   #8fa0b5;
+  --border:  rgba(15,76,129,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+/* Animated background */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 600px 500px at 5% 15%,rgba(15,76,129,.09) 0%,transparent 70%),
+    radial-gradient(ellipse 500px 400px at 90% 10%,rgba(13,138,110,.08) 0%,transparent 70%),
+    radial-gradient(ellipse 400px 350px at 75% 85%,rgba(77,150,255,.08) 0%,transparent 70%),
+    radial-gradient(ellipse 350px 300px at 20% 90%,rgba(255,217,61,.10) 0%,transparent 70%);
+}
+
+/* ══ LAYOUT ══ */
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 20px 80px;}
+
+/* ══ TOP NAV ══ */
+.topnav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0 12px;border-bottom:2px dashed rgba(15,76,129,.15);margin-bottom:0;
+}
+.tn-logo{display:flex;align-items:center;gap:10px;}
+.tn-logo-icon{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;box-shadow:0 4px 14px rgba(15,76,129,.3);
+}
+.tn-logo-text{font-family:'Fredoka One',cursive;font-size:16px;color:var(--navy);line-height:1.1;}
+.tn-logo-sub{font-size:9.5px;font-weight:700;color:var(--teal);letter-spacing:.04em;}
+.tn-back{
+  display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:50px;
+  border:2px solid rgba(15,76,129,.2);background:white;
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:var(--text2);
+  cursor:pointer;transition:all .2s;text-decoration:none;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.tn-back:hover{border-color:var(--navy);color:var(--navy);transform:translateX(-2px);}
+
+/* ══ HERO ══ */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 45%,var(--teal) 100%);
+  border-radius:28px;padding:44px 40px;margin:24px 0;position:relative;overflow:hidden;
+  box-shadow:0 16px 56px rgba(15,76,129,.35);
+}
+.hero::before{
+  content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;
+  border-radius:50%;background:rgba(255,255,255,.06);
+}
+.hero::after{
+  content:'';position:absolute;bottom:-40px;left:-40px;width:180px;height:180px;
+  border-radius:50%;background:rgba(255,255,255,.04);
+}
+.hero-eyebrow{
+  font-family:'Nunito',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-eyebrow span{
+  padding:3px 10px;background:rgba(255,217,61,.2);border:1.5px solid rgba(255,217,61,.4);
+  border-radius:50px;color:#ffd93d;font-size:9.5px;
+}
+.hero-title{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(26px,5vw,44px);color:white;line-height:1.05;margin-bottom:12px;
+}
+.hero-title em{color:#7ee8d4;font-style:normal;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.78);font-weight:600;line-height:1.7;max-width:500px;margin-bottom:20px;}
+.hero-motto{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);
+  border-radius:50px;padding:8px 18px;font-size:11.5px;font-weight:800;color:rgba(255,255,255,.9);
+  backdrop-filter:blur(6px);
+}
+.hero-ctas{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-hero-primary{
+  padding:13px 28px;border-radius:50px;background:linear-gradient(135deg,var(--sun),var(--sun2));
+  color:#1a1a1a;border:none;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;box-shadow:0 8px 24px rgba(255,179,71,.4);
+  transition:all .25s;display:inline-flex;align-items:center;gap:7px;
+}
+.btn-hero-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 32px rgba(255,179,71,.5);filter:brightness(1.05);}
+.btn-hero-secondary{
+  padding:13px 24px;border-radius:50px;background:rgba(255,255,255,.15);
+  color:white;border:2px solid rgba(255,255,255,.3);cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;transition:all .2s;backdrop-filter:blur(6px);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.btn-hero-secondary:hover{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.5);}
+.hero-deco-num{
+  position:absolute;top:20px;right:40px;font-family:'Fredoka One',cursive;
+  font-size:120px;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;
+}
+
+/* ══ INFO CARDS ══ */
+.info-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;}
+.info-card{
+  background:white;border:2.5px solid var(--border);border-radius:20px;
+  padding:20px 18px;box-shadow:0 4px 20px rgba(0,0,0,.05);
+  transition:transform .2s,box-shadow .2s;text-align:center;
+}
+.info-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(15,76,129,.12);}
+.ic-icon{font-size:32px;margin-bottom:10px;display:block;}
+.ic-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.ic-desc{font-size:10.5px;color:var(--text2);line-height:1.6;font-weight:600;}
+.ic-badge{
+  display:inline-block;margin-top:10px;padding:4px 12px;border-radius:50px;
+  font-size:9.5px;font-weight:800;background:rgba(15,76,129,.08);color:var(--navy2);
+}
+
+/* ══ SECTION DIVIDER ══ */
+.sec-divider{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text2);margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.sec-divider::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(15,76,129,.15),transparent);border-radius:2px;}
+
+/* ══ FORM CARD ══ */
+.form-card{
+  background:white;border:2.5px solid var(--border);border-radius:24px;
+  padding:30px 32px;margin-bottom:28px;box-shadow:0 6px 30px rgba(0,0,0,.06);
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{
+  font-size:11.5px;font-weight:800;color:var(--text);
+  display:flex;align-items:center;gap:6px;
+}
+.field-hint{font-size:9.5px;color:var(--muted);font-weight:600;margin-left:auto;}
+.form-input{
+  padding:11px 15px;border-radius:13px;border:2.5px solid rgba(0,0,0,.09);
+  font-family:'Nunito',sans-serif;font-size:13.5px;font-weight:700;color:var(--text);
+  background:var(--bg);outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.form-input:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(26,106,177,.15);}
+.form-input::placeholder{color:var(--muted);font-weight:600;}
+.input-group{position:relative;}
+.input-suffix{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-size:11.5px;font-weight:800;color:var(--muted);pointer-events:none;
+}
+.form-separator{grid-column:1/-1;height:2px;background:linear-gradient(to right,rgba(15,76,129,.1),transparent);border-radius:2px;margin:4px 0;}
+.form-group-label{grid-column:1/-1;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:8px;}
+.form-group-label::after{content:'';flex:1;height:1.5px;background:rgba(13,138,110,.15);border-radius:1px;}
+.form-btns{display:flex;gap:10px;margin-top:22px;}
+.btn-calc{
+  flex:2;padding:15px 24px;border-radius:50px;
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:13px;font-weight:800;box-shadow:0 8px 26px rgba(15,76,129,.35);
+  transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-calc:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 36px rgba(15,76,129,.45);filter:brightness(1.08);}
+.btn-reset{
+  flex:1;padding:15px;border-radius:50px;border:2.5px solid rgba(0,0,0,.1);background:white;
+  cursor:pointer;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--text2);
+  transition:all .2s;
+}
+.btn-reset:hover{border-color:var(--coral);color:var(--coral);}
+
+/* ══ BENEFITS SECTION ══ */
+.benefits-section{margin-bottom:32px;}
+.benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.benefit-item{
+  display:flex;gap:14px;align-items:flex-start;background:white;
+  border:2px solid var(--border);border-radius:18px;padding:16px 18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05);transition:all .2s;
+}
+.benefit-item:hover{border-color:rgba(15,76,129,.25);transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,76,129,.1);}
+.bi-icon{
+  width:44px;height:44px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.bi-title{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.bi-desc{font-size:10.5px;color:var(--text2);line-height:1.55;font-weight:600;}
+
+/* ══ CTA SECTION ══ */
+.cta-section{
+  background:linear-gradient(135deg,var(--teal) 0%,var(--teal2) 50%,var(--navy2) 100%);
+  border-radius:24px;padding:32px;margin-bottom:28px;
+  box-shadow:0 12px 40px rgba(13,138,110,.3);position:relative;overflow:hidden;
+}
+.cta-section::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07);}
+.cta-title{font-family:'Fredoka One',cursive;font-size:22px;color:white;margin-bottom:8px;position:relative;z-index:1;}
+.cta-sub{font-size:12px;color:rgba(255,255,255,.78);font-weight:600;line-height:1.65;margin-bottom:20px;max-width:480px;position:relative;z-index:1;}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1;}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:50px;
+  background:#25d366;color:white;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);transition:all .25s;text-decoration:none;
+}
+.btn-wa:hover{background:#1db954;transform:translateY(-3px);box-shadow:0 14px 32px rgba(37,211,102,.5);}
+.btn-wa svg{width:18px;height:18px;fill:white;flex-shrink:0;}
+.btn-ppdb{
+  display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:50px;
+  background:rgba(255,255,255,.18);color:white;
+  border:2px solid rgba(255,255,255,.3);cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+  text-decoration:none;transition:all .2s;backdrop-filter:blur(4px);
+}
+.btn-ppdb:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.5);}
+
+/* ══ CONTACT ROW ══ */
+.contact-row{
+  display:flex;gap:14px;background:white;border:2.5px solid var(--border);
+  border-radius:20px;padding:20px 24px;margin-bottom:24px;align-items:center;
+  box-shadow:0 4px 18px rgba(0,0,0,.05);flex-wrap:wrap;gap:16px;
+}
+.cr-info{flex:1;min-width:200px;}
+.cr-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.cr-detail{font-size:11px;color:var(--text2);font-weight:600;line-height:1.6;}
+.cr-hours{display:inline-flex;align-items:center;gap:5px;margin-top:6px;padding:4px 12px;border-radius:50px;background:rgba(107,203,119,.12);border:1.5px solid rgba(107,203,119,.3);font-size:10px;font-weight:800;color:#2d8a3e;}
+
+/* ══ FOOTER ══ */
+.footer{
+  border-top:2px dashed rgba(15,76,129,.15);padding-top:24px;text-align:center;
+  color:var(--muted);font-size:11px;font-weight:600;line-height:1.8;
+}
+.footer strong{color:var(--navy2);}
+
+/* ══ MODAL OVERLAY ══ */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(10,30,60,.65);backdrop-filter:blur(14px);
+  z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:white;border-radius:28px;width:100%;max-width:580px;
+  box-shadow:0 24px 80px rgba(0,0,0,.3);
+  animation:slideUp .4s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;
+  max-height:90vh;overflow-y:auto;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(32px) scale(.96);}to{opacity:1;transform:none;}}
+.modal-close{
+  position:absolute;top:16px;right:18px;width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.3);border:2px solid rgba(0,0,0,.15);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:white;
+  z-index:10;transition:all .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.5);transform:scale(1.1) rotate(90deg);}
+.modal-hero{
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  padding:32px 30px 26px;color:white;position:relative;overflow:hidden;
+}
+.modal-hero::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.07);}
+.modal-hero-eyebrow{font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px;}
+.modal-hero-title{font-family:'Fredoka One',cursive;font-size:22px;line-height:1.1;margin-bottom:6px;position:relative;z-index:1;}
+.modal-hero-name{font-size:12px;color:rgba(255,255,255,.75);font-weight:700;margin-bottom:14px;position:relative;z-index:1;}
+.modal-verdict{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:50px;
+  font-size:12px;font-weight:800;backdrop-filter:blur(6px);
+  border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);
+  position:relative;z-index:1;
+}
+.verdict-hemat{background:rgba(107,203,119,.25);border-color:rgba(107,203,119,.5);}
+.verdict-hampir{background:rgba(255,217,61,.2);border-color:rgba(255,217,61,.4);}
+.verdict-lebih{background:rgba(255,107,107,.2);border-color:rgba(255,107,107,.4);}
+.modal-body{padding:24px 28px 30px;display:flex;flex-direction:column;gap:18px;}
+.modal-sec-title{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.modal-sec-title::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(0,0,0,.1),transparent);border-radius:2px;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.compare-card{border-radius:18px;padding:18px 20px;text-align:center;border:2.5px solid;}
+.cc-transport{background:#fff5f5;border-color:#fca5a5;}
+.cc-boarding{background:#f0fdf4;border-color:#86efac;}
+.cc-icon{font-size:28px;margin-bottom:8px;display:block;}
+.cc-label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+.cc-amount{font-family:'Fredoka One',cursive;font-size:22px;line-height:1;}
+.cc-amount.transport{color:#dc2626;}
+.cc-amount.boarding{color:#16a34a;}
+.cc-detail{font-size:9.5px;color:var(--muted);font-weight:600;margin-top:4px;line-height:1.5;}
+.selisih-box{
+  background:linear-gradient(135deg,rgba(15,76,129,.06),rgba(13,138,110,.06));
+  border:2px solid rgba(15,76,129,.12);border-radius:16px;padding:16px 18px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+}
+.selisih-label{font-size:11.5px;font-weight:800;color:var(--text);}
+.selisih-val{font-family:'Fredoka One',cursive;font-size:20px;color:var(--navy);}
+.kesimpulan-box{
+  border-radius:16px;padding:16px 18px;border:2.5px solid;
+  font-size:12px;font-weight:700;line-height:1.7;
+}
+.modal-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-modal-wa{
+  flex:2;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px;border-radius:50px;background:#25d366;color:white;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:800;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);transition:all .25s;text-decoration:none;
+}
+.btn-modal-wa:hover{background:#1db954;transform:translateY(-2px);}
+.btn-modal-wa svg{width:17px;height:17px;fill:white;flex-shrink:0;}
+.btn-modal-close{
+  flex:1;padding:14px;border-radius:50px;border:2.5px solid rgba(0,0,0,.1);background:white;
+  cursor:pointer;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--text2);
+  transition:all .2s;
+}
+.btn-modal-close:hover{border-color:var(--coral);color:var(--coral);}
+.profile-info{
+  background:var(--bg);border:2px solid var(--border);border-radius:14px;padding:14px 16px;
+  display:flex;gap:14px;flex-wrap:wrap;
+}
+.pi-item{flex:1;min-width:120px;}
+.pi-label{font-size:9.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.pi-val{font-size:12.5px;font-weight:800;color:var(--navy);}
+
+/* ══ SCROLL ANIMATION ══ */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* ══ VALID ERROR ══ */
+.form-input.error{border-color:var(--coral)!important;box-shadow:0 0 0 3px rgba(255,107,107,.15)!important;}
+.field-error{font-size:9.5px;color:var(--coral);font-weight:700;margin-top:3px;display:none;}
+.form-input.error + .field-error{display:block;}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr;}
+  .form-field.full{grid-column:1;}
+  .form-separator,.form-group-label{display:none;}
+  .compare-grid{grid-template-columns:1fr;}
+  .info-cards{grid-template-columns:1fr;}
+  .benefits-grid{grid-template-columns:1fr;}
+  .hero{padding:30px 22px;}
+  .form-card{padding:20px 18px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP NAV -->
+  <nav class="topnav">
+    <div class="tn-logo">
+      <div class="tn-logo-icon">🏠</div>
+      <div>
+        <div class="tn-logo-text">Boarding Ribath</div>
+        <div class="tn-logo-sub">SMK Cokroaminoto 2 Banjarnegara</div>
+      </div>
+    </div>
+    <a href="javascript:history.back()" class="tn-back">← Kembali ke Rekomendasi Jurusan</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero fade-in">
+    <div class="hero-deco-num">🏡</div>
+    <div class="hero-eyebrow">
+      Simulasi Interaktif <span>✦ Gratis</span>
+    </div>
+    <div class="hero-title">
+      Boarding vs Tidak Boarding<br>
+      <em>Hitung, Bandingkan, Putuskan</em>
+    </div>
+    <div class="hero-sub">
+      Hitung perbandingan biaya transportasi harian vs biaya asrama secara realistis. Dapatkan kesimpulan otomatis dan terhubung langsung ke pengasuh Pondok Ribath At Tauhid.
+    </div>
+    <div class="hero-motto">🌿 Dari Tahu Diri Menuju Mandiri — Ribath At Tauhid</div>
+    <div class="hero-ctas">
+      <button class="btn-hero-primary" onclick="scrollToForm()">🧮 Mulai Simulasi Sekarang</button>
+      <button class="btn-hero-secondary" onclick="scrollToBenefits()">✨ Lihat Manfaat Boarding</button>
+    </div>
+  </section>
+
+  <!-- INFO CARDS -->
+  <div class="info-cards">
+    <div class="info-card fade-in">
+      <span class="ic-icon">💰</span>
+      <div class="ic-title">Efisiensi Biaya</div>
+      <div class="ic-desc">Hemat biaya BBM, servis motor, dan biaya tak terduga harian selama 3 tahun.</div>
+      <span class="ic-badge">± Rp 3–7 juta/tahun</span>
+    </div>
+    <div class="info-card fade-in">
+      <span class="ic-icon">🌟</span>
+      <div class="ic-title">Pembinaan Karakter</div>
+      <div class="ic-desc">Lingkungan yang mendukung disiplin, ibadah, dan pembiasaan karakter Islami setiap hari.</div>
+      <span class="ic-badge">Program Ribath 24 Jam</span>
+    </div>
+    <div class="info-card fade-in">
+      <span class="ic-icon">🛡️</span>
+      <div class="ic-title">Aman & Terpantau</div>
+      <div class="ic-desc">Anak lebih terpantau, tenang, dan terhindar dari pengaruh negatif lingkungan luar.</div>
+      <span class="ic-badge">Pengasuh Berpengalaman</span>
+    </div>
+  </div>
+
+  <!-- SIMULATION FORM -->
+  <div id="form-section">
+    <div class="sec-divider">📊 Form Simulasi Biaya</div>
+    <div class="form-card fade-in">
+      <div class="form-grid">
+        <!-- PROFIL SISWA -->
+        <div class="form-group-label">👤 Profil Siswa</div>
+
+        <div class="form-field">
+          <label>📝 Nama Siswa</label>
+          <input class="form-input" type="text" id="f-nama" placeholder="Nama lengkap calon siswa…">
+          <span class="field-error">Nama tidak boleh kosong.</span>
+        </div>
+        <div class="form-field">
+          <label>🏫 Asal Sekolah</label>
+          <input class="form-input" type="text" id="f-sekolah" placeholder="Nama SMP / MTs…">
+          <span class="field-error">Asal sekolah tidak boleh kosong.</span>
+        </div>
+        <div class="form-field full">
+          <label>📍 Alamat Rumah</label>
+          <input class="form-input" type="text" id="f-alamat" placeholder="Desa / Kecamatan, Kabupaten…">
+        </div>
+        <div class="form-field">
+          <label>🛣️ Jarak Rumah ke SMK <span class="field-hint">km (pulang–pergi ÷ 2)</span></label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-jarak" placeholder="Contoh: 12" min="0" max="250" step="0.5" style="padding-right:36px;">
+            <span class="input-suffix">km</span>
+          </div>
+          <span class="field-error">Jarak harus diisi (angka).</span>
+        </div>
+        <div class="form-field">
+          <label>📅 Hari Sekolah per Bulan</label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-hari" value="25" min="15" max="31" style="padding-right:40px;">
+            <span class="input-suffix">hari</span>
+          </div>
+        </div>
+
+        <div class="form-separator"></div>
+        <!-- BIAYA TRANSPORT -->
+        <div class="form-group-label">🏍️ Biaya Transportasi (Tidak Boarding)</div>
+
+        <div class="form-field">
+          <label>⛽ Harga BBM per Liter</label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-bbm" value="10000" min="5000" max="25000" step="500" style="padding-right:30px;">
+            <span class="input-suffix">Rp</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>🔄 Konsumsi Motor <span class="field-hint">km per liter</span></label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-konsumsi" value="40" min="10" max="80" step="1" style="padding-right:50px;">
+            <span class="input-suffix">km/L</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>🔧 Biaya Servis Motor / Tahun</label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-servis" value="1500000" min="0" max="10000000" step="100000" style="padding-right:30px;">
+            <span class="input-suffix">Rp</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>🍱 Uang Makan / Jajan Harian <span class="field-hint">opsional</span></label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-makan" value="15000" min="0" max="100000" step="1000" style="padding-right:30px;">
+            <span class="input-suffix">Rp</span>
+          </div>
+        </div>
+
+        <div class="form-separator"></div>
+        <!-- BIAYA BOARDING -->
+        <div class="form-group-label">🏠 Biaya Boarding (Ribath At Tauhid)</div>
+
+        <div class="form-field">
+          <label>💳 Biaya Boarding per Bulan <span class="field-hint">termasuk makan</span></label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-boarding" value="600000" min="0" max="5000000" step="50000" style="padding-right:30px;">
+            <span class="input-suffix">Rp</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>📦 Biaya Registrasi Boarding <span class="field-hint">dibayar sekali</span></label>
+          <div class="input-group">
+            <input class="form-input" type="number" id="f-registrasi" value="500000" min="0" max="10000000" step="100000" style="padding-right:30px;">
+            <span class="input-suffix">Rp</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-btns">
+        <button class="btn-calc" onclick="hitungSimulasi()">🧮 Hitung Simulasi Sekarang</button>
+        <button class="btn-reset" onclick="resetForm()">🔄 Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div id="benefits-section">
+    <div class="sec-divider">✨ Keunggulan Boarding Ribath At Tauhid</div>
+    <div class="benefits-grid fade-in">
+      <div class="benefit-item">
+        <div class="bi-icon" style="background:rgba(13,138,110,.1);">🕌</div>
+        <div>
+          <div class="bi-title">Pembinaan Islami Intensif</div>
+          <div class="bi-desc">Program ibadah, kajian, dan pembiasaan akhlak setiap hari. Siswa tumbuh tidak hanya cerdas secara teknis, tapi kuat secara karakter.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="bi-icon" style="background:rgba(77,150,255,.1);">📚</div>
+        <div>
+          <div class="bi-title">Belajar Lebih Fokus</div>
+          <div class="bi-desc">Tidak terganggu perjalanan jauh setiap hari. Energi tersimpan untuk belajar, praktik kejuruan, dan mengembangkan potensi.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="bi-icon" style="background:rgba(255,217,61,.15);">🤝</div>
+        <div>
+          <div class="bi-title">Jaringan Sosial Positif</div>
+          <div class="bi-desc">Hidup bersama teman dari berbagai daerah membangun relasi, kerja sama, dan mental sosial yang kuat untuk dunia kerja.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="bi-icon" style="background:rgba(199,125,255,.1);">🛡️</div>
+        <div>
+          <div class="bi-title">Lingkungan Terkontrol & Aman</div>
+          <div class="bi-desc">Orang tua lebih tenang karena siswa berada di lingkungan yang terpantau, jauh dari pengaruh negatif, dengan pengasuh yang berpengalaman.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="bi-icon" style="background:rgba(107,203,119,.1);">⏰</div>
+        <div>
+          <div class="bi-title">Disiplin & Manajemen Waktu</div>
+          <div class="bi-desc">Jadwal terstruktur melatih disiplin waktu — keterampilan kritis yang paling dicari industri dari lulusan SMK.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="bi-icon" style="background:rgba(255,107,107,.1);">💪</div>
+        <div>
+          <div class="bi-title">Kemandirian Bertahap</div>
+          <div class="bi-desc">Proses "dari tahu diri menuju mandiri" berjalan organik. Siswa belajar mengurus diri, mengambil keputusan, dan bertanggung jawab.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <div class="cta-section fade-in">
+    <div class="cta-title">Tertarik untuk Bergabung Boarding?</div>
+    <div class="cta-sub">Konsultasikan langsung dengan pengasuh Pondok Ribath At Tauhid. Kami siap menjawab pertanyaan tentang program, biaya, dan pendaftaran boarding.</div>
+    <div class="cta-btns">
+      <a id="cta-wa-btn" href="https://wa.me/6282328473522?text=Assalamu'alaikum%2C%20saya%20ingin%20bertanya%20tentang%20program%20boarding%20SMK%20Cokroaminoto%202%20Banjarnegara." target="_blank" rel="noopener" class="btn-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.497-5.24-1.367l-.376-.22-3.762.883.933-3.665-.244-.388A9.935 9.935 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+        Konsultasi via WhatsApp
+      </a>
+      <a href="https://ppdb.smkc2.com/" target="_blank" rel="noopener" class="btn-ppdb">🎓 Daftar Boarding & Jurusan</a>
+    </div>
+  </div>
+
+  <!-- CONTACT ROW -->
+  <div class="contact-row fade-in">
+    <div style="font-size:38px;">📞</div>
+    <div class="cr-info">
+      <div class="cr-title">Pondok Ribath At Tauhid — SMK Cokroaminoto 2 Banjarnegara</div>
+      <div class="cr-detail">Jl. Raya Wanadadi No. 1, Banjarnegara, Jawa Tengah · <strong>WA: 0823-2847-3522</strong></div>
+      <div class="cr-hours">🕗 Senin–Sabtu, 07.00–17.00 WIB</div>
+    </div>
+    <a href="https://wa.me/6282328473522" target="_blank" rel="noopener" class="btn-wa" style="white-space:nowrap;">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.497-5.24-1.367l-.376-.22-3.762.883.933-3.665-.244-.388A9.935 9.935 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+      Chat Pengasuh
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <strong>SMK Cokroaminoto 2 Banjarnegara</strong> · Pondok Ribath At Tauhid<br>
+    Yayasan Pendidikan Islam Cokroaminoto · Banjarnegara, Jawa Tengah<br>
+    <span style="color:rgba(143,160,181,.6);">Simulasi ini bersifat estimasi. Biaya aktual dapat berbeda sesuai kondisi lapangan.</span>
+  </div>
+
+</div>
+
+<!-- RESULT MODAL -->
+<div id="result-modal" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   READ URL PARAMS (data from jurusan app)
+══════════════════════════════════════════ */
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  const nama    = p.get('nama')    || '';
+  const sekolah = p.get('sekolah') || '';
+  const alamat  = p.get('alamat')  || '';
+  const jarak   = p.get('jarak')   || '';
+  if(nama)    document.getElementById('f-nama').value    = nama;
+  if(sekolah) document.getElementById('f-sekolah').value = sekolah;
+  if(alamat)  document.getElementById('f-alamat').value  = alamat;
+  if(jarak)   document.getElementById('f-jarak').value   = jarak;
+})();
+
+/* ══════════════════════════════════════════
+   SCROLL HELPERS
+══════════════════════════════════════════ */
+function scrollToForm(){
+  document.getElementById('form-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function scrollToBenefits(){
+  document.getElementById('benefits-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ══════════════════════════════════════════
+   FORMAT CURRENCY
+══════════════════════════════════════════ */
+function fmtRp(n){
+  return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+}
+
+/* ══════════════════════════════════════════
+   VALIDATE
+══════════════════════════════════════════ */
+function validate(){
+  let ok = true;
+  const checks = [
+    {id:'f-nama',    test: v => v.trim().length > 0},
+    {id:'f-sekolah', test: v => v.trim().length > 0},
+    {id:'f-jarak',   test: v => !isNaN(v) && +v >= 0},
+  ];
+  checks.forEach(({id, test}) => {
+    const el = document.getElementById(id);
+    if(!test(el.value)){
+      el.classList.add('error');
+      ok = false;
+    } else {
+      el.classList.remove('error');
+    }
+  });
+  return ok;
+}
+
+/* ══════════════════════════════════════════
+   HITUNG
+══════════════════════════════════════════ */
+function hitungSimulasi(){
+  if(!validate()) return;
+
+  const nama       = document.getElementById('f-nama').value.trim();
+  const sekolah    = document.getElementById('f-sekolah').value.trim();
+  const alamat     = document.getElementById('f-alamat').value.trim();
+  const jarak      = +document.getElementById('f-jarak').value    || 0;
+  const hariPerBln = +document.getElementById('f-hari').value     || 25;
+  const hargaBBM   = +document.getElementById('f-bbm').value      || 10000;
+  const konsumsi   = +document.getElementById('f-konsumsi').value || 40;
+  const servisThn  = +document.getElementById('f-servis').value   || 1500000;
+  const makanHari  = +document.getElementById('f-makan').value    || 0;
+  const boardingBln= +document.getElementById('f-boarding').value || 600000;
+  const registrasi = +document.getElementById('f-registrasi').value || 500000;
+
+  // NON-BOARDING per tahun
+  const jarakPP       = jarak * 2;                                   // pulang–pergi per hari
+  const litrePerHari  = jarakPP / konsumsi;
+  const bbmPerHari    = litrePerHari * hargaBBM;
+  const bbmPerThn     = bbmPerHari * hariPerBln * 12;
+  const makanPerThn   = makanHari  * hariPerBln * 12;
+  const nonBoardingThn= bbmPerThn + servisThn + makanPerThn;
+  const nonBoarding3Thn = nonBoardingThn * 3;
+
+  // BOARDING per tahun
+  const boardingThn   = boardingBln * 12;
+  const boarding3Thn  = boardingThn * 3 + registrasi;
+
+  const selisihThn    = nonBoardingThn - boardingThn;
+  const selisih3Thn   = nonBoarding3Thn - boarding3Thn;
+
+  // Verdict
+  const threshold = boardingThn * 0.08;   // 8% tolerance = "hampir sama"
+  let verdictClass, verdictText, kesimpulan;
+  if(selisihThn > threshold){
+    verdictClass = 'verdict-hemat';
+    verdictText  = '✅ Boarding Lebih Hemat!';
+    kesimpulan   = `Secara finansial, <strong>boarding lebih efisien</strong> sekitar <strong>${fmtRp(Math.abs(selisihThn))}/tahun</strong>. Dengan penghematan ini ditambah manfaat pembinaan karakter dan keamanan 24 jam, boarding adalah pilihan yang sangat rasional.`;
+  } else if(Math.abs(selisihThn) <= threshold){
+    verdictClass = 'verdict-hampir';
+    verdictText  = '⚖️ Selisih Biaya Sangat Kecil';
+    kesimpulan   = `Selisih biaya antara boarding dan tidak boarding hanya <strong>${fmtRp(Math.abs(selisihThn))}/tahun</strong> — praktis sama. Dengan selisih sekecil itu, <strong>boarding tetap unggul</strong> karena manfaat pembinaan karakter, keamanan, dan kedisiplinan yang tidak bisa dibeli hanya dengan uang transport.`;
+  } else {
+    verdictClass = 'verdict-lebih';
+    verdictText  = '📊 Transport Lebih Hemat';
+    kesimpulan   = `Biaya transport lebih rendah sekitar <strong>${fmtRp(Math.abs(selisihThn))}/tahun</strong>. Meski demikian, pertimbangkan <strong>nilai tambah boarding</strong>: pembinaan karakter, ketenangan orang tua, disiplin, dan lingkungan positif — manfaat yang sulit diukur dengan angka semata.`;
+  }
+
+  // Build WA message
+  const waMsg =
+    `Assalamu'alaikum, saya ${nama}, ` +
+    `asal sekolah ${sekolah}` +
+    (alamat ? `, alamat ${alamat}` : '') +
+    (jarak  ? `, jarak rumah ke SMK C2 ${jarak} km` : '') +
+    `.\n\nSaya telah menggunakan simulasi boarding dan ingin bertanya lebih lanjut mengenai program dan biaya boarding di Pondok Ribath At Tauhid SMK Cokroaminoto 2 Banjarnegara.\n\nTerimakasih 🙏`;
+  const waURL = `https://wa.me/6282328473522?text=${encodeURIComponent(waMsg)}`;
+
+  // Render modal
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-hero">
+      <div class="modal-hero-eyebrow">Hasil Simulasi Biaya · ${new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</div>
+      <div class="modal-hero-title">📊 Perbandingan Biaya Selesai</div>
+      <div class="modal-hero-name">Untuk: ${nama} · ${sekolah}${jarak ? ' · Jarak ' + jarak + ' km' : ''}</div>
+      <div class="modal-verdict ${verdictClass}">${verdictText}</div>
+    </div>
+    <div class="modal-body">
+      <div class="profile-info">
+        <div class="pi-item"><div class="pi-label">Nama</div><div class="pi-val">${nama}</div></div>
+        <div class="pi-item"><div class="pi-label">Asal Sekolah</div><div class="pi-val">${sekolah}</div></div>
+        ${jarak ? `<div class="pi-item"><div class="pi-label">Jarak</div><div class="pi-val">${jarak} km</div></div>` : ''}
+        ${alamat ? `<div class="pi-item" style="min-width:200px;"><div class="pi-label">Alamat</div><div class="pi-val" style="font-size:11px;">${alamat}</div></div>` : ''}
+      </div>
+
+      <div>
+        <div class="modal-sec-title">💸 Perbandingan Biaya per Tahun</div>
+        <div class="compare-grid">
+          <div class="compare-card cc-transport">
+            <span class="cc-icon">🏍️</span>
+            <div class="cc-label">Tidak Boarding / Tahun</div>
+            <div class="cc-amount transport">${fmtRp(nonBoardingThn)}</div>
+            <div class="cc-detail">
+              BBM: ${fmtRp(bbmPerThn)}<br>
+              Servis: ${fmtRp(servisThn)}
+              ${makanPerThn > 0 ? '<br>Makan: ' + fmtRp(makanPerThn) : ''}
+            </div>
+          </div>
+          <div class="compare-card cc-boarding">
+            <span class="cc-icon">🏠</span>
+            <div class="cc-label">Boarding / Tahun</div>
+            <div class="cc-amount boarding">${fmtRp(boardingThn)}</div>
+            <div class="cc-detail">
+              Bulanan: ${fmtRp(boardingBln)} × 12<br>
+              (termasuk makan & fasilitas)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-sec-title">📅 Proyeksi 3 Tahun SMK</div>
+        <div class="compare-grid">
+          <div class="compare-card cc-transport">
+            <span class="cc-icon">📆</span>
+            <div class="cc-label">Tidak Boarding 3 Thn</div>
+            <div class="cc-amount transport" style="font-size:18px;">${fmtRp(nonBoarding3Thn)}</div>
+          </div>
+          <div class="compare-card cc-boarding">
+            <span class="cc-icon">📅</span>
+            <div class="cc-label">Boarding 3 Thn</div>
+            <div class="cc-amount boarding" style="font-size:18px;">${fmtRp(boarding3Thn)}</div>
+            <div class="cc-detail">+Registrasi ${fmtRp(registrasi)}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="selisih-box">
+        <div>
+          <div class="selisih-label">Selisih Biaya (per Tahun)</div>
+          <div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:2px;">Positif = boarding lebih hemat</div>
+        </div>
+        <div class="selisih-val" style="color:${selisihThn >= 0 ? 'var(--teal)' : 'var(--coral)'};">
+          ${selisihThn >= 0 ? '+' : ''}${fmtRp(selisihThn)}
+        </div>
+      </div>
+
+      <div class="kesimpulan-box" style="background:${selisihThn > threshold ? '#f0fdf4' : selisihThn < -threshold ? '#fff5f5' : '#fffbeb'};border-color:${selisihThn > threshold ? '#86efac' : selisihThn < -threshold ? '#fca5a5' : '#fcd34d'};">
+        <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;">💬 Kesimpulan Otomatis</div>
+        <div style="color:var(--text);line-height:1.7;">${kesimpulan}</div>
+      </div>
+
+      <div class="modal-btns">
+        <a href="${waURL}" target="_blank" rel="noopener" class="btn-modal-wa">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.497-5.24-1.367l-.376-.22-3.762.883.933-3.665-.244-.388A9.935 9.935 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Hubungi Boarding via WhatsApp
+        </a>
+        <button class="btn-modal-close" onclick="closeModal()">Tutup</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('result-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('result-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e){
+  if(e.target === document.getElementById('result-modal')) closeModal();
+}
+
+function resetForm(){
+  ['f-nama','f-sekolah','f-alamat'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList.remove('error');});
+  document.getElementById('f-jarak').value    = '';
+  document.getElementById('f-hari').value     = '25';
+  document.getElementById('f-bbm').value      = '10000';
+  document.getElementById('f-konsumsi').value = '40';
+  document.getElementById('f-servis').value   = '1500000';
+  document.getElementById('f-makan').value    = '15000';
+  document.getElementById('f-boarding').value = '600000';
+  document.getElementById('f-registrasi').value='500000';
+}
+
+/* ══════════════════════════════════════════
+   SCROLL ANIMATIONS
+══════════════════════════════════════════ */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
