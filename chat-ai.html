@@ -301,6 +301,29 @@ const JURUSAN_DATA = {
   multimedia:  { emoji:'🎬', nama:'Multimedia', color:'#ff6eb4', tagline:'Bercerita lewat visual, game, dan interaksi digital', ringkasan:'Content creator, graphic/game designer, fotografer & videografer, digital marketing, buka studio kreatif. Kisaran gaji Rp3–50 juta/bulan.' }
 };
 
+const FALLBACK_AI_REFERENCE = `
+Referensi dasar AI Kak Duba:
+- Nama sekolah: SMK Cokroaminoto 2 Banjarnegara.
+- Fokus utama: membantu calon siswa memahami jurusan, prospek kerja, kehidupan sekolah, dan PPDB.
+- Boarding: sekolah memiliki program boarding dengan nama Ribath At Tauhid.
+- Sikap AI: ramah, santun, bahasa Indonesia sederhana, fokus pada kebutuhan siswa SMP/MTs.
+- Jangan mengarang angka biaya pasti. Bila ada pertanyaan soal biaya, arahkan ke halaman simulasi biaya atau kontak Kaprodi/Pengasuh.
+- Jika siswa sudah yakin ingin daftar, arahkan ke tombol "Lanjut ke Pendaftaran" di halaman hasil atau ke WhatsApp Kaprodi.
+- Nilai utama: edukatif, relevan, dan tidak terlalu panjang. Jawaban maksimal 3-5 kalimat untuk pertanyaan umum.
+`;
+
+async function loadAiReferenceText(){
+  try {
+    const res = await fetch('GKS.txt', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Gagal memuat GKS.txt');
+    const text = await res.text();
+    const cleaned = text.replace(/\r\n/g, '\n').trim();
+    return cleaned || FALLBACK_AI_REFERENCE;
+  } catch (err) {
+    return FALLBACK_AI_REFERENCE;
+  }
+}
+
 /* ══════════════════════════════════════════
    BACA KONTEKS DARI URL (dikirim dari index.html)
 ══════════════════════════════════════════ */
@@ -390,12 +413,16 @@ function hideTyping(){
 /* ══════════════════════════════════════════
    SYSTEM INSTRUCTION UNTUK GEMINI
 ══════════════════════════════════════════ */
-function buildSystemInstruction(){
+async function buildSystemInstruction(){
   const daftarJurusan = Object.values(JURUSAN_DATA)
     .map(j => `- ${j.nama}: ${j.tagline}. ${j.ringkasan}`)
     .join('\n');
 
+  const aiReference = await loadAiReferenceText();
+
   return `Kamu adalah "Kak Duba", asisten virtual dengan NLM model Haroun yang ramah dari SMK Cokroaminoto 2 Banjarnegara (Yayasan Pendidikan Islam Cokroaminoto banjarnegara) yang membantu calon siswa SMP/MTs memahami jurusan-jurusan di sekolah ini beserta boarding "Ribath At Tauhid".
+
+${aiReference}
 
 Data siswa yang sedang chat denganmu:
 - Nama: ${ctx.nama || 'belum diisi'}
@@ -419,7 +446,7 @@ Aturan menjawab:
 async function sendToGemini(userText){
   const payload = {
     contents: history,
-    systemInstruction: buildSystemInstruction()
+    systemInstruction: await buildSystemInstruction()
   };
   // Catatan: sengaja TANPA header Content-Type custom (default text/plain)
   // agar tidak memicu CORS preflight yang tidak didukung Apps Script Web App.
