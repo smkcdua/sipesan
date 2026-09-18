@@ -461,7 +461,7 @@ function quickAsk(text){
 (function greet(){
   const sapa = ctx.nama ? `Halo, ${ctx.nama}! 👋` : 'Halo, adik-adik! 👋';
   const soal = jInfo
-    ? `Aku lihat kamu cocok dengan jurusan <strong>${jInfo.nama}</strong> ${jInfo.emoji}. Mau tanya-tanya soal jurusan ini, jurusan lain, atau kehidupan di sekolah dan boarding?`
+    ? `Aku lihat kamu cocok dengan jurusan ${jInfo.nama} ${jInfo.emoji}. Mau tanya-tanya soal jurusan ini, jurusan lain, atau kehidupan di sekolah dan boarding?`
     : `Aku Kak Duba, siap bantu jawab pertanyaan seputar jurusan, karir, dan boarding di SMK Cokroaminoto 2 Banjarnegara. Yuk tanya apa saja! 😊`;
   appendMessage('bot', sapa + ' ' + soal);
 
