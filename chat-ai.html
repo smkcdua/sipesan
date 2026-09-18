@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tanya Kak AI — SMK Cokroaminoto 2 Banjarnegara</title>
+<title>Tanya Kak Duba — SMK Cokroaminoto 2 Banjarnegara</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Fredoka+One&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════
@@ -208,7 +208,7 @@ body::before{
     <div class="tn-logo">
       <div class="tn-logo-icon">🤖</div>
       <div>
-        <div class="tn-logo-text">Kak AI</div>
+        <div class="tn-logo-text">Kak Duba</div>
         <div class="tn-logo-sub">SMK Cokroaminoto 2 Banjarnegara</div>
       </div>
     </div>
@@ -217,9 +217,9 @@ body::before{
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-eyebrow">Konsultasi Interaktif <span>✦ Ditenagai Gemini AI</span></div>
-    <div class="hero-title" id="hero-title">Tanya Kak AI 🤖</div>
-    <div class="hero-sub" id="hero-sub">Tanya apa saja seputar jurusan, prospek karir, atau kehidupan di SMK Cokroaminoto 2 Banjarnegara. Kak AI siap bantu jawab!</div>
+    <div class="hero-eyebrow">Konsultasi Interaktif <span>✦ Ditenagai Haroun</span></div>
+    <div class="hero-title" id="hero-title">Tanya Kak Duba 🤖</div>
+    <div class="hero-sub" id="hero-sub">Tanya apa saja seputar jurusan, prospek karir, atau kehidupan di SMK Cokroaminoto 2 Banjarnegara. Kak Duba siap bantu jawab!</div>
     <div class="ctx-chips" id="ctx-chips"></div>
   </section>
 
@@ -252,8 +252,8 @@ body::before{
   </div>
 
   <div class="footer-note">
-    <strong>Catatan:</strong> Jawaban Kak AI dihasilkan otomatis dan bisa saja tidak 100% akurat.<br>
-    Untuk keputusan penting (biaya, pendaftaran), tetap konfirmasi ke BK atau Kaprodi sekolah.
+    <strong>Catatan:</strong> Karena Kak Duba banyak kerjaan maka jawaban bisa di crosscheck oleh kaprodi dengan menu WA.<br>
+    Untuk keputusan penting (biaya, pendaftaran), tetap konfirmasi ke BK atau Kaprodi sekolah lewat menu WA.
   </div>
 
 </div>
@@ -295,9 +295,9 @@ const jInfo = JURUSAN_DATA[ctx.jurusan] || null;
   if(jInfo){
     document.getElementById('hero').style.background =
       `linear-gradient(135deg, ${jInfo.color} 0%, var(--pink) 55%, var(--purple) 100%)`;
-    document.getElementById('hero-title').textContent = `Tanya Kak AI ${jInfo.emoji}`;
+    document.getElementById('hero-title').textContent = `Tanya Kak Duba ${jInfo.emoji}`;
     document.getElementById('hero-sub').textContent =
-      `Kamu direkomendasikan ke jurusan ${jInfo.nama}. Tanyakan apa saja soal jurusan ini — atau jurusan lain — ke Kak AI!`;
+      `Kamu direkomendasikan ke jurusan ${jInfo.nama}. Tanyakan apa saja soal jurusan ini — atau jurusan lain — ke Kak Duba!`;
   }
   const chipsEl = document.getElementById('ctx-chips');
   const chips = [];
@@ -360,7 +360,7 @@ function buildSystemInstruction(){
     .map(j => `- ${j.nama}: ${j.tagline}. ${j.ringkasan}`)
     .join('\n');
 
-  return `Kamu adalah "Kak AI", asisten virtual ramah dari SMK Cokroaminoto 2 Banjarnegara (Yayasan Pendidikan Islam Cokroaminoto) yang membantu calon siswa SMP/MTs memahami jurusan-jurusan di sekolah ini beserta boarding "Ribath At Tauhid".
+  return `Kamu adalah "Kak Duba", asisten virtual dengan NLM model Haroun yang ramah dari SMK Cokroaminoto 2 Banjarnegara (Yayasan Pendidikan Islam Cokroaminoto banjarnegara) yang membantu calon siswa SMP/MTs memahami jurusan-jurusan di sekolah ini beserta boarding "Ribath At Tauhid".
 
 Data siswa yang sedang chat denganmu:
 - Nama: ${ctx.nama || 'belum diisi'}
@@ -372,7 +372,7 @@ ${daftarJurusan}
 
 Aturan menjawab:
 1. Jawab dalam Bahasa Indonesia yang hangat, sopan, dan mudah dipahami anak SMP — maksimal 3-5 kalimat kecuali diminta detail lebih.
-2. Fokus HANYA pada topik: jurusan SMK, prospek karir, kehidupan sekolah/boarding, dan pendaftaran (PPDB) di SMK Cokroaminoto 2 Banjarnegara. Jika ditanya di luar topik ini, arahkan dengan sopan kembali ke topik seputar sekolah.
+2. Fokus HANYA pada topik: jurusan SMK yang menjadi hasil siswa tersebut, prospek karir, kehidupan sekolah/boarding, dan pendaftaran (PPDB) di SMK Cokroaminoto 2 Banjarnegara. Jika ditanya di luar topik ini, arahkan dengan sopan kembali ke topik seputar sekolah.
 3. Jangan mengarang angka biaya pasti (SPP, boarding, registrasi) — sekolah punya halaman Simulasi Biaya Boarding terpisah untuk estimasi biaya. Sarankan siswa memakai fitur itu atau menghubungi Kaprodi/Pengasuh via WhatsApp untuk biaya pasti.
 4. Boleh menyapa dengan nama siswa jika sudah diketahui.
 5. Jika siswa terlihat sudah yakin dan ingin mendaftar, arahkan ke tombol "Lanjut ke Pendaftaran" di halaman hasil atau ke WhatsApp Kaprodi.`;
@@ -420,7 +420,7 @@ async function handleSend(){
     if(data.error){
       appendMessage('bot', '⚠️ ' + data.error);
     } else {
-      appendMessage('bot', data.reply || 'Maaf, Kak AI belum bisa menjawab itu 🙏');
+      appendMessage('bot', data.reply || 'Maaf, Kak Duba belum bisa menjawab itu 🙏');
       history.push({ role:'model', parts:[{ text: data.reply || '' }] });
     }
   }catch(err){
@@ -462,7 +462,7 @@ function quickAsk(text){
   const sapa = ctx.nama ? `Halo, ${ctx.nama}! 👋` : 'Halo, adik-adik! 👋';
   const soal = jInfo
     ? `Aku lihat kamu cocok dengan jurusan <strong>${jInfo.nama}</strong> ${jInfo.emoji}. Mau tanya-tanya soal jurusan ini, jurusan lain, atau kehidupan di sekolah dan boarding?`
-    : `Aku Kak AI, siap bantu jawab pertanyaan seputar jurusan, karir, dan boarding di SMK Cokroaminoto 2 Banjarnegara. Yuk tanya apa saja! 😊`;
+    : `Aku Kak Duba, siap bantu jawab pertanyaan seputar jurusan, karir, dan boarding di SMK Cokroaminoto 2 Banjarnegara. Yuk tanya apa saja! 😊`;
   appendMessage('bot', sapa + ' ' + soal);
 
   if(!CONFIG.APPS_SCRIPT_URL || CONFIG.APPS_SCRIPT_URL.includes('GANTI_DENGAN')){
