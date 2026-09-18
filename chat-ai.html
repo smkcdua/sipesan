@@ -186,6 +186,22 @@ body::before{
 .btn-wa:hover{background:#1db954;transform:translateY(-2px);}
 .btn-wa svg{width:15px;height:15px;fill:white;flex-shrink:0;}
 
+.cta-row{
+  display:flex;justify-content:center;margin:18px 0 12px;
+}
+.btn-daftar-ai{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 26px;border-radius:50px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--sky) 0%,var(--purple) 50%,var(--pink) 100%);
+  color:white;font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;
+  text-decoration:none;box-shadow:0 10px 24px rgba(77,150,255,.28);transition:all .2s;
+  min-width:240px;
+}
+.btn-daftar-ai:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 14px 30px rgba(77,150,255,.35);}
+.btn-daftar-ai small{
+  display:block;font-size:10px;font-weight:700;opacity:.8;
+}
+
 .footer-note{
   font-size:10.5px;color:var(--muted);text-align:center;line-height:1.8;font-weight:600;
   border-top:2px dashed rgba(0,0,0,.08);padding-top:18px;
@@ -239,6 +255,12 @@ body::before{
   </div>
 
   <!-- CONTACT ROW -->
+  <div class="cta-row">
+    <a id="btn-daftar-ai" class="btn-daftar-ai" href="https://ppdb.smkc2.com/" target="_blank" rel="noopener">
+      🎓 Lanjut ke Pendaftaran
+    </a>
+  </div>
+
   <div class="contact-row">
     <div style="font-size:32px;">📞</div>
     <div class="cr-info">
@@ -299,6 +321,19 @@ const jInfo = JURUSAN_DATA[ctx.jurusan] || null;
     document.getElementById('hero-sub').textContent =
       `Kamu direkomendasikan ke jurusan ${jInfo.nama}. Tanyakan apa saja soal jurusan ini — atau jurusan lain — ke Kak Duba!`;
   }
+
+  const daftarBtn = document.getElementById('btn-daftar-ai');
+  const ppdbUrl = jInfo
+    ? `https://ppdb.smkc2.com/?jurusan=${encodeURIComponent(jInfo.nama)}`
+    : 'https://ppdb.smkc2.com/';
+  if(daftarBtn){
+    daftarBtn.href = ppdbUrl;
+    if(jInfo){
+      daftarBtn.innerHTML = `🎓 Lanjut ke Pendaftaran`;
+      daftarBtn.setAttribute('title', `Daftar jurusan ${jInfo.nama}`);
+    }
+  }
+
   const chipsEl = document.getElementById('ctx-chips');
   const chips = [];
   if(ctx.nama)    chips.push(`👤 ${ctx.nama}`);
