@@ -282,15 +282,14 @@ body::before{
 
 <script>
 /* ══════════════════════════════════════════
-   KONFIGURASI — WAJIB DIISI SETELAH DEPLOY
-   Apps Script (lihat kode_appscript_gemini.gs)
+   
 ══════════════════════════════════════════ */
 const CONFIG = {
   APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw1L2YjgundQfC1S9RlQ4MugQ1Fs3AKb1AB4FU0Ts9ezi2O_UXk_IxdB7r8tMpqQ2XFbQ/exec' // contoh: https://script.google.com/macros/s/XXXXX/exec
 };
 
 /* ══════════════════════════════════════════
-   DATA RINGKAS 6 JURUSAN (untuk konteks AI)
+   
 ══════════════════════════════════════════ */
 const JURUSAN_DATA = {
   listrik:     { emoji:'⚡', nama:'Teknik Instalasi Tenaga Listrik', color:'#ffd93d', tagline:'Menguasai energi yang menggerakkan dunia', ringkasan:'Instalasi & perawatan panel listrik, PLN/BUMN energi, kontraktor listrik, wirausaha jasa instalasi. Kisaran gaji Rp3–12 juta/bulan.' },
@@ -326,7 +325,7 @@ async function loadAiReferenceText(){
 }
 
 /* ══════════════════════════════════════════
-   BACA KONTEKS DARI URL (dikirim dari index.html)
+   
 ══════════════════════════════════════════ */
 const qp  = new URLSearchParams(location.search);
 const ctx = {
@@ -367,7 +366,7 @@ const jInfo = JURUSAN_DATA[ctx.jurusan] || null;
 })();
 
 /* ══════════════════════════════════════════
-   STATE & RIWAYAT CHAT
+   
 ══════════════════════════════════════════ */
 let history = []; // [{role:'user'|'model', parts:[{text}]}]
 let sending = false;
@@ -412,7 +411,7 @@ function hideTyping(){
 }
 
 /* ══════════════════════════════════════════
-   SYSTEM INSTRUCTION UNTUK GEMINI
+   
 ══════════════════════════════════════════ */
 async function buildSystemInstruction(){
   const daftarJurusan = Object.values(JURUSAN_DATA)
@@ -443,7 +442,7 @@ Aturan menjawab:
 }
 
 /* ══════════════════════════════════════════
-   KIRIM PESAN
+   
 ══════════════════════════════════════════ */
 async function sendToGemini(userText){
   const payload = {
@@ -502,7 +501,7 @@ document.getElementById('chat-input').addEventListener('keydown', e=>{
 });
 
 /* ══════════════════════════════════════════
-   QUICK CHIPS
+   
 ══════════════════════════════════════════ */
 const QUICK_QUESTIONS = [
   '💼 Prospek kerjanya apa?',
@@ -520,7 +519,7 @@ function quickAsk(text){
 }
 
 /* ══════════════════════════════════════════
-   PESAN PEMBUKA
+  
 ══════════════════════════════════════════ */
 (function greet(){
   const sapa = ctx.nama ? `Halo, ${ctx.nama}! 👋` : 'Halo, adik-adik! 👋';
