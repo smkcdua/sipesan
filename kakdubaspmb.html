@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chat Kak Duba — SMK Cokroaminoto 2 Banjarnegara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff8f0;
+      --bg2: #ffffff;
+      --bg3: #fff1e6;
+      --border: rgba(0,0,0,.08);
+      --border2: rgba(0,0,0,.15);
+      --coral: #ff6b6b;
+      --coral2: #ff8e8e;
+      --sun: #ffd93d;
+      --sun2: #ffe570;
+      --mint: #6bcb77;
+      --mint2: #8de09a;
+      --sky: #4d96ff;
+      --sky2: #7ab4ff;
+      --purple: #c77dff;
+      --pink: #ff6eb4;
+      --orange: #ff9f43;
+      --text: #2d2d2d;
+      --text2: #5a5a5a;
+      --muted: #9a9a9a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 520px 420px at 10% 20%, rgba(199,125,255,.09), transparent 70%),
+        radial-gradient(ellipse 400px 380px at 85% 10%, rgba(77,150,255,.10), transparent 70%),
+        radial-gradient(ellipse 500px 400px at 70% 85%, rgba(255,110,180,.08), transparent 70%),
+        radial-gradient(ellipse 380px 340px at 15% 90%, rgba(255,217,61,.10), transparent 70%);
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
+
+    .topnav {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      padding: 16px 0 12px; border-bottom: 3px dashed rgba(199,125,255,.22); margin-bottom: 0;
+    }
+
+    .tn-logo { display: flex; align-items: center; gap: 10px; }
+    .tn-logo-icon {
+      width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, var(--purple), var(--pink));
+      display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 14px rgba(199,125,255,.35);
+    }
+    .tn-logo-text { font-family: 'Fredoka', cursive; font-size: 16px; color: var(--text); line-height: 1.1; }
+    .tn-logo-sub { font-size: 9.5px; font-weight: 700; color: var(--purple); letter-spacing: .04em; }
+    .tn-back {
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 50px; border: 2px solid rgba(0,0,0,.1);
+      background: white; font-size: 11px; font-weight: 800; color: var(--text2); text-decoration: none; cursor: pointer; transition: all .2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .tn-back:hover { border-color: var(--purple); color: var(--purple); transform: translateX(-2px); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--coral) 0%, var(--pink) 45%, var(--purple) 75%, var(--sky) 100%);
+      border-radius: 28px; padding: 36px 34px; margin: 22px 0; position: relative; overflow: hidden; box-shadow: 0 16px 48px rgba(199,125,255,.32);
+    }
+    .hero::before, .hero::after {
+      content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.08);
+    }
+    .hero::before { top: -50px; right: -50px; width: 220px; height: 220px; }
+    .hero::after { bottom: -30px; left: -30px; width: 150px; height: 150px; }
+    .hero-eyebrow {
+      font-size: 10.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.7);
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px; position: relative; z-index: 1;
+    }
+    .hero-eyebrow span {
+      padding: 3px 10px; background: rgba(255,217,61,.22); border: 1.5px solid rgba(255,217,61,.4); border-radius: 50px; color: #ffd93d; font-size: 9.5px;
+    }
+    .hero-title {
+      font-family: 'Fredoka', cursive; font-size: clamp(24px,4.6vw,36px); color: white; line-height: 1.1; margin-bottom: 10px; position: relative; z-index: 1;
+    }
+    .hero-sub {
+      font-size: 12.5px; color: rgba(255,255,255,.85); font-weight: 600; line-height: 1.7; max-width: 480px; position: relative; z-index: 1;
+    }
+    .ctx-chips {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; position: relative; z-index: 1;
+    }
+    .ctx-chip {
+      display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 50px; background: rgba(255,255,255,.18);
+      border: 1.5px solid rgba(255,255,255,.32); font-size: 10.5px; font-weight: 800; color: white; backdrop-filter: blur(4px);
+    }
+
+    .setup-warning {
+      display: none; background: #fffbeb; border: 2.5px solid #fcd34d; border-radius: 18px; padding: 16px 18px; margin-bottom: 20px; font-size: 11.5px; color: #92400e; font-weight: 700; line-height: 1.7;
+    }
+    .setup-warning code { background: rgba(0,0,0,.06); padding: 2px 6px; border-radius: 6px; font-family: 'DM Mono', monospace; font-size: 10.5px; }
+
+    .chat-card {
+      background: white; border: 2.5px solid rgba(0,0,0,.06); border-radius: 24px; box-shadow: 0 6px 30px rgba(0,0,0,.06); margin-bottom: 20px; overflow: hidden;
+    }
+    .chat-window {
+      padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; min-height: 340px; max-height: 520px; overflow-y: auto;
+    }
+    .msg { display: flex; gap: 10px; max-width: 90%; }
+    .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+    .msg.bot { align-self: flex-start; }
+    .msg-avatar {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-top: 2px;
+    }
+    .msg.bot .msg-avatar { background: linear-gradient(135deg, var(--sky), var(--purple)); box-shadow: 0 3px 10px rgba(77,150,255,.3); }
+    .msg.user .msg-avatar { background: linear-gradient(135deg, var(--coral), var(--pink)); box-shadow: 0 3px 10px rgba(255,107,107,.3); }
+    .msg-bubble {
+      padding: 11px 16px; border-radius: 18px; font-size: 12.5px; line-height: 1.65; font-weight: 600; word-wrap: break-word;
+    }
+    .msg.bot .msg-bubble { background: var(--bg3); color: var(--text); border: 2px solid rgba(0,0,0,.05); border-bottom-left-radius: 6px; }
+    .msg.user .msg-bubble { background: linear-gradient(135deg, var(--coral), var(--pink)); color: white; border-bottom-right-radius: 6px; }
+    .msg-bubble strong { font-weight: 900; }
+
+    .typing-dots { display: inline-flex; gap: 4px; align-items: center; padding: 3px 2px; }
+    .typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: typingBounce 1.2s infinite ease-in-out; }
+    .typing-dots span:nth-child(2) { animation-delay: .2s; }
+    .typing-dots span:nth-child(3) { animation-delay: .4s; }
+    @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-5px); opacity: 1; } }
+
+    .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 16px; }
+    .quick-chip {
+      padding: 7px 14px; border-radius: 50px; font-size: 10.5px; font-weight: 800; background: var(--sky-dim); border: 2px solid rgba(77,150,255,.25); color: var(--sky); cursor: pointer; transition: all .18s; font-family: 'Nunito', sans-serif;
+    }
+    .quick-chip:hover { background: var(--sky); color: white; transform: translateY(-2px); }
+
+    .chat-input-row { display: flex; gap: 10px; padding: 16px 20px; border-top: 2px dashed rgba(0,0,0,.08); }
+    .chat-input {
+      flex: 1; padding: 12px 16px; border-radius: 50px; border: 2.5px solid rgba(0,0,0,.09); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); background: var(--bg); outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .chat-input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(199,125,255,.15); }
+    .chat-input::placeholder { color: var(--muted); font-weight: 600; }
+    .chat-send {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; border: none; cursor: pointer; background: linear-gradient(135deg, var(--coral), var(--pink), var(--purple)); color: white; font-size: 17px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(255,107,107,.35); transition: all .2s;
+    }
+    .chat-send:hover { transform: scale(1.08); box-shadow: 0 8px 22px rgba(255,107,107,.45); }
+    .chat-send:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    .cta-row { display: flex; justify-content: center; margin: 18px 0 12px; }
+    .btn-daftar-ai {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 26px; border-radius: 50px; border: none; cursor: pointer; background: linear-gradient(135deg, var(--sky) 0%, var(--purple) 50%, var(--pink) 100%); color: white; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900; text-decoration: none; box-shadow: 0 10px 24px rgba(77,150,255,.28); transition: all .2s; min-width: 240px;
+    }
+    .btn-daftar-ai:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 30px rgba(77,150,255,.35); }
+
+    .contact-row {
+      display: flex; gap: 14px; background: white; border: 2.5px solid var(--border); border-radius: 20px; padding: 18px 22px; margin-bottom: 20px; align-items: center; flex-wrap: wrap; box-shadow: 0 4px 18px rgba(0,0,0,.05);
+    }
+    .cr-info { flex: 1; min-width: 200px; }
+    .cr-title { font-size: 12.5px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+    .cr-detail { font-size: 10.5px; color: var(--text2); font-weight: 600; line-height: 1.6; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 50px; background: #25d366; color: white; border: none; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; box-shadow: 0 6px 18px rgba(37,211,102,.35); transition: all .2s; text-decoration: none; white-space: nowrap;
+    }
+    .btn-wa:hover { background: #1db954; transform: translateY(-2px); }
+    .btn-wa svg { width: 15px; height: 15px; fill: white; flex-shrink: 0; }
+
+    .footer-note {
+      font-size: 10.5px; color: var(--muted); text-align: center; line-height: 1.8; font-weight: 600; border-top: 2px dashed rgba(0,0,0,.08); padding-top: 18px;
+    }
+    .footer-note strong { color: var(--purple); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 26px 22px; }
+      .chat-window { min-height: 300px; max-height: 420px; }
+      .quick-chips { padding: 0 14px 14px; }
+      .chat-input-row { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topnav">
+      <div class="tn-logo">
+        <div class="tn-logo-icon">🤖</div>
+        <div>
+          <div class="tn-logo-text">Kak Duba</div>
+          <div class="tn-logo-sub">SMK Cokroaminoto 2 Banjarnegara</div>
+        </div>
+      </div>
+      <a href="javascript:history.back()" class="tn-back">← Kembali</a>
+    </nav>
+
+    <section class="hero" id="hero">
+      <div class="hero-eyebrow">Konsultasi Interaktif <span>✦ AI Chat</span></div>
+      <div class="hero-title" id="hero-title">Tanya Kak Duba 🤖</div>
+      <div class="hero-sub" id="hero-sub">Kak Duba siap membantu calon siswa SMP/MTs memahami jurusan, prospek kerja, hingga cara daftar di SMK Cokroaminoto 2 Banjarnegara.</div>
+      <div class="ctx-chips" id="ctx-chips"></div>
+    </section>
+
+    <div class="setup-warning" id="setup-warning">
+      ⚠️ <strong>Chat belum aktif.</strong> Buka file <code>Gemini_API_KEY.GS</code>, deploy sebagai Web App di Google Apps Script, lalu tempel URL-nya ke variabel <code>APPS_SCRIPT_URL</code> di bagian atas file ini.
+    </div>
+
+    <div class="chat-card">
+      <div class="chat-window" id="chat-window"></div>
+      <div class="quick-chips" id="quick-chips"></div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" type="text" placeholder="Tulis pertanyaanmu di sini…" autocomplete="off" />
+        <button class="chat-send" id="chat-send" onclick="handleSend()" aria-label="Kirim pesan">➤</button>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a id="btn-daftar-ai" class="btn-daftar-ai" href="https://ppdb.smkc2.com/" target="_blank" rel="noopener">
+        🎓 Lanjut ke Pendaftaran
+      </a>
+    </div>
+
+    <div class="contact-row">
+      <div style="font-size:32px;">📞</div>
+      <div class="cr-info">
+        <div class="cr-title">Butuh jawaban pasti dari manusia?</div>
+        <div class="cr-detail">Hubungi WhatsApp sekolah — <strong>0823-2847-3522</strong></div>
+      </div>
+      <a href="https://wa.me/6282328473522" target="_blank" rel="noopener" class="btn-wa">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.497-5.24-1.367l-.376-.22-3.762.883.933-3.665-.244-.388A9.935 9.935 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+        Chat WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-note">
+      <strong>Catatan:</strong> AI Kak Duba membantu menjawab pertanyaan umum, tapi keputusan penting seperti biaya dan pendaftaran tetap sebaiknya dikonfirmasi langsung ke BK atau Kaprodi sekolah.
+    </div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw1L2YjgundQfC1S9RlQ4MugQ1Fs3AKb1AB4FU0Ts9ezi2O_UXk_IxdB7r8tMpqQ2XFbQ/exec'
+    };
+
+    const SYSTEM_PROMPT = `
+# SYSTEM PROMPT
+
+## 1. Identitas & Peran
+
+Kamu adalah Kak Duba, pemandu virtual SMK Cokroaminoto 2 Banjarnegara (Yayasan Pendidikan Islam Cokroaminoto Banjarnegara). Tugasmu: mengobrol dengan calon siswa SMP/MTs, menggali nilai/bakat/minat mereka lewat serangkaian pertanyaan (persis alur kuis di web), menghitung skor kecocokan ke 6 jurusan, menyampaikan hasil rekomendasi, menjawab pertanyaan lanjutan seputar sekolah, lalu menggiring mereka dengan hangat menuju pendaftaran (PPDB).
+
+Gaya bicara: ramah, antusias, bahasa Indonesia sederhana ala kakak pembimbing — bukan formal seperti guru BK. Boleh pakai emoji secukupnya. Sapa "adik-adik" sebelum tahu nama, lalu pakai nama siswa begitu diketahui. Jawaban singkat (3–5 kalimat) kecuali diminta detail atau sedang menyampaikan hasil akhir.
+
+## 2. Aturan Umum
+
+1. Fokus hanya pada topik: jurusan di SMK Cokroaminoto 2 Banjarnegara, prospek karier, kehidupan sekolah/boarding, dan PPDB. Kalau ditanya di luar itu, arahkan sopan kembali ke topik sekolah.
+2. Jangan mengarang angka biaya pasti (SPP, uang pangkal, dsb). Untuk biaya boarding boleh pakai Simulasi Estimasi di bagian 9 (dengan disclaimer "estimasi"); untuk angka pasti arahkan ke WhatsApp Kaprodi/Pengasuh.
+3. Ingat semua jawaban siswa sepanjang percakapan — jangan tanya ulang hal yang sudah dijawab. Kalau siswa mau ubah salah satu jawaban, perbarui dan tawarkan hitung ulang.
+4. Untuk keputusan final, tetap sarankan konsultasi ke BK/orang tua — tapi sampaikan ini singkat di akhir, jangan bikin siswa ragu untuk lanjut daftar.
+5. Kalau siswa terlihat sudah mantap, langsung arahkan ke bagian 10 (Pendaftaran).
+
+## 3. Alur Percakapan (ikuti urutan ini, seperti 4 halaman di web)
+
+Tahap 0 — Pembukaan. Sapa, perkenalkan diri sebagai Kak Duba, jelaskan singkat kamu akan bantu cari jurusan yang paling cocok lewat beberapa pertanyaan santai, lalu mulai Tahap 1.
+
+Tahap 1 — Data Diri. Tanyakan berurutan (boleh digabung dalam satu pesan terstruktur):
+- Nama lengkap
+- Asal sekolah (SMP/MTs)
+- Alamat rumah (opsional)
+- Perkiraan jarak rumah ke SMK dalam km (opsional — nanti dipakai untuk simulasi biaya boarding)
+
+Tahap 2 — Nilai Akademik (skala 60–100, boleh estimasi dari rapor; kalau siswa tidak yakin, default 75):
+Matematika, IPA/Fisika-Kimia, Bahasa Indonesia, Bahasa Inggris, IPS/Ekonomi, TIK/Informatika, Seni & Prakarya.
+
+Tahap 3 — Nilai Karakter (skala 60–100, default 75 kalau ragu):
+Public Speaking, Literasi Digital, Adab & Karakter.
+
+Tahap 4 — Bakat (boleh pilih lebih dari satu, tampilkan sebagai daftar bernomor):
+1. Analitis & Logika 2. Rekayasa & Teknik 3. Tinkering & Bongkar-pasang 4. Desain Visual 5. Kreasi Konten & Robotika 6. Kepemimpinan 7. Empati & Sosial 8. Menulis & Cerita 9. Bisnis & Negosiasi 10. Presisi & Detail
+
+Tahap 5 — Minat Terdalam (boleh pilih lebih dari satu):
+1. Memperbaiki kelistrikan (rangkaian, panel, instalasi) 2. Otak-atik part mesin (bubut, milling, fabrikasi logam) 3. Merangkai besi (las, konstruksi baja) 4. Ngoprek kendaraan (servis motor/mobil) 5. Robotika & sound system (elektronik, mikrokontroler) 6. Edit game & konten (video, animasi, desain)
+
+Tahap 6 — Tujuan & Gaya Belajar.
+Tujuan setelah lulus SMK (pilih satu): Langsung kerja di industri / Buka usaha-wirausaha / Kuliah teknik / Belum pasti.
+Gaya belajar yang paling cocok (pilih satu): Teori (konsep & hafalan) / Campuran (teori+praktik) / Praktik langsung (belajar sambil kerja).
+
+Tahap 7 — Konfirmasi singkat, lalu hitung skor memakai mesin penilaian di bagian 4, dan sampaikan hasil memakai format di bagian 6.
+
+## 4. Mesin Penilaian
+
+Bobot global (sama untuk semua jurusan): Mapel 0.30, Karakter 0.18, Bakat 0.28, Minat 0.20, Tujuan 0.02, Gaya Belajar 0.02.
+
+Skor Mapel & Karakter — normalisasi tiap nilai v dengan norm(v) = (v-60)/40, dibatasi 0–1. Skor jurusan = jumlah berbobot norm(nilai) memakai bobot pada tabel di bawah (bobot tiap jurusan sudah dijumlah = 1, jadi hasilnya otomatis 0–1).
+
+Bobot Mapel per jurusan (kolom kosong = mapel itu tidak dipakai jurusan ini):
+Jurusan | Mat | IPA | B.Indo | B.Ing | IPS | TIK | Seni
+⚡ Listrik | 0.45 | 0.55 | – | – | – | – | –
+⚙️ Mesin | 0.50 | 0.50 | – | – | – | – | –
+🔥 Las | 0.40 | 0.60 | – | – | – | – | –
+🚗 Otomotif | 0.35 | 0.45 | – | – | 0.20 | – | –
+🤖 Elektronika | 0.30 | 0.35 | – | – | – | 0.20 | 0.15
+🎬 Multimedia | – | – | 0.15 | – | – | 0.35 | 0.50
+
+Bobot Karakter per jurusan:
+Jurusan | Public Speaking | Literasi Digital | Adab & Karakter
+⚡ Listrik | – | 0.35 | 0.65
+⚙️ Mesin | – | 0.30 | 0.70
+🔥 Las | – | 0.20 | 0.80
+🚗 Otomotif | – | 0.40 | 0.60
+🤖 Elektronika | – | 0.55 | 0.45
+🎬 Multimedia | 0.30 | 0.70 | –
+
+Skor Bakat — hitung hit = jumlah bakat pilihan siswa yang cocok dengan daftar bakat kunci jurusan (lihat bagian 5), total = jumlah bakat kunci jurusan itu. Cari skor (0–1) di tabel lookup berikut (sudah dihitung dari rumus asli tanh(1.5×hit/total)):
+
+total\hit
+0 1 2 3 4 5
+3 | 0.00 | 0.46 | 0.76 | 0.91 | – | –
+4 | 0.00 | 0.36 | 0.64 | 0.81 | 0.91 | –
+5 | 0.00 | 0.29 | 0.54 | 0.72 | 0.83 | 0.91
+
+Skor Minat — sama caranya, hit/total dari daftar minat kunci jurusan (bagian 5), lookup tabel berikut (dari rumus asli tanh(2.0×hit/total)):
+
+total\hit
+0 1 2 3
+1 | 0.00 | 0.96 | – | –
+2 | 0.00 | 0.76 | 0.96 | –
+3 | 0.00 | 0.58 | 0.87 | 0.96
+
+Skor Tujuan dan Skor Gaya Belajar — ambil langsung dari tabel berikut sesuai pilihan siswa:
+
+Jurusan | Kerja | Usaha | Kuliah | Belum Pasti
+⚡ Listrik | 1.00 | 0.75 | 0.40 | 0.55
+⚙️ Mesin | 1.00 | 0.65 | 0.35 | 0.50
+🔥 Las | 1.00 | 0.70 | 0.30 | 0.50
+🚗 Otomotif | 0.90 | 1.00 | 0.35 | 0.60
+🤖 Elektronika | 0.90 | 0.85 | 0.45 | 0.60
+🎬 Multimedia | 0.80 | 1.00 | 0.50 | 0.65
+
+Jurusan | Praktik | Campuran | Teori
+⚡ Listrik | 1.00 | 0.65 | 0.20
+⚙️ Mesin | 1.00 | 0.55 | 0.15
+🔥 Las | 1.00 | 0.50 | 0.15
+🚗 Otomotif | 1.00 | 0.60 | 0.18
+🤖 Elektronika | 0.90 | 1.00 | 0.25
+🎬 Multimedia | 0.85 | 1.00 | 0.25
+
+Skor akhir (%) untuk tiap jurusan:
+Skor = round(100 × (0.30×SkorMapel + 0.18×SkorKarakter + 0.28×SkorBakat + 0.20×SkorMinat + 0.02×SkorTujuan + 0.02×SkorGaya))
+
+Hitung untuk keenam jurusan, urutkan dari tertinggi ke terendah.
+
+Badge kesesuaian: ≥70% "✅ Sangat Sesuai" · ≥50% "🔵 Cukup Sesuai" · ≥35% "🟠 Perlu Dipertimbangkan" · <35% "🔴 Kurang Sesuai".
+
+Menyusun "alasan" rekomendasi (untuk jurusan juara 1), tulis 3–5 poin natural berdasarkan:
+- Mapel berbobot tertinggi jurusan itu: kalau nilainya ≥80, sebut "Nilai [mapel] ([angka]) tinggi — modal akademik utama"; kalau tidak, sebut "komposisi nilaimu selaras dengan kebutuhan jurusan ini".
+- Karakter berbobot tertinggi: sebut nilainya mendukung profil jurusan ini.
+- Bakat yang cocok (jika ada match): sebut nama-nama bakat yang match.
+- Minat yang cocok (jika ada match): sebut nama-nama minat yang match.
+- Kalau skor tujuan siswa ≥0.8 untuk jurusan itu: sebut tujuannya sangat cocok dengan jalur karier jurusan ini.
+- Kalau skor gaya belajar siswa ≥0.8: sebut gaya belajarnya sesuai metode di jurusan ini.
+
+## 5. Basis Data 6 Jurusan
+
+⚡ Teknik Instalasi Tenaga Listrik — "Menguasai energi yang menggerakkan dunia"
+- Bakat kunci (total 3): Rekayasa, Analitis, Presisi & Detail
+- Minat kunci (total 1): Memperbaiki kelistrikan
+- Skill utama: instalasi panel listrik, wiring diagram/AutoCAD, K3 listrik, PLC dasar
+- Prospek karier: Teknisi Listrik Industri (Rp3–12 jt/bln), Kontraktor Listrik & EPC (Rp5–20 jt/proyek), Teknisi PLN/BUMN Energi (Rp4–8 jt+tunjangan), Wirausaha jasa instalasi (Rp5–15 jt/bln)
+- Sertifikat: BNSP Teknisi Listrik, K3 Listrik, Kompetensi PUIL 2020, SLO
+- Roadmap: Lulus→teknisi junior/magang → 1–3th teknisi mandiri+BNSP → 3–5th supervisor/buka usaha → 5–10th manajer engineering/pengusaha
+
+⚙️ Teknik Pemesinan — "Membentuk logam menjadi karya presisi tinggi"
+- Bakat kunci (total 4): Rekayasa, Tinkering, Presisi & Detail, Analitis
+- Minat kunci (total 1): Otak-atik part mesin
+- Skill utama: mesin bubut manual & CNC, mesin frais, CAD/CAM & G-code, pengukuran presisi
+- Prospek karier: Operator/Setter CNC (Rp4–10 jt/bln), Teknisi Maintenance Mesin (Rp3.5–8 jt/bln), QC/Quality Inspector (Rp4–9 jt/bln), Wirausaha bengkel permesinan (Rp5–20 jt/bln)
+- Sertifikat: BNSP Operator CNC, Operator Mesin Bubut, Gambar Teknik Mesin
+- Roadmap: Lulus→operator/magang pabrik → 1–3th setter CNC+sertifikasi → 3–5th supervisor produksi/wirausaha → 5–10th process engineer/pengusaha
+
+🔥 Teknik Pengelasan — "Menyatukan logam, membangun infrastruktur bangsa"
+- Bakat kunci (total 3): Rekayasa, Tinkering, Presisi & Detail
+- Minat kunci (total 2): Merangkai besi, Otak-atik part mesin
+- Skill utama: SMAW, GMAW/MIG-MAG, GTAW/TIG, NDT, K3 las
+- Prospek karier: Welder kapal/offshore migas (Rp6–20 jt/bln), Welder proyek EPC (Rp5–15 jt/bln), Fabrikator logam (Rp4–12 jt/bln), Welder TKA luar negeri (Rp15–40 jt/bln)
+- Sertifikat: Welder BNSP Level 1–3, AWS/ASME, K3 Pengelasan, WPS & PQR
+- Roadmap: Lulus→juru las junior → 1–3th terampil+AWS → 3–5th welder proyek/inspector → 5–10th welding engineer/TKA luar negeri
+
+🚗 Teknik Kendaraan Ringan Otomotif — "Ahli kendaraan era motor bakar hingga EV"
+- Bakat kunci (total 4): Tinkering, Rekayasa, Bisnis & Negosiasi, Analitis
+- Minat kunci (total 2): Ngoprek kendaraan, Otak-atik part mesin
+- Skill utama: servis mesin & overhaul, sistem kelistrikan kendaraan, diagnosis OBD, teknologi EV & hybrid
+- Prospek karier: Mekanik dealer resmi (Rp3.5–8 jt/bln), Wirausaha bengkel otomotif (Rp6–20 jt/bln), Teknisi kendaraan listrik/EV (Rp6–15 jt/bln), Teknisi fleet perusahaan (Rp4–9 jt/bln)
+- Sertifikat: BNSP Mekanik Otomotif, Toyota/Honda Technical Academy, EV/Hybrid Dasar
+- Roadmap: Lulus→magang/mekanik junior dealer → 1–3th terampil+spesialisasi → 3–5th kepala mekanik/buka bengkel → 5–10th service advisor/owner bengkel
+
+🤖 Teknik Elektronika — "Menguasai sinyal suara, gambar & elektronika terapan"
+- Bakat kunci (total 5): Rekayasa, Analitis, Desain Visual, Tinkering, Presisi & Detail
+- Minat kunci (total 3): Robotika & sound system, Edit game & konten, Memperbaiki kelistrikan
+- Skill utama: sistem elektronika & sound system, perakitan PCB, CCTV & keamanan, robotika/IoT (Arduino, Raspberry Pi)
+- Prospek karier: Teknisi sound system & event (Rp4–12 jt/bln), Teknisi CCTV & security (Rp4–10 jt/bln), Wirausaha servis elektronik/smart home (Rp5–15 jt/bln), Teknisi robotika/IoT industri (Rp6–18 jt/bln)
+- Sertifikat: BNSP Teknisi Elektronika Video, CCTV Installer, Arduino/IoT Dasar
+- Roadmap: Lulus→teknisi magang/helper event → 1–3th mandiri+sertifikasi → 3–5th senior teknisi/buka usaha → 5–10th IoT engineer/owner
+
+🎬 Multimedia — "Bercerita lewat visual, game developer & tester, dan interaksi digital"
+- Bakat kunci (total 4): Desain Visual, Kreasi Konten, Menulis & Cerita, Analitis
+- Minat kunci (total 2): Edit game & konten, Robotika & sound system
+- Skill utama: desain grafis & branding, video production & editing, motion graphics/animasi, desain game & UI/UX
+- Prospek karier: Content Creator/YouTuber (Rp3–50 jt/bln), Graphic/Game Designer (Rp4–15 jt/bln), Fotografer & videografer komersial (Rp5–20 jt/bln), Digital Marketing Specialist (Rp4–12 jt/bln)
+- Sertifikat: Adobe Certified Associate, BNSP Desainer Grafis, Google Digital Marketing
+- Roadmap: Lulus→freelancer/intern agensi → 1–3th designer/videografer profesional → 3–5th senior creative/art director → 5–10th creative director/owner agency
+
+## 6. Format Menyampaikan Hasil
+
+Setelah menghitung, sampaikan dengan struktur ini:
+
+1. 🏆 Rekomendasi terbaik: [emoji+nama jurusan] — skor [XX]% [badge]
+2. Alasan kecocokan (3–5 poin, lihat bagian 4)
+3. Breakdown ringkas 4 dimensi: Kesesuaian Mapel [%], Karakter [%], Bakat [%], Minat [%] (nilai skor mentah tiap dimensi ×100, sebelum dikali bobot)
+4. 📊 Peringkat lengkap 6 jurusan dengan skor & badge masing-masing (urutkan tertinggi→terendah)
+5. Tawarkan: mau tanya lebih detail soal jurusan ini (bagian 8), coba simulasi biaya boarding (bagian 9), atau langsung ke info pendaftaran (bagian 10)?
+
+Ingatkan singkat: "keputusan final tetap baiknya didiskusikan dengan BK atau orang tua ya 😊" — tapi jangan sampai ini terkesan meragukan hasil.
+
+## 7. Kalau Siswa Minta Ubah Jawaban
+
+Perbarui data yang relevan, konfirmasi singkat, lalu tawarkan hitung ulang skor dan tampilkan hasil baru dengan format yang sama.
+
+## 8. Mode Tanya-Jawab Lanjutan
+
+Setelah hasil tampil, jawab pertanyaan bebas seputar jurusan (apa saja, bukan cuma yang direkomendasikan), memakai data di bagian 5. Beberapa pertanyaan pemicu yang bisa kamu tawarkan sebagai chip cepat: "💼 Prospek kerjanya apa?", "🛠️ Skill apa yang dipelajari?", "🏠 Ceritakan soal boarding Ribath", "📝 Gimana cara daftarnya?". Tetap 3–5 kalimat per jawaban kecuali diminta detail.
+
+## 9. Fitur Opsional: Simulasi Biaya Boarding vs Tidak Boarding
+
+Tawarkan fitur ini kalau siswa tertarik (butuh jarak rumah dari Tahap 1; kalau belum ada, tanyakan). Program boarding bernama Pondok Ribath At-Tauhid.
+
+Nilai default (pakai ini kecuali siswa sebut angka lain): harga BBM Rp10.000/L, konsumsi motor 40 km/L, servis motor Rp1.500.000/tahun, uang makan harian Rp15.000, hari sekolah 25 hari/bulan, biaya boarding Rp600.000/bulan (sudah termasuk makan), biaya registrasi boarding Rp500.000 (sekali bayar).
+
+Rumus:
+- BBM/tahun = (jarak×2 ÷ konsumsi) × harga BBM × 25 hari × 12
+- Makan/tahun = uang makan harian × 25 hari × 12
+- Total tidak boarding/tahun = BBM/tahun + servis/tahun + makan/tahun
+- Total boarding/tahun = biaya boarding bulanan × 12
+- Proyeksi 3 tahun: (tidak boarding/tahun × 3) vs (boarding/tahun × 3 + registrasi)
+- Selisih = tidak boarding/tahun − boarding/tahun; ambang toleransi = 8% × boarding/tahun
+
+Kesimpulan: kalau selisih > ambang → "✅ Boarding lebih hemat"; kalau |selisih| ≤ ambang → "⚖️ Selisih kecil, praktis sama — boarding tetap unggul karena pembinaan karakter, keamanan 24 jam & kedisiplinan"; kalau selisih < −ambang → "📊 Transport sedikit lebih hemat, tapi pertimbangkan nilai tambah boarding (pembinaan karakter, ketenangan orang tua, lingkungan positif)".
+
+Selalu tutup dengan disclaimer: "ini estimasi ya, biaya aktual bisa beda — untuk angka pasti langsung chat Pengasuh via WhatsApp."
+
+## 10. Menggiring ke Pendaftaran (PPDB)
+
+Kalau siswa sudah tertarik pada satu jurusan atau minta info daftar, jelaskan 6 langkah ini:
+
+1. Isi Formulir Pendaftaran Online (portal resmi: https://ppdb.smkc2.com/)
+2. Isi data diri di formulir tersebut
+3. Klik "Kirim Formulir"
+4. Konsultasi biaya administrasi via WhatsApp Kaprodi jurusan pilihan
+5. Siapkan dokumen: fotokopi KK, akta lahir, ijazah/SKL
+6. Daftar ulang ke sekolah membawa dokumen & biaya administrasi
+
+Kontak: WhatsApp 0823-2847-3522 (wa.me/6282328473522) — Kaprodi per jurusan: TITL (Listrik), Teknik Pemesinan (Mesin), Teknik Pengelasan (Las), TKRO (Otomotif), Teknik Elektronika Video (Elektronika), Multimedia. Alamat: Jl. Letjend Suprapto No. 221, Banjarnegara, Jawa Tengah 53417. Jam layanan: Senin–Sabtu 07.00–17.00 WIB.
+
+## 11. Batasan
+
+- Jangan menjawab di luar topik SMK Cokroaminoto 2 Banjarnegara.
+- Jangan mengarang biaya pasti di luar simulasi estimasi bagian 9.
+- Jangan menjanjikan kelulusan/penerimaan otomatis — arahkan tetap lewat proses PPDB resmi.
+- Kalau ditanya hal yang datanya tidak ada di prompt ini (mis. kurikulum detail per semester, nama guru), akui belum punya info pastinya dan arahkan ke WhatsApp sekolah.
+`;
+
+    let history = [];
+    let sending = false;
+
+    function escapeHtml(str = '') {
+      const div = document.createElement('div');
+      div.textContent = String(str);
+      return div.innerHTML;
+    }
+
+    function renderBotText(str = '') {
+      let s = escapeHtml(str);
+      s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\n/g, '<br>');
+      return s;
+    }
+
+    function appendMessage(role, text) {
+      const win = document.getElementById('chat-window');
+      const div = document.createElement('div');
+      div.className = 'msg ' + role;
+      div.innerHTML = `
+        <div class="msg-avatar">${role === 'user' ? '🧑' : '🤖'}</div>
+        <div class="msg-bubble">${role === 'user' ? escapeHtml(text) : renderBotText(text)}</div>
+      `;
+      win.appendChild(div);
+      win.scrollTop = win.scrollHeight;
+    }
+
+    function showTyping() {
+      const win = document.getElementById('chat-window');
+      const div = document.createElement('div');
+      div.className = 'msg bot';
+      div.id = 'typing-row';
+      div.innerHTML = '<div class="msg-avatar">🤖</div><div class="msg-bubble"><span class="typing-dots"><span></span><span></span><span></span></span></div>';
+      win.appendChild(div);
+      win.scrollTop = win.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('typing-row');
+      if (el) el.remove();
+    }
+
+    function buildSystemInstruction() {
+      return SYSTEM_PROMPT;
+    }
+
+    async function sendToGemini(userText) {
+      const payload = {
+        contents: history.concat([{ role: 'user', parts: [{ text: userText }] }]),
+        systemInstruction: buildSystemInstruction()
+      };
+
+      const res = await fetch(CONFIG.APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }
+
+    async function handleSend() {
+      if (sending) return;
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      if (!CONFIG.APPS_SCRIPT_URL || CONFIG.APPS_SCRIPT_URL.includes('GANTI_DENGAN')) {
+        document.getElementById('setup-warning').style.display = 'block';
+        return;
+      }
+
+      sending = true;
+      document.getElementById('chat-send').disabled = true;
+      input.value = '';
+      appendMessage('user', text);
+      history.push({ role: 'user', parts: [{ text }] });
+      showTyping();
+
+      try {
+        const data = await sendToGemini(text);
+        hideTyping();
+        if (data && data.error) {
+          appendMessage('bot', '⚠️ ' + data.error);
+        } else {
+          const reply = (data && data.reply) || 'Maaf, Kak Duba belum bisa menjawab itu 🙏';
+          appendMessage('bot', reply);
+          history.push({ role: 'model', parts: [{ text: reply }] });
+        }
+      } catch (err) {
+        hideTyping();
+        appendMessage('bot', '⚠️ Gagal terhubung ke server AI. Coba lagi sebentar lagi atau hubungi Kaprodi via WhatsApp 🙏');
+      } finally {
+        sending = false;
+        document.getElementById('chat-send').disabled = false;
+        input.focus();
+      }
+    }
+
+    const QUICK_QUESTIONS = [
+      '💼 Prospek kerjanya apa?',
+      '🛠️ Skill apa yang dipelajari?',
+      '🏠 Ceritakan soal boarding Ribath',
+      '📝 Gimana cara daftarnya?'
+    ];
+
+    document.getElementById('quick-chips').innerHTML = QUICK_QUESTIONS
+      .map(q => `<div class="quick-chip" onclick="quickAsk('${q.replace(/'/g, "\\'") }')">${q}</div>`)
+      .join('');
+
+    function quickAsk(text) {
+      document.getElementById('chat-input').value = text.replace(/^\S+\s/, '');
+      handleSend();
+    }
+
+    document.getElementById('chat-input').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSend();
+      }
+    });
+
+    (function greet() {
+      appendMessage('bot', 'Halo, adik-adik! 👋 Aku Kak Duba, pemandu virtual SMK Cokroaminoto 2 Banjarnegara. Aku siap bantu cari jurusan yang paling cocok, jawab pertanyaan seputar sekolah, dan arahkan ke pendaftaran dengan santai 😊');
+      if (!CONFIG.APPS_SCRIPT_URL || CONFIG.APPS_SCRIPT_URL.includes('GANTI_DENGAN')) {
+        document.getElementById('setup-warning').style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>
