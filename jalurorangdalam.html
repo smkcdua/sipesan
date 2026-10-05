@@ -136,14 +136,14 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   </div>
 
   <div class="card">
-    <div class="card-title">📸 Lampiran Foto KK <span style="color:var(--coral);">(wajib)</span></div>
+    <div class="card-title">📸 Lampiran Foto KK <span style="color:var(--coral);">(kalau belum ada bisa dikosongkan)</span></div>
     <label class="upload" id="upload" for="rapor-file">
       <span class="upload-icon">🧾</span>
       <div class="upload-t">Ketuk untuk memilih atau memotret</div>
       <div class="upload-s">Foto halaman <strong> Kartu Keluarga </strong> terakhir.<br>Pastikan seluruh halaman terlihat, terang, dan tulisan terbaca. Format JPG atau PNG.</div>
     </label>
     <input type="file" id="rapor-file" accept="image/*" hidden>
-    <span class="err" id="rapor-err">Foto KK wajib dilampirkan.</span>
+    <span class="err" id="rapor-err">Foto KK TIDAK WAJIB/Bisa dikosongkan.</span>
     <div class="preview" id="preview">
       <img id="preview-img" alt="Pratinjau foto KK">
       <div class="preview-info" id="preview-info"></div>
@@ -175,7 +175,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 ══════════════════════════════════════════ */
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYLhbPYexcptbLutdUkOuQTdTv8jCreBkLGjOvLn00LLFlzvuheZYUHCrZagBIkmAk/exec'; // hasil deploy kode_appscript_jalurorangdalam.gs
 const REFERAL_DEFAULT = 'Joko Mulyono';
-const TAHUN_LULUS     = [2005, 2006, 2007];
+const TAHUN_LULUS     = [2025, 2026, 2027];
 const WA_SEKOLAH      = '6282328473522';
 const DRAFT_KEY       = 'sipesan_jod';   // diisi oleh index.html setelah hasil rekomendasi
 
