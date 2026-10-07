@@ -182,7 +182,7 @@ const FIELDS = [
   {key:'nisn', label:'🆔 NISN', ph:'10 digit angka', attrs:'inputmode="numeric" maxlength="10" data-digits', test:reDigit(10), msg:'NISN harus 10 digit angka.'},
   {key:'nik', label:'🪪 NIK Anak (sesuai KK)', ph:'16 digit angka', attrs:'inputmode="numeric" maxlength="16" data-digits', test:reDigit(16), msg:'NIK harus 16 digit angka.'},
   {key:'jenis_kelamin', label:'⚧ Jenis Kelamin', type:'select', options:['Laki-laki','Perempuan'], msg:'Pilih jenis kelamin.'},
-  {key:'wa_siswa', label:'📱 No. WhatsApp Anak', ph:'Contoh: 081234567890', type:'tel', test:reWA, msg:'Isi nomor WhatsApp yang valid (diawali 08 atau 62).'},
+  {key:'wa_siswa', label:'📱 No. WhatsApp Anak', ph:'jika lupa/tidak ada pakai nomor yang ada', type:'tel', test:reWA, msg:'Isi nomor WhatsApp yang valid (diawali 08 atau 62).'},
   {group:'🏫 Sekolah Asal'},
   {key:'asal_sekolah', label:'🏫 Asal SMP / MTs', ph:'Nama SMP / MTs…', test:reNama, msg:'Asal SMP/MTs wajib diisi.'},
   {key:'tahun_lulus', label:'🎓 Tahun Lulus', type:'select', options:TAHUN_LULUS, msg:'Pilih tahun lulus.'},
@@ -195,9 +195,9 @@ const FIELDS = [
   {key:'kabupaten', label:'Kabupaten / Kota', ph:'Nama kabupaten / kota…', full:true, test:reNama, msg:'Kabupaten/Kota wajib diisi.'},
   {group:'👨‍👩‍👦 Data Orang Tua'},
   {key:'nama_ayah', label:'👨 Nama Ayah', ph:'Nama lengkap ayah…', test:reNama, msg:'Nama ayah wajib diisi.'},
-  {key:'wa_ayah', label:'📱 No. WhatsApp Ayah', ph:'Contoh: 081234567890', type:'tel', test:reWA, msg:'Isi nomor WhatsApp ayah yang valid.'},
+  {key:'wa_ayah', label:'📱 No. WhatsApp Ayah', ph:'jika lupa/tidak ada pakai nomor kamu/ yang ada', type:'tel', test:reWA, msg:'Isi nomor WhatsApp ayah yang valid.'},
   {key:'nama_ibu', label:'👩 Nama Ibu', ph:'Nama lengkap ibu…', test:reNama, msg:'Nama ibu wajib diisi.'},
-  {key:'wa_ibu', label:'📱 No. WhatsApp Ibu', ph:'Contoh: 081234567890', type:'tel', test:reWA, msg:'Isi nomor WhatsApp ibu yang valid.'}
+  {key:'wa_ibu', label:'📱 No. WhatsApp Ibu', ph:'jika lupa/tidak ada pakai nomor kamu/yang ada', type:'tel', test:reWA, msg:'Isi nomor WhatsApp ibu yang valid.'}
 ];
 
 const idOf = k => 'f-' + k;
