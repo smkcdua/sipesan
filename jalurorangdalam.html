@@ -337,7 +337,7 @@ async function submitForm(){
 function showDone(no, data){
   document.getElementById('done-sub').textContent = 'Terima kasih, ' + data.nama + '. Data kamu sudah diterima untuk jurusan ' + data.jurusan_pilihan + '.';
   document.getElementById('done-no').textContent = no;
-  const msg = "Assalamu'alaikum, saya " + data.nama + " sudah mengisi formulir pendaftaran Excelent (No. " + no + ") untuk jurusan " + data.jurusan_pilihan + ", referal " + REFERAL + ". Mohon info biaya administrasi dan daftar ulang. Terima kasih 🙏";
+  const msg = "Salam Corduba! saya " + data.nama + " sudah mengisi formulir pendaftaran Excelent (No. " + no + ") untuk jurusan " + data.jurusan_pilihan + ", referal " + REFERAL + ". Mohon info biaya administrasi dan daftar ulang. Terima kasih 🙏";
   document.getElementById('done-wa').href = 'https://wa.me/' + WA_SEKOLAH + '?text=' + encodeURIComponent(msg);
   document.getElementById('overlay').classList.add('show');
 }
