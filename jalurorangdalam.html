@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulir Excelent — SMK Cokroaminoto 2 Banjarnegara</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff8f0;--bg3:#fff1e6;--coral:#ff6b6b;--coral-dim:#fff0f0;--sun:#ffd93d;
+  --mint:#6bcb77;--mint-dim:#edfaf0;--sky:#4d96ff;--sky-dim:#e8f1ff;
+  --purple:#c77dff;--pink:#ff6eb4;--text:#2d2d2d;--text2:#5a5a5a;--muted:#9a9a9a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:
+  radial-gradient(ellipse 520px 420px at 10% 20%,rgba(199,125,255,.09),transparent 70%),
+  radial-gradient(ellipse 400px 380px at 85% 10%,rgba(77,150,255,.10),transparent 70%),
+  radial-gradient(ellipse 500px 400px at 70% 85%,rgba(255,110,180,.08),transparent 70%),
+  radial-gradient(ellipse 380px 340px at 15% 90%,rgba(255,217,61,.10),transparent 70%);}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 20px 60px;}
+
+.topnav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0 12px;border-bottom:3px dashed rgba(199,125,255,.22);}
+.tn-logo{display:flex;align-items:center;gap:10px;}
+.tn-logo-icon{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--pink));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 14px rgba(199,125,255,.35);}
+.tn-logo-text{font-family:'Fredoka One',cursive;font-size:16px;line-height:1.1;}
+.tn-logo-sub{font-size:9.5px;font-weight:700;color:var(--purple);}
+.tn-back{display:inline-flex;padding:8px 16px;border-radius:50px;border:2px solid rgba(0,0,0,.1);background:white;font-size:11px;font-weight:800;color:var(--text2);text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.tn-back:hover{border-color:var(--purple);color:var(--purple);}
+
+.hero{background:linear-gradient(135deg,var(--coral) 0%,var(--pink) 45%,var(--purple) 75%,var(--sky) 100%);border-radius:28px;padding:34px;margin:22px 0;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(199,125,255,.32);}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08);}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(24px,4.6vw,34px);color:white;line-height:1.1;margin-bottom:10px;position:relative;}
+.hero-sub{font-size:12.5px;color:rgba(255,255,255,.88);font-weight:600;line-height:1.7;max-width:500px;position:relative;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;position:relative;}
+.chip{padding:7px 14px;border-radius:50px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.35);font-size:10.5px;font-weight:800;color:white;}
+
+.notice{border-radius:18px;padding:14px 18px;margin-bottom:18px;font-size:11.5px;font-weight:700;line-height:1.7;border:2.5px solid;}
+.notice.ok{background:var(--mint-dim);border-color:rgba(107,203,119,.4);color:#2f7d3b;}
+.notice.warn{background:#fffbeb;border-color:#fcd34d;color:#92400e;}
+.notice code{background:rgba(0,0,0,.06);padding:2px 6px;border-radius:6px;font-size:10.5px;}
+
+.card{background:white;border:2.5px solid rgba(0,0,0,.06);border-radius:24px;padding:24px 24px 28px;box-shadow:0 6px 30px rgba(0,0,0,.06);margin-bottom:20px;}
+.card-title{font-size:13px;font-weight:800;margin-bottom:16px;}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sub{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:8px;font-size:11px;font-weight:800;color:var(--sky);}
+.sub::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(77,150,255,.25),transparent);border-radius:2px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:11px;font-weight:800;color:var(--text2);}
+.field input,.field select{padding:10px 14px;border-radius:12px;border:2.5px solid rgba(0,0,0,.09);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.field input:focus,.field select:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(77,150,255,.15);}
+.field input::placeholder{color:var(--muted);font-weight:600;}
+.field input[readonly]{background:var(--mint-dim);border-color:rgba(107,203,119,.45);color:#2f9e44;cursor:not-allowed;}
+.hint{font-size:10px;font-weight:600;color:var(--muted);line-height:1.5;}
+.err{display:none;font-size:10px;font-weight:700;color:var(--coral);}
+.field.bad .err,.agree.bad + .err{display:block;}
+.field.bad input,.field.bad select{border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,107,107,.15);}
+
+.rekom{padding:10px 14px;border-radius:12px;background:var(--sky-dim);border:2px solid rgba(77,150,255,.2);font-size:11px;font-weight:700;color:var(--text2);line-height:1.6;}
+.rekom.diff{background:#fff7ed;border-color:#fed7aa;}
+
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:11.5px;font-weight:700;color:var(--text2);line-height:1.6;cursor:pointer;margin-top:18px;}
+.agree input{width:18px;height:18px;margin-top:2px;accent-color:var(--coral);flex-shrink:0;}
+.agree.bad{color:var(--coral);}
+
+.btn-submit{width:100%;margin-top:20px;padding:16px 24px;border-radius:50px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--coral),var(--pink),var(--purple));color:white;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;box-shadow:0 8px 26px rgba(255,107,107,.38);transition:all .2s;}
+.btn-submit:hover{transform:translateY(-2px);}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.submit-err{display:none;margin-top:14px;padding:12px 16px;border-radius:14px;background:#fee2e2;border:2px solid #fca5a5;color:#b91c1c;font-size:11.5px;font-weight:700;line-height:1.6;}
+
+.overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.55);backdrop-filter:blur(14px);}
+.overlay.show{display:flex;}
+.done{background:white;border-radius:28px;padding:38px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 32px 100px rgba(0,0,0,.25);}
+.done-icon{font-size:64px;display:block;}
+.done-title{font-family:'Fredoka One',cursive;font-size:28px;margin:10px 0 6px;color:var(--coral);}
+.done-sub{font-size:12.5px;font-weight:700;color:var(--text2);line-height:1.7;margin-bottom:14px;}
+.done-no{display:inline-block;padding:9px 22px;border-radius:50px;background:var(--mint-dim);border:2px solid var(--mint);font-family:'Fredoka One',cursive;font-size:20px;color:#2f7d3b;margin-bottom:18px;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:50px;background:#25d366;color:white;font-size:12.5px;font-weight:800;text-decoration:none;box-shadow:0 6px 18px rgba(37,211,102,.35);}
+.btn-wa:hover{background:#1db954;}
+.btn-download{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;padding:13px 22px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--sky),var(--purple));color:white;font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(77,150,255,.28);}
+.btn-download:hover{filter:brightness(1.06);}
+.done-note{font-size:10px;color:var(--muted);font-weight:600;margin-top:12px;line-height:1.6;}
+
+@media(max-width:600px){.fields{grid-template-columns:1fr;}.hero{padding:26px 22px;}.card{padding:20px 18px 24px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <div class="tn-logo">
+      <div class="tn-logo-icon">📝</div>
+      <div><div class="tn-logo-text"> Excelent</div><div class="tn-logo-sub">SMK Cokroaminoto 2 Banjarnegara</div></div>
+    </div>
+    <a href="index.html" class="tn-back">← Kembali ke Rekomendasi</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-title">Formulir Pendaftaran 🎓</div>
+    <div class="hero-sub">Periksa data dari hasil rekomendasimu, ubah jika ada yang kurang tepat, lalu kirim. Tidak perlu melampirkan foto KK atau rapor.</div>
+    <div class="chips"><div class="chip" id="chip-ref"></div></div>
+  </section>
+
+  <div class="notice ok" id="notice-draft" style="display:none;"></div>
+  <div class="notice warn" id="notice-empty" style="display:none;">ℹ️ Data dari kuis rekomendasi belum ditemukan. Kamu tetap bisa mengisi semua kolom secara manual, atau <a href="index.html">isi kuis rekomendasi dulu</a>.</div>
+  <div class="notice warn" id="notice-setup" style="display:none;">⚠️ <strong>Pengiriman belum aktif.</strong> Deploy <code>kode_appscript_jalurorangdalam.gs</code> sebagai Web App, lalu tempel URL-nya ke <code>APPS_SCRIPT_URL</code> di bagian atas script file ini.</div>
+
+  <div class="card">
+    <div class="card-title">📋 Data Pendaftar</div>
+    <div class="fields" id="fields"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Pilihan Jurusan</div>
+    <div class="fields">
+      <div class="field full" id="f-jurusan">
+        <label for="jurusan">Jurusan yang kamu pilih</label>
+        <select id="jurusan"></select>
+        <div class="rekom" id="rekom" style="display:none;"></div>
+        <span class="err">Pilih salah satu jurusan.</span>
+      </div>
+    </div>
+  </div>
+
+  <label class="agree" id="agree"><input type="checkbox" id="agree-cb"> <span>Saya menyatakan data yang saya isi sudah benar.</span></label>
+  <span class="err" id="agree-err">Centang pernyataan ini untuk melanjutkan.</span>
+
+  <button class="btn-submit" id="btn-submit" type="button">🚀 Kirim Pendaftaran</button>
+  <div class="submit-err" id="submit-err"></div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="done">
+    <span class="done-icon">🎉</span>
+    <div class="done-title">Pendaftaran Terkirim!</div>
+    <div class="done-sub" id="done-sub"></div>
+    <div class="done-no" id="done-no"></div>
+    <a id="done-wa" class="btn-wa" href="#" target="_blank" rel="noopener">💬 Konfirmasi ke WhatsApp Sekolah</a>
+    <button id="download-card" class="btn-download" type="button">⬇️ Unduh Kartu Pendaftaran</button>
+    <div class="done-note">Simpan nomor pendaftaran ini. SEGERA HUBUNGI Panitia lewat WhatsApp untuk biaya administrasi dan daftar ulang.</div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   KONFIGURASI
+══════════════════════════════════════════ */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwafWpOg3cm3sLzHzSnBUXE8SPycvEjnWeW5R94rl7b3SI3RZjheNCZKDp322Yq-_Ii/exec'; // hasil deploy kode_appscript_jalurorangdalam.gs
+const REFERAL_DEFAULT = 'Nama Refferal';
+const TAHUN_LULUS     = [2025, 2026, 2027, '<2024'];
+const WA_SEKOLAH      = '6282328473522';
+const DRAFT_KEY       = 'sipesan_jod';   // diisi oleh index.html setelah hasil rekomendasi
+
+const JURUSAN = {
+  listrik:     '⚡ Teknik Ketenagalistrikan',
+  mesin:       '⚙️ Teknik Pemesinan',
+  las:         '🔥 Teknik Pengelasan',
+  otomotif:    '🚗 Teknik Kendaraan Ringan Otomotif',
+  Elektronika: '🤖 Teknik Elektronika',
+  multimedia:  '🎬 Desain Komunikasi Visual'
+};
+const polos = t => t.replace(/^\S+\s/, '');
+
+/* ══════════════════════════════════════════
+   DATA DARI index.html
+══════════════════════════════════════════ */
+let draft = {};
+try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || '{}') || {}; } catch(e) { draft = {}; }
+const REFERAL = (new URLSearchParams(location.search).get('ref') || draft.referal || REFERAL_DEFAULT).trim();
+document.getElementById('chip-ref').textContent = '🤝 Referal: ' + REFERAL;
+
+/* ══════════════════════════════════════════
+   DEFINISI KOLOM
+══════════════════════════════════════════ */
+const reNama  = v => v.length >= 3;
+const reDigit = n => v => new RegExp('^\\d{' + n + '}$').test(v);
+const reWA    = v => /^(\+62|62|0)8\d{8,12}$/.test(v.replace(/[\s\-().]/g, ''));
+const FIELDS = [
+  {group:'🤝 Referal'},
+  {key:'referal', label:'Nama Referal (orang dalam)', full:true, attrs:'readonly', test:()=>true},
+  {group:'👤 Data Siswa'},
+  {key:'nama', label:'📝 Nama Lengkap', ph:'Sesuai Kartu Keluarga…', full:true, test:reNama, msg:'Nama lengkap wajib diisi.'},
+  {key:'nisn', label:'🆔 NISN', ph:'10 digit angka', attrs:'inputmode="numeric" maxlength="10" data-digits', test:reDigit(10), msg:'NISN harus 10 digit angka.'},
+  {key:'nik', label:'🪪 NIK Anak (sesuai KK)', ph:'16 digit angka', attrs:'inputmode="numeric" maxlength="16" data-digits', test:reDigit(16), msg:'NIK harus 16 digit angka.'},
+  {key:'jenis_kelamin', label:'⚧ Jenis Kelamin', type:'select', options:['Laki-laki','Perempuan'], msg:'Pilih jenis kelamin.'},
+  {key:'wa_siswa', label:'📱 No. WhatsApp Anak', ph:'jika lupa/tidak ada pakai nomor yang ada', type:'tel', test:reWA, msg:'Isi nomor WhatsApp yang valid (diawali 08 atau 62).'},
+  {group:'🏫 Sekolah Asal'},
+  {key:'asal_sekolah', label:'🏫 Asal SMP / MTs', ph:'Nama SMP / MTs…', test:reNama, msg:'Asal SMP/MTs wajib diisi.'},
+  {key:'tahun_lulus', label:'🎓 Tahun Lulus', type:'select', options:TAHUN_LULUS, msg:'Pilih tahun lulus.'},
+  {group:'🎂 Tempat & Tanggal Lahir'},
+  {key:'tempat_lahir', label:'📍 Tempat Lahir', ph:'Kota / Kabupaten kelahiran…', test:reNama, msg:'Tempat lahir wajib diisi.'},
+  {key:'tanggal_lahir', label:'📅 Tanggal Lahir', type:'date', msg:'Tanggal lahir wajib diisi.'},
+  {group:'🏠 Alamat'},
+  {key:'desa', label:'Desa / Kelurahan', ph:'Nama desa…', test:reNama, msg:'Desa wajib diisi.'},
+  {key:'kecamatan', label:'Kecamatan', ph:'Nama kecamatan…', test:reNama, msg:'Kecamatan wajib diisi.'},
+  {key:'kabupaten', label:'Kabupaten / Kota', ph:'Nama kabupaten / kota…', full:true, test:reNama, msg:'Kabupaten/Kota wajib diisi.'},
+  {group:'👨‍👩‍👦 Data Orang Tua'},
+  {key:'nama_ayah', label:'👨 Nama Ayah', ph:'Nama lengkap ayah…', test:reNama, msg:'Nama ayah wajib diisi.'},
+  {key:'wa_ayah', label:'📱 No. WhatsApp Ayah (opsional)', ph:'Boleh dikosongkan', type:'tel', test:v => v === '' || reWA(v), msg:'Isi nomor WhatsApp ayah yang valid.'},
+  {key:'nama_ibu', label:'👩 Nama Ibu', ph:'Nama lengkap ibu…', test:reNama, msg:'Nama ibu wajib diisi.'},
+  {key:'wa_ibu', label:'📱 No. WhatsApp Ibu (opsional)', ph:'Boleh dikosongkan', type:'tel', test:v => v === '' || reWA(v), msg:'Isi nomor WhatsApp ibu yang valid.'}
+];
+
+const idOf = k => 'f-' + k;
+const denormWA = v => (v && /^62/.test(v)) ? '0' + v.slice(2) : (v || '');
+const normWA = v => { const d = v.replace(/\D/g, ''); return !d ? '' : d.startsWith('62') ? d : d.startsWith('0') ? '62' + d.slice(1) : '62' + d; };
+
+function render(){
+  const box = document.getElementById('fields');
+  box.innerHTML = FIELDS.map(f => {
+    if(f.group) return `<div class="sub">${f.group}</div>`;
+    const input = f.type === 'select'
+      ? `<select id="${idOf(f.key)}"><option value="">Pilih…</option>${f.options.map(o=>`<option value="${o}">${o}</option>`).join('')}</select>`
+      : `<input type="${f.type||'text'}" id="${idOf(f.key)}" placeholder="${f.ph||''}" ${f.attrs||''}>`;
+    return `<div class="field${f.full?' full':''}"><label for="${idOf(f.key)}">${f.label}</label>${input}<span class="err"></span></div>`;
+  }).join('');
+
+  // isi dari hasil index.html (semua tetap bisa diedit)
+  let terisi = 0;
+  FIELDS.forEach(f => {
+    if(f.group || f.key === 'referal') return;
+    let v = draft[f.key];
+    if(v === undefined || v === null || v === '') return;
+    if(f.type === 'tel') v = denormWA(String(v));
+    document.getElementById(idOf(f.key)).value = v;
+    terisi++;
+  });
+  document.getElementById(idOf('referal')).value = REFERAL;
+  document.getElementById(idOf('tanggal_lahir')).max = new Date().toISOString().slice(0, 10);
+
+  box.addEventListener('input', e => {
+    if(e.target.hasAttribute('data-digits')) e.target.value = e.target.value.replace(/\D/g, '');
+    const w = e.target.closest('.field'); if(w) w.classList.remove('bad');
+  });
+
+  // jurusan
+  const sel = document.getElementById('jurusan');
+  sel.innerHTML = '<option value="">Pilih jurusan…</option>' + Object.entries(JURUSAN).map(([k,n])=>`<option value="${k}">${n}</option>`).join('');
+  const rek = JURUSAN[draft.rekomendasi] ? draft.rekomendasi : '';
+  sel.value = rek;
+  const rk = document.getElementById('rekom');
+  const showRek = () => {
+    if(!rek){ rk.style.display = 'none'; return; }
+    rk.style.display = 'block';
+    const beda = sel.value !== rek;
+    rk.classList.toggle('diff', beda);
+    rk.textContent = (beda ? 'Kamu memilih jurusan yang berbeda dari rekomendasi sistem. ' : '✅ Sesuai rekomendasi sistem. ')
+      + 'Rekomendasi: ' + JURUSAN[rek] + (draft.skor ? ' (kesesuaian ' + draft.skor + '%)' : '') + '.';
+  };
+  sel.addEventListener('change', () => { document.getElementById('f-jurusan').classList.remove('bad'); showRek(); });
+  showRek();
+
+  const nd = document.getElementById('notice-draft');
+  if(terisi || rek){
+    nd.style.display = 'block';
+    nd.textContent = '✅ Data dari hasil rekomendasimu sudah terisi. Periksa dulu, kamu masih bisa mengubah atau melengkapi isiannya.';
+  } else {
+    document.getElementById('notice-empty').style.display = 'block';
+  }
+  if(APPS_SCRIPT_URL.includes('GANTI_DENGAN')) document.getElementById('notice-setup').style.display = 'block';
+}
+render();
+
+/* ══════════════════════════════════════════
+   VALIDASI & KIRIM
+══════════════════════════════════════════ */
+function validate(){
+  let first = null;
+  const mark = (el, ok) => { if(!ok && !first) first = el; };
+  FIELDS.forEach(f => {
+    if(f.group) return;
+    const el = document.getElementById(idOf(f.key)), w = el.closest('.field');
+    const ok = (f.test || (v => v.length > 0))(el.value.trim());
+    w.classList.toggle('bad', !ok);
+    w.querySelector('.err').textContent = f.msg || 'Wajib diisi.';
+    mark(el, ok);
+  });
+  const sel = document.getElementById('jurusan');
+  document.getElementById('f-jurusan').classList.toggle('bad', !sel.value); mark(sel, !!sel.value);
+  const cb = document.getElementById('agree-cb');
+  document.getElementById('agree').classList.toggle('bad', !cb.checked);
+  document.getElementById('agree-err').style.display = cb.checked ? 'none' : 'block';
+  mark(cb, cb.checked);
+  if(first){ first.scrollIntoView({behavior:'smooth', block:'center'}); if(first.focus) first.focus({preventScroll:true}); }
+  return !first;
+}
+
+const listText = (arr, map) => (arr || []).map(map).join(', ');
+let sending = false;
+
+async function submitForm(){
+  if(sending) return;
+  const errBox = document.getElementById('submit-err'); errBox.style.display = 'none';
+  if(!validate()) return;
+  if(APPS_SCRIPT_URL.includes('GANTI_DENGAN')){
+    document.getElementById('notice-setup').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'}); return;
+  }
+
+  const g = k => document.getElementById(idOf(k)).value.trim();
+  const data = {};
+  FIELDS.forEach(f => { if(!f.group) data[f.key] = g(f.key); });
+  ['wa_siswa','wa_ayah','wa_ibu'].forEach(k => data[k] = normWA(data[k]));
+  const jKey = document.getElementById('jurusan').value;
+  Object.assign(data, {
+    referal: REFERAL,
+    jurusan_pilihan: polos(JURUSAN[jKey]),
+    jurusan_rekomendasi: JURUSAN[draft.rekomendasi] ? polos(JURUSAN[draft.rekomendasi]) : '',
+    skor_rekomendasi: draft.skor || '',
+    ranking: listText(draft.ranking, r => (JURUSAN[r.k] ? polos(JURUSAN[r.k]) : r.k) + ' ' + r.s + '%'),
+    nilai: draft.nilai ? Object.entries(draft.nilai).map(([k,v]) => k + ' ' + v).join(', ') : '',
+    bakat: (draft.bakat || []).join(', '),
+    minat: (draft.minat || []).join(', '),
+    tujuan: draft.tujuan || '',
+    gaya: draft.gaya || '',
+    jarak_km: draft.jarak || ''
+  });
+
+  sending = true;
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true; btn.textContent = '⏳ Mengirim… jangan tutup halaman';
+  try{
+    // tanpa header Content-Type kustom agar tidak memicu preflight CORS pada Apps Script
+    const res = await fetch(APPS_SCRIPT_URL, { method:'POST', body: JSON.stringify({ data }) });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const out = await res.json();
+    if(!out.ok) throw new Error(out.error || 'Server menolak data.');
+    try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+    showDone(out.no, data);
+  }catch(err){
+    errBox.textContent = '⚠️ Pendaftaran belum terkirim: ' + err.message + ' Periksa koneksi internet lalu coba lagi, atau hubungi panitia via WhatsApp.';
+    errBox.style.display = 'block';
+    btn.disabled = false; btn.textContent = '🚀 Kirim Pendaftaran';
+    sending = false;
+  }
+}
+
+function showDone(no, data){
+  const registrationNo = String(no || '').replace(/^JOD/i, 'CDB');
+  document.getElementById('done-sub').textContent = 'Terima kasih, ' + data.nama + '. Data kamu sudah diterima untuk jurusan ' + data.jurusan_pilihan + '.';
+  document.getElementById('done-no').textContent = registrationNo;
+  const msg = "Salam Corduba! saya " + data.nama + " sudah mengisi formulir pendaftaran Excelent (No. " + registrationNo + ") untuk jurusan " + data.jurusan_pilihan + ", referal " + REFERAL + ". Mohon info biaya administrasi dan daftar ulang. Terima kasih 🙏";
+  document.getElementById('done-wa').href = 'https://wa.me/' + WA_SEKOLAH + '?text=' + encodeURIComponent(msg);
+  document.getElementById('download-card').onclick = () => downloadRegistrationCard(registrationNo, data);
+  document.getElementById('overlay').classList.add('show');
+}
+
+function downloadRegistrationCard(no, data){
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 720;
+  const context = canvas.getContext('2d');
+  if(!context){
+    alert('Kartu pendaftaran tidak dapat dibuat di browser ini.');
+    return;
+  }
+
+  const background = context.createLinearGradient(0, 0, 1200, 720);
+  background.addColorStop(0, '#fff8f0');
+  background.addColorStop(1, '#e8f1ff');
+  context.fillStyle = background;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = '#ffffff';
+  context.beginPath();
+  context.roundRect(40, 40, 1120, 640, 36);
+  context.fill();
+
+  context.fillStyle = '#c77dff';
+  context.fillRect(40, 40, 1120, 170);
+  context.fillStyle = '#ffffff';
+  context.font = '800 30px Nunito, sans-serif';
+  context.fillText('SMK Cokroaminoto 2 Banjarnegara', 82, 100);
+  context.font = '700 24px Nunito, sans-serif';
+  context.fillText('KARTU PENDAFTARAN SISWA BARU', 82, 150);
+
+  context.fillStyle = '#2d2d2d';
+  context.font = '700 22px Nunito, sans-serif';
+  context.fillText('NOMOR PENDAFTARAN', 82, 278);
+  context.fillStyle = '#2f7d3b';
+  context.font = '900 44px Nunito, sans-serif';
+  context.fillText(no || '-', 82, 336);
+
+  const details = [
+    ['NAMA SISWA', data.nama],
+    ['JURUSAN PILIHAN', data.jurusan_pilihan],
+    ['ASAL SEKOLAH', data.asal_sekolah],
+    ['TAHUN LULUS', data.tahun_lulus],
+    ['TANGGAL PENDAFTARAN', new Date().toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})]
+  ];
+  context.font = '700 17px Nunito, sans-serif';
+  details.forEach(([label, value], index) => {
+    const col = index < 3 ? 0 : 1;
+    const row = index < 3 ? index : index - 3;
+    const x = col === 0 ? 82 : 620;
+    const y = 410 + row * 82;
+    context.fillStyle = '#9a9a9a';
+    context.fillText(label, x, y);
+    context.fillStyle = '#2d2d2d';
+    context.font = '800 22px Nunito, sans-serif';
+    context.fillText(String(value || '-').slice(0, 42), x, y + 34);
+    context.font = '700 17px Nunito, sans-serif';
+  });
+  context.fillStyle = '#5a5a5a';
+  context.font = '600 15px Nunito, sans-serif';
+  context.fillText('Simpan kartu ini dan tunjukkan kepada panitia saat melakukan konfirmasi.', 82, 640);
+
+  canvas.toBlob(blob => {
+    if(!blob){
+      alert('Kartu pendaftaran gagal dibuat. Silakan coba lagi.');
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `kartu-pendaftaran-${no || 'siswa'}.png`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+}
+document.getElementById('btn-submit').addEventListener('click', submitForm);
+</script>
+</body>
+</html>
