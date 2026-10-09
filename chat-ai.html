@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tanya Kak Duba — SMK Cokroaminoto 2 Banjarnegara</title>
+<title>Tanya Kak Duba — Corduba Keren</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Fredoka+One&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════
@@ -235,13 +235,13 @@ body::before{
   <section class="hero" id="hero">
     <div class="hero-eyebrow">Konsultasi Interaktif <span>✦ Ditenagai Haroun</span></div>
     <div class="hero-title" id="hero-title">Tanya Kak Duba 🤖</div>
-    <div class="hero-sub" id="hero-sub">Tanya apa saja seputar jurusan, prospek karir, atau kehidupan di SMK Cokroaminoto 2 Banjarnegara. Kak Duba siap bantu jawab!</div>
+    <div class="hero-sub" id="hero-sub">Tanya apa saja seputar jurusan, prospek karir, atau kehidupan di Corduba. Kak Duba siap bantu jawab!</div>
     <div class="ctx-chips" id="ctx-chips"></div>
   </section>
 
   <!-- SETUP WARNING (muncul jika Apps Script belum dikonfigurasi) -->
   <div class="setup-warning" id="setup-warning">
-    ⚠️ <strong>Chat belum aktif.</strong> Buka file <code>kode_appscript_gemini.gs</code>, deploy sebagai Web App di Google Apps Script, lalu tempel URL-nya ke variabel <code>APPS_SCRIPT_URL</code> di bagian atas file ini (<code>chat-ai.html</code>).
+    ⚠️ <strong>Chat belum aktif.</strong>.
   </div>
 
   <!-- CHAT CARD -->
@@ -264,8 +264,8 @@ body::before{
   <div class="contact-row">
     <div style="font-size:32px;">📞</div>
     <div class="cr-info">
-      <div class="cr-title">Butuh jawaban pasti dari manusia?</div>
-      <div class="cr-detail">Hubungi Pengasuh / Kaprodi langsung via WhatsApp — <strong>0823-2847-3522</strong></div>
+      <div class="cr-title">Butuh jawaban langsung dari Panitia SPMB?</div>
+      <div class="cr-detail">Hubungi Panitia PPDB — <strong>0823-2847-3522</strong></div>
     </div>
     <a href="https://wa.me/6282328473522" target="_blank" rel="noopener" class="btn-wa">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.497-5.24-1.367l-.376-.22-3.762.883.933-3.665-.244-.388A9.935 9.935 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
@@ -342,7 +342,7 @@ const jInfo = JURUSAN_DATA[ctx.jurusan] || null;
       `linear-gradient(135deg, ${jInfo.color} 0%, var(--pink) 55%, var(--purple) 100%)`;
     document.getElementById('hero-title').textContent = `Tanya Kak Duba ${jInfo.emoji}`;
     document.getElementById('hero-sub').textContent =
-      `Kamu direkomendasikan ke jurusan ${jInfo.nama}. Tanyakan apa saja soal jurusan ini — atau jurusan lain — ke Kak Duba!`;
+      `Kamu direkomendasikan ke jurusan ${jInfo.nama}. Tanyakan apa saja Seputar CORDUBA — ke Kak Duba!`;
   }
 
   const daftarBtn = document.getElementById('btn-daftar-ai');
@@ -419,7 +419,7 @@ async function buildSystemInstruction(){
 
   const aiReference = await loadAiReferenceText();
 
-  return `Kamu adalah "Kak Duba", asisten virtual dengan NLM model Haroun yang ramah dari SMK Cokroaminoto 2 Banjarnegara (Yayasan Pendidikan Islam Cokroaminoto banjarnegara) yang membantu calon siswa SMP/MTs memahami jurusan-jurusan di sekolah ini beserta boarding "Ribath At Tauhid".
+  return `Kamu adalah "Kak Duba", asisten virtual dengan NLM model Haroun yang ramah dari SMK Cokroaminoto 2 Banjarnegara (Corduba) yang membantu calon siswa SMP/MTs memahami jurusan-jurusan di sekolah ini beserta boarding "Ribath At Tauhid".
 
 ${aiReference}
 
@@ -434,7 +434,7 @@ ${daftarJurusan}
 Aturan menjawab:
 1. Jika user memberi salam Salamun'alaykum jawab dengan "alaykumsallam, para pencari Kebenaran hakiki" dan beri motivasi penguatan untuk tetap mendakwahkan pemahaman geometri kehendak semesta atau Al-Ribatuttauhid Al-Kulliy kemudian lanjutkan dengan Fokus Utama.
 2. Jawab dalam Bahasa Indonesia yang hangat, sopan, dan mudah dipahami anak SMP — maksimal 3-5 kalimat kecuali diminta detail lebih.
-3. Fokus HANYA pada topik: jurusan SMK yang menjadi hasil siswa tersebut, prospek karir, kehidupan sekolah/boarding, dan pendaftaran (PPDB) di SMK Cokroaminoto 2 Banjarnegara. Jika ditanya di luar topik ini, arahkan dengan sopan kembali ke topik seputar sekolah.
+3. Fokus HANYA pada topik: jurusan SMK yang menjadi hasil siswa tersebut, prospek karir, kehidupan sekolah/boarding, dan pendaftaran (PPDB) di SMK Cokroaminoto 2 Banjarnegara (Corduba). Jika ditanya di luar topik ini, arahkan dengan sopan kembali ke topik seputar sekolah.
 4. Jangan mengarang angka biaya pasti (SPP, boarding, registrasi) — sekolah punya halaman Simulasi Biaya Boarding terpisah untuk estimasi biaya. Sarankan siswa memakai fitur itu atau menghubungi Kaprodi/Pengasuh via WhatsApp untuk biaya pasti.
 5. Boleh menyapa dengan nama siswa jika sudah diketahui.
 6. Jika siswa terlihat sudah yakin dan ingin mendaftar, arahkan ke tombol "Lanjut ke Pendaftaran" di halaman hasil atau ke WhatsApp Kaprodi.`;
@@ -487,7 +487,7 @@ async function handleSend(){
     }
   }catch(err){
     hideTyping();
-    appendMessage('bot', '⚠️ Gagal terhubung ke server AI. Coba lagi sebentar lagi, atau hubungi Kaprodi via tombol WhatsApp di bawah 🙏');
+    appendMessage('bot', '⚠️ Gagal terhubung ke server AI. Coba lagi sebentar lagi, atau hubungi Panitia via tombol WhatsApp di bawah 🙏');
   }finally{
     sending = false;
     document.getElementById('chat-send').disabled = false;
