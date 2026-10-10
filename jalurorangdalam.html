@@ -137,7 +137,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     <div class="done-title">Pendaftaran Terkirim!</div>
     <div class="done-sub" id="done-sub"></div>
     <div class="done-no" id="done-no"></div>
-    <a id="done-wa" class="btn-wa" href="#" target="_blank" rel="noopener">💬 Konfirmasi ke WhatsApp Sekolah</a>
+    <a id="done-wa" class="btn-wa" href="#" target="_blank" rel="noopener">💬 Konfirmasi ke WhatsApp Panitia</a>
     <button id="download-card" class="btn-download" type="button">⬇️ Unduh Kartu Pendaftaran</button>
     <div class="done-note">Simpan nomor pendaftaran ini. SEGERA HUBUNGI Panitia lewat WhatsApp untuk biaya administrasi dan daftar ulang.</div>
   </div>
@@ -341,7 +341,7 @@ function showDone(no, data){
   const registrationNo = String(no || '').replace(/^JOD/i, 'CDB');
   document.getElementById('done-sub').textContent = 'Terima kasih, ' + data.nama + '. Data kamu sudah diterima untuk jurusan ' + data.jurusan_pilihan + '.';
   document.getElementById('done-no').textContent = registrationNo;
-  const msg = "Salam Corduba! saya " + data.nama + " sudah mengisi formulir pendaftaran Excelent (No. " + registrationNo + ") untuk jurusan " + data.jurusan_pilihan + ", referal " + REFERAL + ". Mohon info biaya administrasi dan daftar ulang. Terima kasih 🙏";
+  const msg = "Salam Corduba! saya " + data.nama + " sudah mengisi formulir pendaftaran Excellent (No. " + registrationNo + ") untuk jurusan " + data.jurusan_pilihan + ", referal " + REFERAL + ". Mohon info biaya administrasi dan daftar ulang. Terima kasih 🙏";
   document.getElementById('done-wa').href = 'https://wa.me/' + WA_SEKOLAH + '?text=' + encodeURIComponent(msg);
   document.getElementById('download-card').onclick = () => downloadRegistrationCard(registrationNo, data);
   document.getElementById('overlay').classList.add('show');
