@@ -810,7 +810,7 @@ input[type=range]::-moz-range-thumb{
       <div class="ppdb-info-row">
         <div class="ppdb-info-chip">
           <span class="chip-val">Alur SPMB Corduba</span>
-          <span class="chip-lbl">Mudah dan Bisa Tanpa Upload Dokumen</span>
+          <span class="chip-lbl">Mudah dan Tanpa Upload Dokumen</span>
         </div>
         
       </div>
@@ -849,7 +849,7 @@ let recGaya = 'campuran';
    Link khusus per orang dalam: index.html?ref=Nama+Orang
 ══════════════════════════════════════════ */
 const REFERAL_DEFAULT = 'Nama Guru';
-const TAHUN_LULUS     = [2025, 2026, 2027, '<2024'];
+const TAHUN_LULUS     = ['<2024', 2025, 2026, 2027];
 const PPDB_FORM_URL   = 'jalurorangdalam.html';   // halaman formulir Excelent
 const DRAFT_KEY       = 'sipesan_jod';          // dibaca oleh jalurorangdalam.html
 const QUOTA_SPREADSHEET_ID = '1TkQxKO_F7_zL-lJq6PdcS6NMpmvubO1mHMwCM3s2xhU';
@@ -878,7 +878,7 @@ const DAFTAR_FIELDS = [
   {id:'siswa-tempat', label:'📍 Tempat Lahir', ph:'Kota / Kabupaten kelahiran…', test:reNama, msg:'Tempat lahir wajib diisi.'},
   {id:'siswa-tgl', label:'📅 Tanggal Lahir', type:'date', msg:'Tanggal lahir wajib diisi.'},
   {group:'🏠 Alamat'},
-  {id:'siswa-desa', label:'Desa / Kelurahan', ph:'Nama desa…', test:reNama, msg:'Desa wajib diisi.'},
+  {id:'siswa-desa', label:'Desa / RT RW', ph:'Nama desa…', test:reNama, msg:'Desa wajib diisi.'},
   {id:'siswa-kec', label:'Kecamatan', ph:'Nama kecamatan…', test:reNama, msg:'Kecamatan wajib diisi.'},
   {id:'siswa-kab', label:'Kabupaten / Kota', ph:'Nama kabupaten / kota…', test:reNama, msg:'Kabupaten/Kota wajib diisi.'},
   {id:'siswa-jarak', label:'🛣️ Jarak ke SMK C2 <span class="field-hint">(km, opsional — untuk Simulasi Boarding)</span>', ph:'Contoh: 12', type:'number', attrs:'min="0" max="200" step="0.5"', test:reOpt, msg:'Jarak tidak boleh negatif.'},
@@ -1595,7 +1595,7 @@ function buildWaLink(jKey, aEl, event) {
   const pesan =
     `Salam Corduba perkenalkan nama saya *${siswaNama}*, ` +
     `asal sekolah *${siswaSekolah}*.\n\n` +
-    `Saya tertarik dan ingin bertanya lebih lanjut mengenai biaya daftar ulang di *Jurusan ${namaJurusan}* ` +
+    `Saya tertarik dan ingin bertanya lebih lanjut mengenai profil *Jurusan ${namaJurusan}* ` +
     `di SMK Cokroaminoto 2 Banjarnegara.` +
     (tambahan ? `\n\n${tambahan}` : '') +
     `\n\nTerimakasih 🙏`;
