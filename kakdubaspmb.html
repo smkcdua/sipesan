@@ -427,6 +427,71 @@ Kontak: WhatsApp 0823-2847-3522 (wa.me/6282328473522) — Kaprodi per jurusan: T
       win.scrollTop = win.scrollHeight;
     }
 
+    // Posisi atas bubble relatif terhadap area scroll chat
+    function bubbleTopInWindow(win, el) {
+      return el.getBoundingClientRect().top - win.getBoundingClientRect().top + win.scrollTop;
+    }
+
+    // Tampilkan jawaban AI huruf demi huruf (cepat), sorotan tetap di awal jawaban
+    function appendBotTyped(text) {
+      return new Promise(resolve => {
+        const win = document.getElementById('chat-window');
+        const div = document.createElement('div');
+        div.className = 'msg bot';
+        div.innerHTML = '<div class="msg-avatar">🤖</div><div class="msg-bubble"></div>';
+        win.appendChild(div);
+        const bubble = div.querySelector('.msg-bubble');
+
+        // Pindahkan sorotan ke awal jawaban AI (di dalam chat & di halaman)
+        const focusAnswerStart = () => {
+          const maxScroll = win.scrollHeight - win.clientHeight;
+          const topPos = bubbleTopInWindow(win, div) - 12;
+          // ikuti ketikan ke bawah, tapi jangan sampai awal jawaban terlewat
+          win.scrollTop = Math.max(0, Math.min(maxScroll, topPos));
+        };
+        div.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+        const chars = Array.from(text);
+        const total = chars.length;
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const renderUpTo = n => {
+          let part = chars.slice(0, n).join('');
+          // tutup tanda ** yang belum berpasangan agar tidak tampil mentah
+          if ((part.match(/\*\*/g) || []).length % 2 === 1) part += '**';
+          bubble.innerHTML = renderBotText(part);
+        };
+
+        if (reduceMotion || total === 0) {
+          renderUpTo(total);
+          focusAnswerStart();
+          return resolve();
+        }
+
+        // Kecepatan: min ~150 huruf/detik, jawaban panjang dibatasi maks ±3 detik
+        const speed = Math.max(150, total / 3);
+        const start = performance.now();
+        let shown = 0;
+
+        const finish = () => {
+          renderUpTo(total);
+          focusAnswerStart();
+          bubble.removeEventListener('click', skip);
+          resolve();
+        };
+        const skip = () => { shown = total; };
+        bubble.addEventListener('click', skip);
+
+        (function tick(now) {
+          shown = Math.max(shown, Math.min(total, Math.floor(((now || performance.now()) - start) / 1000 * speed)));
+          if (shown >= total) return finish();
+          renderUpTo(shown);
+          focusAnswerStart();
+          requestAnimationFrame(tick);
+        })(start);
+      });
+    }
+
     function showTyping() {
       const win = document.getElementById('chat-window');
       const div = document.createElement('div');
@@ -518,6 +583,7 @@ Kontak: WhatsApp 0823-2847-3522 (wa.me/6282328473522) — Kaprodi per jurusan: T
       sending = true;
       document.getElementById('chat-send').disabled = true;
       input.value = '';
+      input.blur(); // sembunyikan keyboard begitu pesan dikirim
       appendMessage('user', text);
       history.push({ role: 'user', parts: [{ text }] });
       showTyping();
@@ -526,13 +592,13 @@ Kontak: WhatsApp 0823-2847-3522 (wa.me/6282328473522) — Kaprodi per jurusan: T
         const data = await sendToGemini(text);
         hideTyping();
         if (data && data.error) {
-          appendMessage('bot', '⚠️ ' + data.error);
+          await appendBotTyped('⚠️ ' + data.error);
         } else {
           const rawReply = (data && data.reply) || 'Maaf, Kak Duba belum bisa menjawab itu 🙏';
           const { visibleReply, profile } = extractFormData(rawReply);
           if (profile) saveFormData(profile);
-          appendMessage('bot', visibleReply || 'Jawaban Kak Duba belum tersedia 🙏');
           history.push({ role: 'model', parts: [{ text: rawReply }] });
+          await appendBotTyped(visibleReply || 'Jawaban Kak Duba belum tersedia 🙏');
         }
       } catch (err) {
         hideTyping();
@@ -540,7 +606,7 @@ Kontak: WhatsApp 0823-2847-3522 (wa.me/6282328473522) — Kaprodi per jurusan: T
       } finally {
         sending = false;
         document.getElementById('chat-send').disabled = false;
-        input.focus();
+        // sengaja tidak input.focus() agar keyboard tidak muncul lagi setelah jawaban selesai
       }
     }
 
